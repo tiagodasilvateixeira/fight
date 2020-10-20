@@ -14,16 +14,19 @@ public class RyuController : MonoBehaviour
     #region internal components and proprierts
         new Rigidbody2D rigidbody2D;
         Animator animator;
+        bool grounded;
     #endregion
 
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        grounded = true;
     }
 
     void Update()
     {
+        
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         if (Mathf.Approximately(input.x, 0.0f))
@@ -39,13 +42,15 @@ public class RyuController : MonoBehaviour
         if (Physics2D.Raycast(transform.position, Vector3.down, GroundDistance, GroundLayer))
         {
             animator.SetBool("grounded", true);
+            grounded = true;
         }
         else
         {
             animator.SetBool("grounded", false);
+            grounded = false;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && grounded)
         {
             animator.SetTrigger("jump");
             rigidbody2D.AddForce(Vector3.up * JumpForce);
