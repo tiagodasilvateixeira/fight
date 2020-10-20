@@ -55,5 +55,15 @@ public class RyuController : MonoBehaviour
             animator.SetTrigger("jump");
             rigidbody2D.AddForce(Vector3.up * JumpForce);
         }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            animator.SetTrigger("punch");
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            animator.SetTrigger("kick");
+        }
     }
 }
