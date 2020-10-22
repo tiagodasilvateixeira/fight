@@ -27,7 +27,7 @@ public class RyuController : MonoBehaviour
     void Update()
     {
         
-        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), 0.0f);
 
         if (Mathf.Approximately(input.x, 0.0f))
         {
