@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RyuController : MonoBehaviour
+public class RyuController : MonoBehaviour, IPlayer
 {
     #region public proprierts
         public int Speed = 5;
@@ -17,14 +17,22 @@ public class RyuController : MonoBehaviour
         bool grounded;
     #endregion
 
-    void Start()
+    #region IPlayer Proprierts
+        public short Life { get; set; }
+        public short Energy { get; set; }
+        public short EspecialPower { get; set; }
+        public byte Orientation { get; set; }
+        public bool IA { get; set; }
+    #endregion
+
+    public void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         grounded = true;
     }
 
-    void Update()
+    public void Update()
     {
         
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), 0.0f);
@@ -65,5 +73,42 @@ public class RyuController : MonoBehaviour
         {
             animator.SetTrigger("kick");
         }
+    }
+
+    public void Walk()
+    {
+
+    }
+    public void Jump()
+    {
+
+    }
+    public void Punch()
+    {
+
+    }
+    public void Kick()
+    {
+
+    }
+    public void Block()
+    {
+
+    }
+    public void EspecialAtack()
+    {
+
+    }
+    public void Hit()
+    {
+
+    }
+    public void KO()
+    {
+
+    }
+    public void Win()
+    {
+
     }
 }
