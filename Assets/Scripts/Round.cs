@@ -1,7 +1,10 @@
+using UnityEngine;
+
 public class Round {
     public short Number { get; private set; }
     public bool Finished { get; private set; }
     public IPlayer Winner { get; private set; }
+    public Sprite BackgroundImage { get; private set; }
 
     public Round(short number, IPlayer player1, IPlayer player2)
     {

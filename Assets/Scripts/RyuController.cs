@@ -14,10 +14,11 @@ public class RyuController : MonoBehaviour, IPlayer
     #region internal components and proprierts
         new Rigidbody2D rigidbody2D;
         Animator animator;
+        Vector2 input;
         bool grounded;
     #endregion
 
-    #region IPlayer Proprierts
+    #region IPlayer proprierts
         public short Life { get; set; }
         public short Energy { get; set; }
         public short EspecialPower { get; set; }
@@ -35,7 +36,7 @@ public class RyuController : MonoBehaviour, IPlayer
     public void Update()
     {
         
-        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), 0.0f);
+        input = new Vector2(Input.GetAxis("Horizontal"), 0.0f);
 
         if (Mathf.Approximately(input.x, 0.0f))
         {
@@ -43,8 +44,7 @@ public class RyuController : MonoBehaviour, IPlayer
         }
         else
         {
-            animator.SetBool("idle", false);
-            transform.position = rigidbody2D.position + (input * Speed * Time.deltaTime);
+            Walk();
         }
 
         if (Physics2D.Raycast(transform.position, Vector3.down, GroundDistance, GroundLayer))
@@ -60,36 +60,37 @@ public class RyuController : MonoBehaviour, IPlayer
 
         if (Input.GetButtonDown("Jump") && grounded)
         {
-            animator.SetTrigger("jump");
-            rigidbody2D.AddForce(Vector3.up * JumpForce);
+            Jump();
         }
 
         if (Input.GetKeyDown(KeyCode.J))
         {
-            animator.SetTrigger("punch");
+            Punch();
         }
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            animator.SetTrigger("kick");
+            Kick();
         }
     }
 
     public void Walk()
     {
-
+        animator.SetBool("idle", false);
+        transform.position = rigidbody2D.position + (input * Speed * Time.deltaTime);
     }
     public void Jump()
     {
-
+        animator.SetTrigger("jump");
+        rigidbody2D.AddForce(Vector3.up * JumpForce);
     }
     public void Punch()
     {
-
+        animator.SetTrigger("punch");
     }
     public void Kick()
     {
-
+        animator.SetTrigger("kick");
     }
     public void Block()
     {
