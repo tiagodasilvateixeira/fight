@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RyuController : MonoBehaviour, IPlayer
+public class BlankaController : MonoBehaviour
 {
     #region public proprierts
         public int Speed = 5;
@@ -32,7 +32,6 @@ public class RyuController : MonoBehaviour, IPlayer
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        grounded = true;
 
         HealthBarController.instance.SetHealthValue((float) 3/5, Mask);
     }
@@ -40,48 +39,6 @@ public class RyuController : MonoBehaviour, IPlayer
     public void Update()
     {
         
-        input = new Vector2(Input.GetAxis("Horizontal"), 0.0f);
-
-        if (Mathf.Approximately(input.x, 0.0f))
-        {
-            animator.SetBool("idle", true);
-        }
-        else
-        {
-            Walk();
-        }
-
-        if (Physics2D.Raycast(transform.position, Vector3.down, GroundDistance, GroundLayer))
-        {
-            animator.SetBool("grounded", true);
-            grounded = true;
-        }
-        else
-        {
-            animator.SetBool("grounded", false);
-            grounded = false;
-        }
-
-        if (Input.GetButtonDown("Jump") && grounded)
-        {
-            Jump();
-        }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            Punch();
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Kick();
-        }
-    }
-
-    public void Walk()
-    {
-        animator.SetBool("idle", false);
-        transform.position = rigidbody2D.position + (input * Speed * Time.deltaTime);        
     }
     public void Jump()
     {

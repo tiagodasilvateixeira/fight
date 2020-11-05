@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 969882063580594173}
   - component: {fileID: 969882063580594172}
   - component: {fileID: 969882063580594147}
-  m_Layer: 0
+  - component: {fileID: 732260637}
+  m_Layer: 9
   m_Name: Blanka
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,3 +152,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &732260637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969882063580594144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c19f63daed7f52340a24c706a8d91950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5
+  JumpForce: 500
+  GroundDistance: 2.2
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 1
