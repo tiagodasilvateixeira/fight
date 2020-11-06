@@ -33,8 +33,6 @@ public class RyuController : MonoBehaviour, IPlayer
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         grounded = true;
-
-        HealthBarController.instance.SetHealthValue((float) 3/5, Mask);
     }
 
     public void Update()
@@ -76,6 +74,11 @@ public class RyuController : MonoBehaviour, IPlayer
         {
             Kick();
         }
+    }
+
+    void SetHealth(float value)
+    {
+        HealthBarController.instance.SetHealthValue(value, Mask);
     }
 
     public void Walk()

@@ -32,13 +32,15 @@ public class BlankaController : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-
-        HealthBarController.instance.SetHealthValue((float) 3/5, Mask);
     }
 
     public void Update()
     {
         
+    }
+    void SetHealth(float value)
+    {
+        HealthBarController.instance.SetHealthValue(value, Mask);
     }
     public void Jump()
     {
