@@ -12,12 +12,11 @@ public class SelectPlayerState : GameState
 
     public SelectPlayerState()
     {
-        
     }
 
     public override void EnterState()
     {
-        Debug.Log("At a SelectPlayerState now");
+        Debug.Log("At SelectPlayerState");
     }
 
     public override void Update() 

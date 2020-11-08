@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class FightController: GameController
 {
 
-    #region internal proprierts
+    #region public proprierts
         public string Music { get; private set; }
-        public bool PauseMenu { get; set; }
+        public bool GamePaused { get; set; }
+        public GameObject MenuPanel;
     #endregion
 
     #region states
@@ -17,6 +18,7 @@ public class FightController: GameController
 
     private void Start() 
     {
+        Debug.Log($"GamePaused: {GamePaused}");
         FightState = new FightState(this);
         SetState(FightState);
     }
@@ -24,5 +26,27 @@ public class FightController: GameController
     private void Update() 
     {
         GameState.Update();
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        GamePaused = true;
+
+        MenuPanel.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        GamePaused = false;
+
+        MenuPanel.SetActive(false);
+    }
+
+    public void BackToMenu()
+    {
+        GamePaused = false;
+        SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
     }
 }

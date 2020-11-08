@@ -6,10 +6,6 @@ using UnityEngine.SceneManagement;
 public class MenuController: GameController
 {
     #region public attributes
-        public Sprite FightBackgroundSprite;
-    #endregion
-
-    #region internal proprierts
         public string Music { get; private set; }
         public bool GoToSelectFighters { get; set; }
     #endregion

@@ -15,6 +15,16 @@ public class FightState : GameState
 
     public override void Update() 
     {
-        
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (Controller.GamePaused)
+            {
+                Controller.ResumeGame();
+            }
+            else
+            {
+                Controller.PauseGame();
+            }
+        }
     }
 }

@@ -12,7 +12,7 @@ public class MenuState : GameState
 
     public override void EnterState()
     {
-        Debug.Log("At a MenuState now");
+        Debug.Log("At MenuState");
     }
 
     public override void Update() 
