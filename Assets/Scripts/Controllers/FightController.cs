@@ -18,7 +18,7 @@ public class FightController: GameController
 
     private void Start() 
     {
-        Debug.Log($"GamePaused: {GamePaused}");
+        ResumeGame();
         FightState = new FightState(this);
         SetState(FightState);
     }
