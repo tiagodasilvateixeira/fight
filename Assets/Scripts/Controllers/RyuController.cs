@@ -9,6 +9,7 @@ public class RyuController : MonoBehaviour, IPlayer
         public int Speed = 5;
         public float JumpForce = 500f;
         public float GroundDistance = 2.2f;
+        public string CharacterName = "Ryu";
         public LayerMask GroundLayer;
         public Image Mask;
     #endregion
@@ -21,9 +22,10 @@ public class RyuController : MonoBehaviour, IPlayer
     #endregion
 
     #region IPlayer proprierts
-        public short Life { get; set; }
-        public short Energy { get; set; }
-        public short EspecialPower { get; set; }
+        public string Name { get; set; }
+        public int Life { get; set; }
+        public int Energy { get; set; }
+        public int EspecialPower { get; set; }
         public byte Orientation { get; set; }
         public bool IA { get; set; }
     #endregion
@@ -33,6 +35,8 @@ public class RyuController : MonoBehaviour, IPlayer
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         grounded = true;
+        Life = 100;
+        Name = CharacterName;
     }
 
     public void Update()

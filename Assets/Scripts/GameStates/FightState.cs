@@ -26,5 +26,9 @@ public class FightState : GameState
                 Controller.PauseGame();
             }
         }
+        if (Controller.GoToBackToMenu)
+        {
+            Controller.BackToMenu();
+        }
     }
 }

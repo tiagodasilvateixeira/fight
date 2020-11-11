@@ -1,7 +1,8 @@
 public interface IPlayer {
-    short Life { get;set; }
-    short Energy { get;set; }
-    short EspecialPower { get;set; }
+    string Name { get; set; }
+    int Life { get;set; }
+    int Energy { get;set; }
+    int EspecialPower { get;set; }
     byte Orientation { get;set; }
     bool IA { get;set; }
 

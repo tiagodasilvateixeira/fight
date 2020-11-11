@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class GameController : MonoBehaviour
 {
@@ -7,5 +8,10 @@ public abstract class GameController : MonoBehaviour
     {
         GameState = gameState;
         GameState.EnterState();
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
     }
 }

@@ -19,12 +19,7 @@ public class MenuState : GameState
     {
         if (Controller.GoToSelectFighters)
         {
-            SelectFighters();
+            Controller.SelectFighters();
         }
-    }
-
-    public void SelectFighters() 
-    {
-        SceneManager.LoadScene("FighterSelectorScene", LoadSceneMode.Single);
     }
 }

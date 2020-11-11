@@ -2,14 +2,27 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class FightController: GameController
 {
 
-    #region public proprierts
+    #region proprierts
         public string Music { get; private set; }
         public bool GamePaused { get; set; }
+        public bool GoToBackToMenu { get; set; }
         public GameObject MenuPanel;
+        public GameObject Player1GameObject;
+        public GameObject Player2GameObject;
+        public IPlayer Player1;
+        public IPlayer Player2;
+        public Text CounterText;
+        public float InitialRoundSeconds = 90.0f;
+        public int RoundsCount = 3;
+        public Round[] Rounds;
+        public int CurrentRound = 1;
+        private float SecondsToFinishRound;
+        private float SecondsToImproveRound = 5.0f;
     #endregion
 
     #region states
@@ -18,14 +31,76 @@ public class FightController: GameController
 
     private void Start() 
     {
-        ResumeGame();
         FightState = new FightState(this);
+        SecondsToFinishRound = InitialRoundSeconds;
+        Player1 = Player1GameObject.GetComponent<IPlayer>();
+        Player2 = Player2GameObject.GetComponent<IPlayer>();
+        Rounds = new Round[RoundsCount];
         SetState(FightState);
+        StartRound(CurrentRound);
+        ResumeGame();
     }
 
     private void Update() 
     {
+        UpdateTimer();
+        CheckRoundSeconds();
         GameState.Update();
+    }
+
+    public void StartRound(int RoundNumber)
+    {
+        Rounds[RoundNumber] = new Round(RoundNumber);
+    }
+
+    public void EndRound(string character)
+    {
+        Rounds[CurrentRound].Winner = character;
+        CurrentRound++;
+
+        StartRound(CurrentRound);
+    }
+
+    public void UpdateTimer()
+    {
+        if (SecondsToFinishRound <= InitialRoundSeconds)
+        {
+            SecondsToFinishRound -= Time.deltaTime;
+            CounterText.text = SecondsToFinishRound.ToString("0");
+        }
+    }
+
+    private string GetPlayerWithMoreLife()
+    {
+        
+        if (Player1.Life > Player2.Life)
+        {
+            return Player1.Name;
+        }
+        else if (Player2.Life > Player1.Life)
+        {
+            return Player2.Name;
+        }
+        else
+        {
+            return "Draw";
+        }
+    }
+
+    public void CheckRoundSeconds()
+    {
+        if (SecondsToFinishRound <= 0.0f)
+        {
+            string playerWithMoreLife = GetPlayerWithMoreLife();
+            if (playerWithMoreLife != "Draw")
+            {
+                EndRound(playerWithMoreLife);
+            }
+            else
+            {
+                SecondsToFinishRound = SecondsToImproveRound;
+            }
+        }
     }
 
     public void PauseGame()
@@ -42,11 +117,5 @@ public class FightController: GameController
         GamePaused = false;
 
         MenuPanel.SetActive(false);
-    }
-
-    public void BackToMenu()
-    {
-        GamePaused = false;
-        SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
     }
 }

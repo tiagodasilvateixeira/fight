@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BlankaController : MonoBehaviour
+public class BlankaController : MonoBehaviour, IPlayer
 {
     #region public proprierts
         public int Speed = 5;
         public float JumpForce = 500f;
         public float GroundDistance = 2.2f;
+        public string CharacterName = "Blanka";
         public LayerMask GroundLayer;
         public Image Mask;
     #endregion
@@ -21,9 +22,10 @@ public class BlankaController : MonoBehaviour
     #endregion
 
     #region IPlayer proprierts
-        public short Life { get; set; }
-        public short Energy { get; set; }
-        public short EspecialPower { get; set; }
+        public string Name { get; set; }
+        public int Life { get; set; }
+        public int Energy { get; set; }
+        public int EspecialPower { get; set; }
         public byte Orientation { get; set; }
         public bool IA { get; set; }
     #endregion
@@ -32,6 +34,8 @@ public class BlankaController : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        Life = 100;
+        Name = CharacterName;
     }
 
     public void Update()
@@ -41,6 +45,9 @@ public class BlankaController : MonoBehaviour
     void SetHealth(float value)
     {
         HealthBarController.instance.SetHealthValue(value, Mask);
+    }
+    public void Walk()
+    {
     }
     public void Jump()
     {

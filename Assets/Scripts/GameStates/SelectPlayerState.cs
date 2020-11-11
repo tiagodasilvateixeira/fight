@@ -21,23 +21,13 @@ public class SelectPlayerState : GameState
 
     public override void Update() 
     {
-        if (Controller.StartFight)
+        if (Controller.GoToStartFight)
         {
-            StartFight();
+            Controller.StartFight();
         }
-        if (Controller.BackToMenu)
+        if (Controller.GoToBackToMenu)
         {
-            BackToMenu();
+            Controller.BackToMenu();
         }
-    }
-
-    public void StartFight()
-    {
-        SceneManager.LoadScene("FightScene", LoadSceneMode.Single);
-    }
-
-    public void BackToMenu()
-    {
-        SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
     }
 }

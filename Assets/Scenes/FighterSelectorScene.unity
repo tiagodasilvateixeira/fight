@@ -609,7 +609,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1287186236}
         m_TargetAssemblyTypeName: SelectPlayerController, Assembly-CSharp
-        m_MethodName: set_StartFight
+        m_MethodName: set_GoToStartFight
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -922,7 +922,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1287186236}
         m_TargetAssemblyTypeName: SelectPlayerController, Assembly-CSharp
-        m_MethodName: set_BackToMenu
+        m_MethodName: set_GoToBackToMenu
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

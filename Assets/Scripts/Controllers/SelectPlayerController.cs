@@ -7,8 +7,8 @@ public class SelectPlayerController: GameController
 {
     #region internal proprierts
         public string Music { get; private set; }
-        public bool StartFight { get; set; }
-        public bool BackToMenu { get; set; }
+        public bool GoToStartFight { get; set; }
+        public bool GoToBackToMenu { get; set; }
     #endregion
 
     #region states
@@ -24,5 +24,10 @@ public class SelectPlayerController: GameController
     private void Update() 
     {
         GameState.Update();
+    }
+
+    public void StartFight()
+    {
+        SceneManager.LoadScene("FightScene", LoadSceneMode.Single);
     }
 }

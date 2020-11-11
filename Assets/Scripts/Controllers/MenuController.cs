@@ -29,4 +29,9 @@ public class MenuController: GameController
     {
         Application.Quit();
     }
+
+    public void SelectFighters() 
+    {
+        SceneManager.LoadScene("FighterSelectorScene", LoadSceneMode.Single);
+    }
 }
