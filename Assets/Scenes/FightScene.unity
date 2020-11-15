@@ -308,7 +308,7 @@ MonoBehaviour:
   Player1GameObject: {fileID: 819252583}
   Player2GameObject: {fileID: 1625180679}
   CounterText: {fileID: 1438640233}
-  InitialRoundSeconds: 5
+  InitialRoundSeconds: 90
   RoundsCount: 3
   CurrentRound: 1
 --- !u!1 &340078025
@@ -800,6 +800,10 @@ PrefabInstance:
       propertyPath: Mask
       value: 
       objectReference: {fileID: 314749291535684500}
+    - target: {fileID: 6068037782364974369, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
+      propertyPath: Speed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6068037782364974395, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
       propertyPath: m_Name
       value: Ryu

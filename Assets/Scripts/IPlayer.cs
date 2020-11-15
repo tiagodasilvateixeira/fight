@@ -6,6 +6,7 @@ public interface IPlayer {
     byte Orientation { get;set; }
     bool IA { get;set; }
 
+    bool CheckWalkInput();
     void Walk();
     void Jump();
     void Punch();

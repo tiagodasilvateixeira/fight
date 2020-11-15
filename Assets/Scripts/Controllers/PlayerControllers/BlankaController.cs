@@ -46,6 +46,10 @@ public class BlankaController : MonoBehaviour, IPlayer
     {
         HealthBarController.instance.SetHealthValue(value, Mask);
     }
+    public bool CheckWalkInput()
+    {
+        
+    }
     public void Walk()
     {
     }

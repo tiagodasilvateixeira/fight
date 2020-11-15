@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RyuController : MonoBehaviour, IPlayer
+public class RyuController : PlayerController, IPlayer
 {
     #region public proprierts
         public int Speed = 5;
@@ -37,10 +37,14 @@ public class RyuController : MonoBehaviour, IPlayer
         grounded = true;
         Life = 100;
         Name = CharacterName;
+
+        PlayerState = new IdleState(this);
+        SetState(PlayerState);
     }
 
     public void Update()
     {
+        PlayerState.Update();
         
         input = new Vector2(Input.GetAxis("Horizontal"), 0.0f);
 
@@ -83,6 +87,18 @@ public class RyuController : MonoBehaviour, IPlayer
     void SetHealth(float value)
     {
         HealthBarController.instance.SetHealthValue(value, Mask);
+    }
+
+    public bool CheckWalkInput()
+    {
+        if (!Mathf.Approximately(input.x, 0.0f))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void Walk()
