@@ -703,6 +703,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6068037782364974395, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
   m_PrefabInstance: {fileID: 944088374}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &819252585 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6068037782364974398, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
+  m_PrefabInstance: {fileID: 944088374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &819252587 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 6068037782364974399, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
+  m_PrefabInstance: {fileID: 944088374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &943444181
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,6 +814,14 @@ PrefabInstance:
       propertyPath: Speed
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6068037782364974369, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
+      propertyPath: rigidbody2D
+      value: 
+      objectReference: {fileID: 819252587}
+    - target: {fileID: 6068037782364974369, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 819252585}
     - target: {fileID: 6068037782364974395, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
       propertyPath: m_Name
       value: Ryu

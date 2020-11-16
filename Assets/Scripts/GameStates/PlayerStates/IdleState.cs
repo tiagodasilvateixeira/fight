@@ -4,24 +4,36 @@ public class IdleState : PlayerState
 {
     #region states to transition
         PlayerState Walk;
+        PlayerState Jump;
+        PlayerState Punch;
     #endregion
-
-    IPlayer Controller;
-    public IdleState(IPlayer gameController): base(gameController)
+    public IdleState(PlayerController playerController): base(playerController)
     {
-        Controller = gameController;
+        PlayerController = playerController;
     }
 
     public override void EnterState()
     {
-        Debug.Log($"{Controller.Name} in IdleState");
+        Debug.Log($"{PlayerController.Name} in IdleState");
     }
 
     public override void Update() 
     {
-        if (Controller.CheckWalkInput() && Controller.IA == false)
+        if (PlayerController.WalkInput())
         {
-            
+            Walk = new WalkState(PlayerController);
+            PlayerController.SetState(Walk);
         }
+        if (Input.GetButtonDown("Jump") && PlayerController.grounded)
+        {
+            Jump = new JumpState(PlayerController);
+            PlayerController.SetState(Jump);
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Punch = new PunchState(PlayerController);
+            PlayerController.SetState(Punch);
+        }
+        PlayerController.Idle();
     }
 }

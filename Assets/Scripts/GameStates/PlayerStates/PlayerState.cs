@@ -1,6 +1,7 @@
 public abstract class PlayerState
 {
-    public PlayerState(IPlayer controller)
+    public PlayerController PlayerController { get; set; }
+    public PlayerState(PlayerController controller)
     {
     }
     public PlayerState()

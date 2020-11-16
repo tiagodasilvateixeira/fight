@@ -36,6 +36,7 @@ public class BlankaController : MonoBehaviour, IPlayer
         animator = GetComponent<Animator>();
         Life = 100;
         Name = CharacterName;
+        IA = true;
     }
 
     public void Update()
@@ -46,7 +47,11 @@ public class BlankaController : MonoBehaviour, IPlayer
     {
         HealthBarController.instance.SetHealthValue(value, Mask);
     }
-    public bool CheckWalkInput()
+    public bool WalkInput()
+    {
+        return true;
+    }
+    public void Idle()
     {
         
     }

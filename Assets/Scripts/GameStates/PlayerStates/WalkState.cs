@@ -2,18 +2,38 @@ using UnityEngine;
 
 public class WalkState : PlayerState 
 {
-    IPlayer Controller;
-    public WalkState(IPlayer gameController): base(gameController)
+    #region states to transition
+        PlayerState Idle;
+        PlayerState Jump;
+        PlayerState Punch;
+    #endregion
+    public WalkState(PlayerController playerController): base(playerController)
     {
-        Controller = gameController;
+        PlayerController = playerController;
     }
 
     public override void EnterState()
     {
-        Debug.Log($"{Controller.Name} in WalkState");
+        Debug.Log($"{PlayerController.Name} in WalkState");
     }
 
     public override void Update() 
     {
+        if (!PlayerController.WalkInput())
+        {
+            Idle = new IdleState(PlayerController);
+            PlayerController.SetState(Idle);
+        }
+        if (Input.GetButtonDown("Jump") && PlayerController.grounded)
+        {
+            Jump = new JumpState(PlayerController);
+            PlayerController.SetState(Jump);
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Punch = new PunchState(PlayerController);
+            PlayerController.SetState(Punch);
+        }
+        PlayerController.Walk();
     }
 }
