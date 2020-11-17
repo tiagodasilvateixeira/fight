@@ -14,8 +14,8 @@ public class FightController: GameController
         public GameObject MenuPanel;
         public GameObject Player1GameObject;
         public GameObject Player2GameObject;
-        public IPlayer Player1;
-        public IPlayer Player2;
+        public PlayerController Player1;
+        public PlayerController Player2;
         public Text CounterText;
         public float InitialRoundSeconds = 90.0f;
         public int RoundsCount = 3;
@@ -33,8 +33,8 @@ public class FightController: GameController
     {
         FightState = new FightState(this);
         SecondsToFinishRound = InitialRoundSeconds;
-        Player1 = Player1GameObject.GetComponent<IPlayer>();
-        Player2 = Player2GameObject.GetComponent<IPlayer>();
+        Player1 = Player1GameObject.GetComponent<PlayerController>();
+        Player2 = Player2GameObject.GetComponent<PlayerController>();
         Rounds = new Round[RoundsCount];
         SetState(FightState);
         StartRound(CurrentRound);

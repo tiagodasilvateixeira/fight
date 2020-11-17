@@ -24,7 +24,7 @@ public class WalkState : PlayerState
             Idle = new IdleState(PlayerController);
             PlayerController.SetState(Idle);
         }
-        if (Input.GetButtonDown("Jump") && PlayerController.grounded)
+        if (Input.GetButtonDown("Jump") && PlayerController.grounded && (PlayerController.IA == false))
         {
             Jump = new JumpState(PlayerController);
             PlayerController.SetState(Jump);

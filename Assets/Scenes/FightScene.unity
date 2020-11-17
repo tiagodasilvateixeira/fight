@@ -307,6 +307,8 @@ MonoBehaviour:
   MenuPanel: {fileID: 681022812}
   Player1GameObject: {fileID: 819252583}
   Player2GameObject: {fileID: 1625180679}
+  Player1: {fileID: 0}
+  Player2: {fileID: 0}
   CounterText: {fileID: 1438640233}
   InitialRoundSeconds: 90
   RoundsCount: 3
@@ -1486,6 +1488,14 @@ PrefabInstance:
       propertyPath: Mask
       value: 
       objectReference: {fileID: 1401967325}
+    - target: {fileID: 732260637, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
+      propertyPath: Speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 732260637, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
+      propertyPath: GroundDistance
+      value: 2.4
+      objectReference: {fileID: 0}
     - target: {fileID: 969882063580594144, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
       propertyPath: m_Name
       value: Blanka
