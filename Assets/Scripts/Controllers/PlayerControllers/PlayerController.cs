@@ -31,6 +31,19 @@ public abstract class PlayerController : MonoBehaviour
     {
         HealthBarController.instance.SetHealthValue(value, Mask);
     }
+    public void SetGroundedAnimator()
+    {
+        if (Physics2D.Raycast(transform.position, Vector3.down, GroundDistance, GroundLayer))
+        {
+            animator.SetBool("grounded", true);
+            grounded = true;
+        }
+        else
+        {
+            animator.SetBool("grounded", false);
+            grounded = false;
+        }
+    }
     public bool WalkInput()
     {
         if (!Mathf.Approximately(input.x, 0.0f))

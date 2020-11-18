@@ -26,18 +26,4 @@ public class BlankaController : PlayerController
             input = new Vector2(Input.GetAxis("Horizontal"), 0.0f);
         }
     }
-
-    void SetGroundedAnimator()
-    {
-        if (Physics2D.Raycast(transform.position, Vector3.down, GroundDistance, GroundLayer))
-        {
-            animator.SetBool("grounded", true);
-            grounded = true;
-        }
-        else
-        {
-            animator.SetBool("grounded", false);
-            grounded = false;
-        }
-    }
 }
