@@ -26,8 +26,18 @@ public class SelectPlayerController: GameController
         GameState.Update();
     }
 
+    public void SelectPlayer(string text)
+    {
+        PlayerSelected = text;
+        Debug.Log($"Player selected: {text}");
+        Debug.Log($"Player selected: {PlayerSelected}");
+    }
+
     public void StartFight()
     {
-        SceneManager.LoadScene("FightScene", LoadSceneMode.Single);
+        if (PlayerSelected != string.Empty)
+        {
+            SceneManager.LoadScene("FightScene", LoadSceneMode.Single);
+        }
     }
 }

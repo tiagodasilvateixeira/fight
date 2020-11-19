@@ -36,6 +36,7 @@ public class FightController: GameController
         Player1 = Player1GameObject.GetComponent<PlayerController>();
         Player2 = Player2GameObject.GetComponent<PlayerController>();
         Rounds = new Round[RoundsCount];
+        SetPlayerCharacter();
         SetState(FightState);
         StartRound(CurrentRound);
         ResumeGame();
@@ -46,6 +47,21 @@ public class FightController: GameController
         UpdateTimer();
         CheckRoundSeconds();
         GameState.Update();
+    }
+
+    void SetPlayerCharacter()
+    {
+        Debug.Log(PlayerSelected);
+        if (PlayerSelected == Player1.Name)
+        {
+            Player1.IA = false;
+            Player2.IA = true;
+        }
+        else if (PlayerSelected == Player2.Name)
+        {
+            Player2.IA = false;
+            Player1.IA = true;
+        }
     }
 
     public void StartRound(int RoundNumber)
