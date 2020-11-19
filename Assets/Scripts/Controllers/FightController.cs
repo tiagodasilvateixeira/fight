@@ -12,10 +12,10 @@ public class FightController: GameController
         public bool GamePaused { get; set; }
         public bool GoToBackToMenu { get; set; }
         public GameObject MenuPanel;
-        public GameObject Player1GameObject;
-        public GameObject Player2GameObject;
-        public PlayerController Player1;
-        public PlayerController Player2;
+        public GameObject RyuGameObject;
+        public GameObject BlankaGameObject;
+        PlayerController Player1;
+        PlayerController Player2;
         public Text CounterText;
         public float InitialRoundSeconds = 90.0f;
         public int RoundsCount = 3;
@@ -33,8 +33,6 @@ public class FightController: GameController
     {
         FightState = new FightState(this);
         SecondsToFinishRound = InitialRoundSeconds;
-        Player1 = Player1GameObject.GetComponent<PlayerController>();
-        Player2 = Player2GameObject.GetComponent<PlayerController>();
         Rounds = new Round[RoundsCount];
         SetPlayerCharacter();
         SetState(FightState);
@@ -51,17 +49,21 @@ public class FightController: GameController
 
     void SetPlayerCharacter()
     {
-        Debug.Log(PlayerSelected);
-        if (PlayerSelected == Player1.Name)
+        if (PlayerSelected == RyuGameObject.GetComponent<PlayerController>().Name)
         {
-            Player1.IA = false;
-            Player2.IA = true;
+            Player1 = RyuGameObject.GetComponent<PlayerController>();
+            Player2 = BlankaGameObject.GetComponent<PlayerController>();
         }
-        else if (PlayerSelected == Player2.Name)
+        else if (PlayerSelected == BlankaGameObject.GetComponent<PlayerController>().Name)
         {
-            Player2.IA = false;
-            Player1.IA = true;
+            Player1 = BlankaGameObject.GetComponent<PlayerController>();
+            Player2 = RyuGameObject.GetComponent<PlayerController>();
+            
         }
+        Player1.IA = false;
+        Player1.transform.position = new Vector3(-6f, -2.5f, 0f);
+        Player2.IA = true;
+        Player2.transform.position = new Vector3(6f, -2.5f, 0f);
     }
 
     public void StartRound(int RoundNumber)

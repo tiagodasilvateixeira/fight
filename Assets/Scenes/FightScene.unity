@@ -305,8 +305,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MenuPanel: {fileID: 681022812}
-  Player1GameObject: {fileID: 819252583}
-  Player2GameObject: {fileID: 1625180679}
+  RyuGameObject: {fileID: 819252583}
+  BlankaGameObject: {fileID: 1625180679}
   Player1: {fileID: 0}
   Player2: {fileID: 0}
   CounterText: {fileID: 1438640233}

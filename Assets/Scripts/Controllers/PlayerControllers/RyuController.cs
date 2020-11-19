@@ -12,7 +12,6 @@ public class RyuController : PlayerController
         grounded = true;
         Life = 100;
         Name = CharacterName;
-        IA = true;
 
         PlayerState = new IdleState(this);
         SetState(PlayerState);
@@ -25,6 +24,11 @@ public class RyuController : PlayerController
         if (!IA)
         {
             input = new Vector2(Input.GetAxis("Horizontal"), 0.0f);
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
         }
     }
 }

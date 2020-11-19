@@ -11,7 +11,6 @@ public class BlankaController : PlayerController
         animator = GetComponent<Animator>();
         Life = 100;
         Name = CharacterName;
-        IA = false;
 
         PlayerState = new IdleState(this);
         SetState(PlayerState);
@@ -24,6 +23,11 @@ public class BlankaController : PlayerController
         if (!IA)
         {
             input = new Vector2(Input.GetAxis("Horizontal"), 0.0f);
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 }
