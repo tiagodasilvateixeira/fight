@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class JumpState : PlayerState 
 {
-    #region states to transition
-        PlayerState Idle;
-        PlayerState Walk;
-    #endregion
     public JumpState(PlayerController playerController): base(playerController)
     {
         PlayerController = playerController;
@@ -21,17 +17,8 @@ public class JumpState : PlayerState
     {
         if (PlayerController.grounded)
         {
-            if (!PlayerController.WalkInput())
-            {
-                Idle = new IdleState(PlayerController);
-                PlayerController.SetState(Idle);
-            }
-            
+            CheckIdleState();
         }
-        if (PlayerController.WalkInput())
-        {
-            Walk = new WalkState(PlayerController);
-            PlayerController.SetState(Walk);
-        } 
+        CheckWalkStateCommand();
     }
 }
