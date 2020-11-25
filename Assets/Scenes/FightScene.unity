@@ -307,8 +307,6 @@ MonoBehaviour:
   MenuPanel: {fileID: 681022812}
   RyuGameObject: {fileID: 819252583}
   BlankaGameObject: {fileID: 1625180679}
-  Player1: {fileID: 0}
-  Player2: {fileID: 0}
   CounterText: {fileID: 1438640233}
   InitialRoundSeconds: 90
   RoundsCount: 3
@@ -824,6 +822,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 819252585}
+    - target: {fileID: 6068037782364974369, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
+      propertyPath: EnemyLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 6068037782364974395, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
       propertyPath: m_Name
       value: Ryu
@@ -1496,6 +1498,10 @@ PrefabInstance:
       propertyPath: GroundDistance
       value: 2.4
       objectReference: {fileID: 0}
+    - target: {fileID: 732260637, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
+      propertyPath: EnemyLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 969882063580594144, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
       propertyPath: m_Name
       value: Blanka
@@ -1543,6 +1549,22 @@ PrefabInstance:
     - target: {fileID: 969882063580594146, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 969882063580594172, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.031695127
+      objectReference: {fileID: 0}
+    - target: {fileID: 969882063580594172, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
+      propertyPath: m_Size.x
+      value: 3.2724385
+      objectReference: {fileID: 0}
+    - target: {fileID: 969882063580594172, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.06515837
+      objectReference: {fileID: 0}
+    - target: {fileID: 969882063580594172, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
+      propertyPath: m_Size.y
+      value: 4.6196833
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}

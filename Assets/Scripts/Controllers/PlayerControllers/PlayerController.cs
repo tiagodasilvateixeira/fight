@@ -14,9 +14,11 @@ public abstract class PlayerController : MonoBehaviour
     public int Speed = 5;
     public float JumpForce = 500f;
     public float GroundDistance = 2.2f;
+    public float EnemyDistance = 2.5f;
     public string CharacterName;
     public PlayerState PlayerState;
     public LayerMask GroundLayer;
+    public LayerMask EnemyLayer;
     public Image Mask;
     public new Rigidbody2D rigidbody2D;
     public Animator animator;
@@ -42,6 +44,17 @@ public abstract class PlayerController : MonoBehaviour
         {
             animator.SetBool("grounded", false);
             grounded = false;
+        }
+    }
+    public void CheckHitReceived()
+    {
+        if (Physics2D.Raycast(transform.position, Vector3.left, EnemyDistance, EnemyLayer))
+        {
+            
+        }
+        else if (Physics2D.Raycast(transform.position, Vector3.right, EnemyDistance, EnemyLayer))
+        {
+            
         }
     }
     public bool WalkInput()
@@ -87,14 +100,14 @@ public abstract class PlayerController : MonoBehaviour
     }
     public void Hit()
     {
-
+        animator.SetTrigger("hit");
     }
     public void KO()
     {
-
+        animator.SetTrigger("ko");
     }
     public void Win()
     {
-
+        animator.SetTrigger("win");
     }
 }
