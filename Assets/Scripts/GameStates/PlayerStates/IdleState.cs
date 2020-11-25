@@ -29,7 +29,7 @@ public class IdleState : PlayerState
             Jump = new JumpState(PlayerController);
             PlayerController.SetState(Jump);
         }
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J) && (PlayerController.IA == false))
         {
             Punch = new PunchState(PlayerController);
             PlayerController.SetState(Punch);
