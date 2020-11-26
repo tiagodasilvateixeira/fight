@@ -17,6 +17,7 @@ public class IdleState : PlayerState
         CheckWalkStateCommand();
         CheckJumpStateCommand();
         CheckPunchStateCommand();
+        CheckKickStateCommand();
         
         PlayerController.Idle();
     }

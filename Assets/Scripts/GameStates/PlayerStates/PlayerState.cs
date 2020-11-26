@@ -5,6 +5,7 @@ public abstract class PlayerState
     public WalkState Walk;
     public JumpState Jump;
     public PunchState Punch;
+    public KickState Kick;
     public IdleState Idle;
     public PlayerController PlayerController { get; set; }
     public PlayerState(PlayerController controller)
@@ -41,6 +42,18 @@ public abstract class PlayerState
         {
             Punch = new PunchState(PlayerController);
             PlayerController.SetState(Punch);
+        }
+        else if (PlayerController.IA == true)
+        {
+
+        }
+    }
+    public void CheckKickStateCommand()
+    {
+        if (Input.GetKeyDown(KeyCode.K) && (PlayerController.IA == false))
+        {
+            Kick = new KickState(PlayerController);
+            PlayerController.SetState(Kick);
         }
         else if (PlayerController.IA == true)
         {
