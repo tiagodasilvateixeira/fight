@@ -14,7 +14,7 @@ public abstract class PlayerController : MonoBehaviour
     public int Speed = 5;
     public float JumpForce = 500f;
     public float GroundDistance = 2.2f;
-    public float EnemyDistance = 2.5f;
+    public float EnemyDistance = 2f;
     public string CharacterName;
     public PlayerState PlayerState;
     public LayerMask GroundLayer;
@@ -48,13 +48,14 @@ public abstract class PlayerController : MonoBehaviour
     }
     public void CheckHitReceived()
     {
+        //Debug.DrawLine(transform.position, (new Vector3(transform.position.x + EnemyDistance, transform.position.y, 0)), Color.white, 50.5f);
         if (Physics2D.Raycast(transform.position, Vector3.left, EnemyDistance, EnemyLayer))
         {
-            
+            Debug.Log($"{this.Name} received demage");
         }
         else if (Physics2D.Raycast(transform.position, Vector3.right, EnemyDistance, EnemyLayer))
         {
-            
+            Debug.Log($"{this.Name} received demage");
         }
     }
     public bool WalkInput()

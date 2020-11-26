@@ -826,6 +826,10 @@ PrefabInstance:
       propertyPath: EnemyLayer.m_Bits
       value: 512
       objectReference: {fileID: 0}
+    - target: {fileID: 6068037782364974369, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
+      propertyPath: EnemyDistance
+      value: 1.7
+      objectReference: {fileID: 0}
     - target: {fileID: 6068037782364974395, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
       propertyPath: m_Name
       value: Ryu
@@ -1501,6 +1505,10 @@ PrefabInstance:
     - target: {fileID: 732260637, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
       propertyPath: EnemyLayer.m_Bits
       value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 732260637, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
+      propertyPath: EnemyDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 969882063580594144, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
       propertyPath: m_Name

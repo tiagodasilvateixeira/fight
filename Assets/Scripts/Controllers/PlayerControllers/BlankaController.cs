@@ -19,6 +19,7 @@ public class BlankaController : PlayerController
     public void Update()
     {
         SetGroundedAnimator();
+        CheckHitReceived();
         PlayerState.Update();
         if (!IA)
         {

@@ -20,6 +20,7 @@ public class RyuController : PlayerController
     public void Update()
     {
         SetGroundedAnimator();
+        CheckHitReceived();
         PlayerState.Update();
         if (!IA)
         {
