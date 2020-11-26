@@ -2,11 +2,13 @@ using UnityEngine;
 
 public abstract class PlayerState
 {
+    public IdleState Idle;
     public WalkState Walk;
     public JumpState Jump;
     public PunchState Punch;
     public KickState Kick;
-    public IdleState Idle;
+    public HitState Hit;
+    
     public PlayerController PlayerController { get; set; }
     public PlayerState(PlayerController controller)
     {
@@ -16,6 +18,19 @@ public abstract class PlayerState
     }
     public abstract void EnterState();
     public abstract void Update();
+
+    public void CheckIdleState()
+    {
+        if (!PlayerController.WalkInput())
+        {
+            Idle = new IdleState(PlayerController);
+            PlayerController.SetState(Idle);
+        }
+        else if (PlayerController.IA == true)
+        {
+            
+        }
+    }
     public void CheckWalkStateCommand()
     {
         if (PlayerController.WalkInput())
@@ -60,16 +75,15 @@ public abstract class PlayerState
 
         }
     }
-    public void CheckIdleState()
+
+    public void SetIdleState()
     {
-        if (!PlayerController.WalkInput())
-        {
-            Idle = new IdleState(PlayerController);
-            PlayerController.SetState(Idle);
-        }
-        else if (PlayerController.IA == true)
-        {
-            
-        }
+        Idle = new IdleState(PlayerController);
+        PlayerController.SetState(Idle);
+    }
+    public void SetHitState()
+    {
+        Hit = new HitState(PlayerController);
+        PlayerController.SetState(Hit);
     }
 }
