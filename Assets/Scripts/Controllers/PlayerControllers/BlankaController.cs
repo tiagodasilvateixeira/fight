@@ -12,6 +12,7 @@ public class BlankaController : PlayerController
         Life = 100;
         Name = CharacterName;
 
+        SetEnemyObject();
         PlayerState = new IdleState(this);
         SetState(PlayerState);
     }

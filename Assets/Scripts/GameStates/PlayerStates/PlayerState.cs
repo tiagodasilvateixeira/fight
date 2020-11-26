@@ -81,9 +81,9 @@ public abstract class PlayerState
         Idle = new IdleState(PlayerController);
         PlayerController.SetState(Idle);
     }
-    public void SetHitState()
+    public void SetHitState(float value, Vector3 direction)
     {
-        Hit = new HitState(PlayerController);
+        Hit = new HitState(PlayerController, value, direction);
         PlayerController.SetState(Hit);
     }
 }

@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class HitState : PlayerState 
 {
-    public HitState(PlayerController playerController): base(playerController)
+    float Value;
+    Vector3 Direction;
+
+    public HitState(PlayerController playerController, float value, Vector3 direction): base(playerController)
     {
         PlayerController = playerController;
+        Value = value;
+        Direction = direction;
     }
 
     public override void EnterState()
     {
         Debug.Log($"{PlayerController.Name} in HitState");
-        PlayerController.Hit();
+        PlayerController.Hit(Value, Direction);
         SetIdleState();
     }
     public override void Update() 

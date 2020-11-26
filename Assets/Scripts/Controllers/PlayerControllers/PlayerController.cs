@@ -16,6 +16,8 @@ public abstract class PlayerController : MonoBehaviour
     public float GroundDistance = 2.2f;
     public float EnemyDistance = 2f;
     public string CharacterName;
+    public GameObject EnemyGameObject;
+    PlayerController Enemy;
     public PlayerState PlayerState;
     public LayerMask GroundLayer;
     public LayerMask EnemyLayer;
@@ -24,6 +26,10 @@ public abstract class PlayerController : MonoBehaviour
     public Animator animator;
     public Vector2 input;
     
+    public void SetEnemyObject()
+    {
+        Enemy = EnemyGameObject.GetComponent<PlayerController>();
+    }
     public void SetState(PlayerState playerState)
     {
         PlayerState = playerState;
@@ -48,14 +54,21 @@ public abstract class PlayerController : MonoBehaviour
     }
     public void CheckHitReceived()
     {
-        //Debug.DrawLine(transform.position, (new Vector3(transform.position.x + EnemyDistance, transform.position.y, 0)), Color.white, 50.5f);
-        if (Physics2D.Raycast(transform.position, Vector3.left, EnemyDistance, EnemyLayer))
+        RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector3.left, EnemyDistance, EnemyLayer);
+        RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector3.right, EnemyDistance, EnemyLayer);
+        if (leftHit || rightHit)
         {
-            Debug.Log($"{this.Name} received demage");
-        }
-        else if (Physics2D.Raycast(transform.position, Vector3.right, EnemyDistance, EnemyLayer))
-        {
-            Debug.Log($"{this.Name} received demage");
+            switch (Enemy.PlayerState.GetType().ToString())
+            {
+                case "PunchState":
+                    PlayerState.SetHitState(100f, leftHit == true ? Vector3.right : Vector3.left);
+                    break;
+                case "KickState":
+                    PlayerState.SetHitState(300f, leftHit == true ? Vector3.right : Vector3.left);
+                    break;
+                default:
+                    break;
+            }
         }
     }
     public bool WalkInput()
@@ -99,9 +112,10 @@ public abstract class PlayerController : MonoBehaviour
     {
 
     }
-    public void Hit()
+    public void Hit(float value, Vector3 direction)
     {
         animator.SetTrigger("hit");
+        rigidbody2D.AddForce(direction * value);
     }
     public void KO()
     {

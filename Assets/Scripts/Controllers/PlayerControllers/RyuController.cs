@@ -13,6 +13,7 @@ public class RyuController : PlayerController
         Life = 100;
         Name = CharacterName;
 
+        SetEnemyObject();
         PlayerState = new IdleState(this);
         SetState(PlayerState);
     }
