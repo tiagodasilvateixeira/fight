@@ -5,10 +5,10 @@ public class HitState : PlayerState
     float Value;
     Vector3 Direction;
 
-    public HitState(PlayerController playerController, float value, Vector3 direction): base(playerController)
+    public HitState(PlayerController playerController, float force, Vector3 direction): base(playerController)
     {
         PlayerController = playerController;
-        Value = value;
+        Value = force;
         Direction = direction;
     }
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public abstract class PlayerController : MonoBehaviour
 {
     public string Name { get; set; }
-    public int Life { get; set; }
+    public float Life { get; set; }
     public int Energy { get; set; }
     public int EspecialPower { get; set; }
     public byte Orientation { get; set; }
@@ -16,16 +16,16 @@ public abstract class PlayerController : MonoBehaviour
     public float GroundDistance = 2.2f;
     public float EnemyDistance = 2f;
     public string CharacterName;
+    public new Rigidbody2D rigidbody2D;
     public GameObject EnemyGameObject;
-    PlayerController Enemy;
     public PlayerState PlayerState;
     public LayerMask GroundLayer;
     public LayerMask EnemyLayer;
     public Image Mask;
-    public new Rigidbody2D rigidbody2D;
     public Animator animator;
     public Vector2 input;
-    
+    PlayerController Enemy;
+
     public void SetEnemyObject()
     {
         Enemy = EnemyGameObject.GetComponent<PlayerController>();
@@ -56,15 +56,24 @@ public abstract class PlayerController : MonoBehaviour
     {
         RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector3.left, EnemyDistance, EnemyLayer);
         RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector3.right, EnemyDistance, EnemyLayer);
+        float demage = 0f;
         if (leftHit || rightHit)
         {
             switch (Enemy.PlayerState.GetType().ToString())
             {
                 case "PunchState":
                     PlayerState.SetHitState(100f, leftHit == true ? Vector3.right : Vector3.left);
+                    demage = 0.08f;
+
+                    Life = Life - demage;
+                    SetHealth(Life);
                     break;
                 case "KickState":
                     PlayerState.SetHitState(300f, leftHit == true ? Vector3.right : Vector3.left);
+                    demage = 0.1f;
+
+                    Life = Life - demage;
+                    SetHealth(Life);
                     break;
                 default:
                     break;
@@ -112,10 +121,10 @@ public abstract class PlayerController : MonoBehaviour
     {
 
     }
-    public void Hit(float value, Vector3 direction)
+    public void Hit(float force, Vector3 direction)
     {
         animator.SetTrigger("hit");
-        rigidbody2D.AddForce(direction * value);
+        rigidbody2D.AddForce(direction * force);
     }
     public void KO()
     {

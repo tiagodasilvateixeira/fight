@@ -10,7 +10,7 @@ public class RyuController : PlayerController
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         grounded = true;
-        Life = 100;
+        Life = 1f;
         Name = CharacterName;
 
         SetEnemyObject();

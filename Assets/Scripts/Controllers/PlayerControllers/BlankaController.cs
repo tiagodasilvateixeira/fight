@@ -9,7 +9,7 @@ public class BlankaController : PlayerController
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        Life = 100;
+        Life = 1f;
         Name = CharacterName;
 
         SetEnemyObject();

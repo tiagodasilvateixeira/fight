@@ -121,6 +121,18 @@ public class FightController: GameController
         }
     }
 
+    public void CheckPlayerDefeat()
+    {
+        if (Player1.Life <= 0)
+        {
+            EndRound(GetPlayerWithMoreLife());
+        }
+        else if (Player2.Life <= 0)
+        {
+            EndRound(GetPlayerWithMoreLife());
+        }
+    }
+
     public void PauseGame()
     {
         Time.timeScale = 0;
