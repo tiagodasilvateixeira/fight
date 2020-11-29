@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class FightController: GameController
 {
-
     #region proprierts
         public string Music { get; private set; }
         public bool GamePaused { get; set; }
@@ -32,7 +31,6 @@ public class FightController: GameController
     private void Start() 
     {
         FightState = new FightState(this);
-        SecondsToFinishRound = InitialRoundSeconds;
         Rounds = new Round[RoundsCount];
         SetPlayerCharacter();
         SetState(FightState);
@@ -43,6 +41,7 @@ public class FightController: GameController
     private void Update() 
     {
         UpdateTimer();
+        CheckPlayerDefeat();
         CheckRoundSeconds();
         GameState.Update();
     }
@@ -68,6 +67,10 @@ public class FightController: GameController
 
     public void StartRound(int RoundNumber)
     {
+        SetPlayerCharacter();
+        Player1.Life = 1f;
+        Player2.Life = 1f;
+        SecondsToFinishRound = InitialRoundSeconds;
         Rounds[RoundNumber] = new Round(RoundNumber);
     }
 
@@ -76,7 +79,15 @@ public class FightController: GameController
         Rounds[CurrentRound].Winner = character;
         CurrentRound++;
 
-        StartRound(CurrentRound);
+        if (CurrentRound <= RoundsCount)
+        {
+            Debug.Log($"Starting round: {CurrentRound}");
+            StartRound(CurrentRound);
+        }
+        else
+        {
+            PauseGame();
+        }
     }
 
     public void UpdateTimer()

@@ -13,7 +13,7 @@ public class FightState : GameState
         Debug.Log("At FightState");
     }
 
-    public override void Update() 
+    public override void Update()
     {
         if (Input.GetButtonDown("Cancel"))
         {
