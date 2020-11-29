@@ -29,7 +29,6 @@ public class SelectPlayerController: GameController
     public void SelectPlayer(string text)
     {
         PlayerSelected = text;
-        Debug.Log($"Player selected: {text}");
         Debug.Log($"Player selected: {PlayerSelected}");
     }
 

@@ -307,6 +307,8 @@ MonoBehaviour:
   MenuPanel: {fileID: 681022812}
   RyuGameObject: {fileID: 819252583}
   BlankaGameObject: {fileID: 1625180679}
+  MaskPlayer1: {fileID: 314749291535684500}
+  MaskPlayer2: {fileID: 1401967325}
   CounterText: {fileID: 1438640233}
   InitialRoundSeconds: 90
   RoundsCount: 3
@@ -896,6 +898,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1546959308}
     m_Modifications:
+    - target: {fileID: 1130347291, guid: 7b526b985bd10ec4682871c4c94eda9d, type: 3}
+      propertyPath: m_Name
+      value: MaskPlayer2
+      objectReference: {fileID: 0}
     - target: {fileID: 1130347292, guid: 7b526b985bd10ec4682871c4c94eda9d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -1691,6 +1697,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1546959308}
     m_Modifications:
+    - target: {fileID: 1130347291, guid: 7b526b985bd10ec4682871c4c94eda9d, type: 3}
+      propertyPath: m_Name
+      value: MaskPlayer1
+      objectReference: {fileID: 0}
     - target: {fileID: 314749291471301841, guid: 7b526b985bd10ec4682871c4c94eda9d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

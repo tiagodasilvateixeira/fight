@@ -13,14 +13,16 @@ public class FightController: GameController
         public GameObject MenuPanel;
         public GameObject RyuGameObject;
         public GameObject BlankaGameObject;
+        public Image MaskPlayer1;
+        public Image MaskPlayer2;
+        public Text CounterText;
+        public Round[] Rounds;
         PlayerController Player1;
         PlayerController Player2;
-        public Text CounterText;
+        private float SecondsToFinishRound;
         public float InitialRoundSeconds = 90.0f;
         public int RoundsCount = 3;
-        public Round[] Rounds;
         public int CurrentRound = 1;
-        private float SecondsToFinishRound;
         private float SecondsToImproveRound = 5.0f;
     #endregion
 
@@ -59,8 +61,10 @@ public class FightController: GameController
             Player2 = RyuGameObject.GetComponent<PlayerController>();
             
         }
+        Player1.Mask = MaskPlayer1;
         Player1.IA = false;
         Player1.transform.position = new Vector3(-6f, -2.5f, 0f);
+        Player2.Mask = MaskPlayer2;
         Player2.IA = true;
         Player2.transform.position = new Vector3(6f, -2.5f, 0f);
     }
