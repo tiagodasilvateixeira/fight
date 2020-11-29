@@ -59,7 +59,6 @@ public class FightController: GameController
         {
             Player1 = BlankaGameObject.GetComponent<PlayerController>();
             Player2 = RyuGameObject.GetComponent<PlayerController>();
-            
         }
         Player1.Mask = MaskPlayer1;
         Player1.IA = false;
@@ -73,7 +72,9 @@ public class FightController: GameController
     {
         SetPlayerCharacter();
         Player1.Life = 1f;
+        HealthBarController.instance.SetInitialMaskWidth(Player1.Mask);
         Player2.Life = 1f;
+        HealthBarController.instance.SetInitialMaskWidth(Player2.Mask);
         SecondsToFinishRound = InitialRoundSeconds;
         Rounds[RoundNumber] = new Round(RoundNumber);
     }
