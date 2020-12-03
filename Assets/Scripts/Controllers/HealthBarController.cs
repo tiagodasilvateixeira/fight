@@ -25,7 +25,7 @@ public class HealthBarController : MonoBehaviour
 
     public void SetHealthValue(float value, Image mask)
     {
-        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, mask.rectTransform.rect.width * value);
+        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, OriginalMaskWidth * value);
     }
 
     public void SetInitialMaskWidth(Image mask)

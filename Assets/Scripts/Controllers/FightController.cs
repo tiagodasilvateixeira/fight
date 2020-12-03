@@ -21,7 +21,7 @@ public class FightController: GameController
         PlayerController Player2;
         private float SecondsToFinishRound;
         public float InitialRoundSeconds = 90.0f;
-        public int RoundsCount = 3;
+        public int RoundsCount = 4;
         public int CurrentRound = 1;
         private float SecondsToImproveRound = 5.0f;
     #endregion
@@ -75,18 +75,20 @@ public class FightController: GameController
         HealthBarController.instance.SetInitialMaskWidth(Player1.Mask);
         Player2.Life = 1f;
         HealthBarController.instance.SetInitialMaskWidth(Player2.Mask);
+
         SecondsToFinishRound = InitialRoundSeconds;
+        Debug.Log($"RoundNumber: {RoundNumber}");
         Rounds[RoundNumber] = new Round(RoundNumber);
+        Debug.Log($"Starting round: {CurrentRound}");
     }
 
     public void EndRound(string character)
     {
         Rounds[CurrentRound].Winner = character;
-        CurrentRound++;
 
-        if (CurrentRound <= RoundsCount)
+        if (CurrentRound < RoundsCount)
         {
-            Debug.Log($"Starting round: {CurrentRound}");
+            CurrentRound++;
             StartRound(CurrentRound);
         }
         else
