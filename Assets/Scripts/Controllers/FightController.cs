@@ -144,10 +144,12 @@ public class FightController: GameController
         if (Player1.Life <= 0)
         {
             EndRound(GetPlayerWithMoreLife());
+            Player1.animator.SetTrigger("ko");
         }
         else if (Player2.Life <= 0)
         {
             EndRound(GetPlayerWithMoreLife());
+            Player2.animator.SetTrigger("ko");
         }
     }
 
