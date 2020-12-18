@@ -7,15 +7,16 @@ using UnityEngine.UI;
 public class FightController: GameController
 {
     #region proprierts
-        public string Music { get; private set; }
         public bool GamePaused { get; set; }
         public bool GoToBackToMenu { get; set; }
         public GameObject MenuPanel;
+        public GameObject InitRoundPanel;
         public GameObject RyuGameObject;
         public GameObject BlankaGameObject;
         public Image MaskPlayer1;
         public Image MaskPlayer2;
         public Text CounterText;
+        public Text RoundText;
         public Round[] Rounds;
         PlayerController Player1;
         PlayerController Player2;
@@ -34,7 +35,6 @@ public class FightController: GameController
     {
         FightState = new FightState(this);
         Rounds = new Round[RoundsCount];
-        SetPlayerCharacter();
         SetState(FightState);
         StartRound(CurrentRound);
         ResumeGame();
@@ -42,10 +42,34 @@ public class FightController: GameController
 
     private void Update() 
     {
-        UpdateTimer();
-        CheckPlayerDefeat();
-        CheckRoundSeconds();
-        GameState.Update();
+        Debug.Log($"{FightOpen()}");
+        if (FightOpen())
+        {
+            UpdateTimer();
+            CheckPlayerDefeat();
+            CheckRoundSeconds();
+            GameState.Update();
+        }
+    }
+
+    bool FightOpen()
+    {
+        string winner = Rounds[CurrentRound]?.Winner;
+        if (CurrentRound <= 2)
+        {
+            if (!string.IsNullOrWhiteSpace(winner))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        else
+        {
+            return false;
+        }
     }
 
     void SetPlayerCharacter()
@@ -68,6 +92,25 @@ public class FightController: GameController
         Player2.transform.position = new Vector3(6f, -2.5f, 0f);
     }
 
+    public bool CheckRoundStarting()
+    {
+        Debug.Log($"SecondsToFinishRound + 3f: {(SecondsToFinishRound+3f).ToString()}");
+        if (SecondsToFinishRound + 3f > InitialRoundSeconds)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void DisablePlayersAfterRoundEnd()
+    {
+        Player1.IA = true;
+        Player2.IA = true;
+    }
+
     public void StartRound(int RoundNumber)
     {
         SetPlayerCharacter();
@@ -82,18 +125,15 @@ public class FightController: GameController
         Debug.Log($"Starting round: {CurrentRound}");
     }
 
-    public void EndRound(string character)
+    public void FinishRound(string character)
     {
         Rounds[CurrentRound-1].Winner = character;
+        // DisablePlayersAfterRoundEnd();
 
         if (CurrentRound < RoundsCount)
         {
             CurrentRound++;
             StartRound(CurrentRound);
-        }
-        else
-        {
-            PauseGame();
         }
     }
 
@@ -130,7 +170,7 @@ public class FightController: GameController
             string playerWithMoreLife = GetPlayerWithMoreLife();
             if (playerWithMoreLife != "Draw")
             {
-                EndRound(playerWithMoreLife);
+                FinishRound(playerWithMoreLife);
             }
             else
             {
@@ -143,16 +183,28 @@ public class FightController: GameController
     {
         if (Player1.Life <= 0)
         {
-            EndRound(GetPlayerWithMoreLife());
+            FinishRound(GetPlayerWithMoreLife());
             Player1.animator.SetTrigger("ko");
         }
         else if (Player2.Life <= 0)
         {
-            EndRound(GetPlayerWithMoreLife());
+            FinishRound(GetPlayerWithMoreLife());
             Player2.animator.SetTrigger("ko");
         }
     }
 
+    public void HandlerInitRoundPanel(bool state)
+    {
+        if (state)
+        {
+            RoundText.text = $"Round {CurrentRound.ToString()}";
+            InitRoundPanel.SetActive(true);
+        }
+        else
+        {
+            InitRoundPanel.SetActive(false);
+        }
+    }
     public void PauseGame()
     {
         Time.timeScale = 0;

@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MenuPanel: {fileID: 681022812}
-  RoundPanel: {fileID: 416704821}
+  InitRoundPanel: {fileID: 416704821}
   RyuGameObject: {fileID: 819252583}
   BlankaGameObject: {fileID: 1625180679}
   MaskPlayer1: {fileID: 314749291535684500}

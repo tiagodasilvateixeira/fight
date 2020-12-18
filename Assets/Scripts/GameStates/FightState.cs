@@ -30,5 +30,13 @@ public class FightState : GameState
         {
             Controller.BackToMenu();
         }
+        if (Controller.CheckRoundStarting())
+        {
+            Controller.HandlerInitRoundPanel(true);
+        }
+        else
+        {
+            Controller.HandlerInitRoundPanel(false);
+        }
     }
 }
