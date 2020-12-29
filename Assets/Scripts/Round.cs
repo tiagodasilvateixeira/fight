@@ -7,5 +7,6 @@ public class Round {
     public Round(int number)
     {
         Number = number;
+        Winner = "";
     }
 }

@@ -22,7 +22,7 @@ public class FightController: GameController
         PlayerController Player2;
         private float SecondsToFinishRound;
         public float InitialRoundSeconds = 90.0f;
-        public int RoundsCount = 2;
+        public int RoundsCount = 4;
         public int CurrentRound = 1;
         private float SecondsToImproveRound = 5.0f;
     #endregion
@@ -42,7 +42,6 @@ public class FightController: GameController
 
     private void Update() 
     {
-        Debug.Log($"{FightOpen()}");
         if (FightOpen())
         {
             UpdateTimer();
@@ -50,12 +49,16 @@ public class FightController: GameController
             CheckRoundSeconds();
             GameState.Update();
         }
+        else
+        {
+            BackToMenu();
+        }
     }
 
     bool FightOpen()
     {
-        string winner = Rounds[CurrentRound]?.Winner;
-        if (CurrentRound <= 2)
+        string winner = Rounds[CurrentRound-1]?.Winner;
+        if (CurrentRound-1 < RoundsCount)
         {
             if (!string.IsNullOrWhiteSpace(winner))
             {
@@ -92,9 +95,8 @@ public class FightController: GameController
         Player2.transform.position = new Vector3(6f, -2.5f, 0f);
     }
 
-    public bool CheckRoundStarting()
+    public bool RoundStarting()
     {
-        Debug.Log($"SecondsToFinishRound + 3f: {(SecondsToFinishRound+3f).ToString()}");
         if (SecondsToFinishRound + 3f > InitialRoundSeconds)
         {
             return true;
@@ -193,18 +195,21 @@ public class FightController: GameController
         }
     }
 
-    public void HandlerInitRoundPanel(bool state)
+    public void HandlerInitRoundPanel(bool enableRoundPanel)
     {
-        if (state)
+        if (enableRoundPanel)
         {
             RoundText.text = $"Round {CurrentRound.ToString()}";
             InitRoundPanel.SetActive(true);
+            // DisablePlayersAfterRoundEnd();
         }
         else
         {
             InitRoundPanel.SetActive(false);
+            // SetPlayerCharacter();
         }
     }
+
     public void PauseGame()
     {
         Time.timeScale = 0;
