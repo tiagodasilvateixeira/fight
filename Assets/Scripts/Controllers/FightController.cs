@@ -13,17 +13,18 @@ public class FightController: GameController
         public GameObject InitRoundPanel;
         public GameObject RyuGameObject;
         public GameObject BlankaGameObject;
+        public GameObject TogglePlayer1;
+        public GameObject TogglePlayer2;
         public Image MaskPlayer1;
         public Image MaskPlayer2;
         public Text CounterText;
-        public Text RoundText;
         public Round[] Rounds;
         PlayerController Player1;
         PlayerController Player2;
         private float SecondsToFinishRound;
         public float InitialRoundSeconds = 90.0f;
-        public int RoundsCount = 4;
-        public int CurrentRound = 1;
+        public int RoundsCount = 3;
+        public int CurrentRound = 0;
         private float SecondsToImproveRound = 5.0f;
     #endregion
 
@@ -57,10 +58,9 @@ public class FightController: GameController
 
     bool FightOpen()
     {
-        string winner = Rounds[CurrentRound-1]?.Winner;
-        if (CurrentRound-1 < RoundsCount)
+        if (CurrentRound < RoundsCount)
         {
-            if (!string.IsNullOrWhiteSpace(winner))
+            if (!string.IsNullOrWhiteSpace(Rounds[CurrentRound]?.Winner))
             {
                 return false;
             }
@@ -122,19 +122,27 @@ public class FightController: GameController
         HealthBarController.instance.SetInitialMaskWidth(Player2.Mask);
 
         SecondsToFinishRound = InitialRoundSeconds;
-        Debug.Log($"RoundNumber: {RoundNumber}");
-        Rounds[RoundNumber-1] = new Round(RoundNumber);
-        Debug.Log($"Starting round: {CurrentRound}");
+        Rounds[RoundNumber] = new Round(RoundNumber+1);
     }
 
     public void FinishRound(string character)
     {
-        Rounds[CurrentRound-1].Winner = character;
+        Rounds[CurrentRound].Winner = character;
+        if (character == Player1.name)
+        {
+            Toggle togglePlayer1 = TogglePlayer1.GetComponent<Toggle>();
+            togglePlayer1.isOn = true;
+        }
+        else if (character == Player2.name)
+        {
+            Toggle togglePlayer2 = TogglePlayer2.GetComponent<Toggle>();
+            togglePlayer2.isOn = true;
+        }
+        CurrentRound++;
         // DisablePlayersAfterRoundEnd();
 
         if (CurrentRound < RoundsCount)
         {
-            CurrentRound++;
             StartRound(CurrentRound);
         }
     }
@@ -199,7 +207,6 @@ public class FightController: GameController
     {
         if (enableRoundPanel)
         {
-            RoundText.text = $"Round {CurrentRound.ToString()}";
             InitRoundPanel.SetActive(true);
             // DisablePlayersAfterRoundEnd();
         }
