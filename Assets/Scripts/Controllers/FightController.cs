@@ -139,7 +139,6 @@ public class FightController: GameController
             togglePlayer2.isOn = true;
         }
         CurrentRound++;
-        // DisablePlayersAfterRoundEnd();
 
         if (CurrentRound < RoundsCount)
         {

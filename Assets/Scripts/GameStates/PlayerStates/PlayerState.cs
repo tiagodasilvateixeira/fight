@@ -21,7 +21,7 @@ public abstract class PlayerState
 
     public void CheckIdleState()
     {
-        if (!PlayerController.WalkInput())
+        if (!PlayerController.WalkInput() && (PlayerController.IA == false))
         {
             Idle = new IdleState(PlayerController);
             PlayerController.SetState(Idle);
@@ -33,7 +33,7 @@ public abstract class PlayerState
     }
     public void CheckWalkStateCommand()
     {
-        if (PlayerController.WalkInput())
+        if (PlayerController.WalkInput() && (PlayerController.IA == false))
         {
             Walk = new WalkState(PlayerController);
             PlayerController.SetState(Walk);

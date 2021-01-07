@@ -23,7 +23,7 @@ public class RyuController : PlayerController
         SetGroundedAnimator();
         CheckHitReceived();
         PlayerState.Update();
-        if (!IA)
+        if (GameController.PlayerSelected == Name)
         {
             input = new Vector2(Input.GetAxis("Horizontal"), 0.0f);
             GetComponent<SpriteRenderer>().flipX = false;

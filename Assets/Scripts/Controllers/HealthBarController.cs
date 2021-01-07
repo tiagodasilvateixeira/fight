@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthBarController : MonoBehaviour
 {
     public static HealthBarController instance { get; private set; }
-    float OriginalMaskWidth = 600f;
+    float OriginalMaskWidth = 400f;
 
     void Awake()
     {
