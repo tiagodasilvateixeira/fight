@@ -105,9 +105,6 @@ public abstract class PlayerController : MonoBehaviour
     public void Walk()
     {
         animator.SetBool("idle", false);
-        Debug.Log($"transform.position: {transform.position}");
-        Debug.Log($"rigidbody2D.position: {rigidbody2D.position}");
-        Debug.Log($"Speed: {Speed}");
         transform.position = rigidbody2D.position + (input * Speed * Time.deltaTime);        
     }
     

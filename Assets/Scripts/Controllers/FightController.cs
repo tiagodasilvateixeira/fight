@@ -58,7 +58,11 @@ public class FightController: GameController
 
     bool FightOpen()
     {
-        if (CurrentRound < RoundsCount)
+        if (ReturnTrueIfAFighterWinTwoRounds())
+        {
+            return false;
+        }
+        else if (CurrentRound < RoundsCount)
         {
             if (!string.IsNullOrWhiteSpace(Rounds[CurrentRound]?.Winner))
             {
@@ -68,6 +72,22 @@ public class FightController: GameController
             {
                 return true;
             }
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    bool ReturnTrueIfAFighterWinTwoRounds()
+    {
+        if (CurrentRound == 0 || CurrentRound == 1)
+        {
+            return false;
+        }
+        else if (Rounds[0]?.Winner == Rounds[CurrentRound-1]?.Winner)
+        {
+            return true;
         }
         else
         {
