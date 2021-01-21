@@ -12,7 +12,7 @@ public class IdleState : PlayerState
         Debug.Log($"{PlayerController.Name} in IdleState");
     }
 
-    public override void Update() 
+    public override void Update()
     {
         CheckWalkStateCommand();
         CheckJumpStateCommand();

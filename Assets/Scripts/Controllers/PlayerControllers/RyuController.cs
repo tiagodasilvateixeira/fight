@@ -21,8 +21,13 @@ public class RyuController : PlayerController
     public void Update()
     {
         SetGroundedAnimator();
-        CheckHitReceived();
-        PlayerState.Update();
+        
+        if (Life >= 0 && winner != true)
+        {
+            CheckHitReceived();
+            PlayerState.Update();
+        }
+
         if (GameController.PlayerSelected == Name)
         {
             input = new Vector2(Input.GetAxis("Horizontal"), 0.0f);

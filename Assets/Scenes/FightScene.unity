@@ -1086,7 +1086,7 @@ PrefabInstance:
       objectReference: {fileID: 314749291535684500}
     - target: {fileID: 6068037782364974369, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
       propertyPath: Speed
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6068037782364974369, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
       propertyPath: rigidbody2D
@@ -2042,7 +2042,7 @@ PrefabInstance:
       objectReference: {fileID: 1401967325}
     - target: {fileID: 732260637, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
       propertyPath: Speed
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 732260637, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
       propertyPath: GroundDistance

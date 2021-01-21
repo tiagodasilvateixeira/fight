@@ -11,6 +11,7 @@ public abstract class PlayerController : MonoBehaviour
     public byte Orientation { get; set; }
     public bool IA { get; set; }
     public bool grounded;
+    public bool winner;
     public int Speed = 5;
     public float JumpForce = 500f;
     public float GroundDistance = 2.2f;
@@ -147,6 +148,7 @@ public abstract class PlayerController : MonoBehaviour
     
     public void Win()
     {
+        winner = true;
         animator.SetTrigger("win");
     }
 }

@@ -52,7 +52,7 @@ public class FightController: GameController
         }
         else
         {
-            BackToMenu();
+            FinishFight();
         }
     }
 
@@ -160,9 +160,40 @@ public class FightController: GameController
         }
         CurrentRound++;
 
-        if (CurrentRound < RoundsCount)
+        if (FightOpen())
         {
             StartRound(CurrentRound);
+        }
+    }
+
+    public void FinishFight()
+    {
+        string winner = GetWinner();
+        if (winner == Player1.Name)
+        {
+            Player1.Win();
+            Player2.KO();
+        }
+        else
+        {
+            Player2.Win();
+            Player1.KO();
+        }
+    }
+
+    string GetWinner()
+    {
+        if (Rounds[0]?.Winner == Rounds[1]?.Winner)
+        {
+            return Rounds[0]?.Winner;
+        }
+        else if (Rounds[0]?.Winner == Rounds[2]?.Winner)
+        {
+            return Rounds[0]?.Winner;
+        }
+        else
+        {
+            return Rounds[1]?.Winner;
         }
     }
 
@@ -213,12 +244,10 @@ public class FightController: GameController
         if (Player1.Life <= 0)
         {
             FinishRound(GetPlayerWithMoreLife());
-            Player1.animator.SetTrigger("ko");
         }
         else if (Player2.Life <= 0)
         {
             FinishRound(GetPlayerWithMoreLife());
-            Player2.animator.SetTrigger("ko");
         }
     }
 
