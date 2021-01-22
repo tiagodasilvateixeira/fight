@@ -26,6 +26,7 @@ public class FightController: GameController
         public int RoundsCount = 3;
         public int CurrentRound = 0;
         private float SecondsToImproveRound = 5.0f;
+        private float FinishTimer = 3.0f;
     #endregion
 
     #region states
@@ -179,6 +180,12 @@ public class FightController: GameController
             Player2.Win();
             Player1.KO();
         }
+
+        FinishTimer -= Time.deltaTime;
+        if (FinishTimer < 0.0f)
+        {
+            BackToMenu();
+        }
     }
 
     string GetWinner()
@@ -256,12 +263,10 @@ public class FightController: GameController
         if (enableRoundPanel)
         {
             InitRoundPanel.SetActive(true);
-            // DisablePlayersAfterRoundEnd();
         }
         else
         {
             InitRoundPanel.SetActive(false);
-            // SetPlayerCharacter();
         }
     }
 
