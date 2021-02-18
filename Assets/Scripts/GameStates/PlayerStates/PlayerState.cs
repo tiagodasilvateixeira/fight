@@ -8,6 +8,7 @@ public abstract class PlayerState
     public PunchState Punch;
     public KickState Kick;
     public HitState Hit;
+    public BlockState Block;
     
     public PlayerController PlayerController { get; set; }
     public PlayerState(PlayerController controller)
@@ -69,6 +70,19 @@ public abstract class PlayerState
         {
             Kick = new KickState(PlayerController);
             PlayerController.SetState(Kick);
+        }
+        else if (PlayerController.IA == true)
+        {
+
+        }
+    }
+
+    public void CheckBlockStateCommand()
+    {
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) && (PlayerController.IA == false))
+        {
+            Block = new BlockState(PlayerController);
+            PlayerController.SetState(Block);
         }
         else if (PlayerController.IA == true)
         {

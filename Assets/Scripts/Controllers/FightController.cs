@@ -37,17 +37,33 @@ public class FightController: GameController
     {
         FightState = new FightState(this);
         Rounds = new Round[RoundsCount];
+
         SetState(FightState);
+        
+        BindPlayerControllerToPlayerObject();
+        SetInitialPlayersLife();
+        SetInitialPlayersMaskWidth();
+        InitializePlayersCharacters();
         StartRound(CurrentRound);
         ResumeGame();
     }
 
     private void Update() 
     {
-        if (FightOpen())
+        if (FightIsOpen())
         {
             UpdateTimer();
-            CheckPlayerDefeat();
+            if (APlayerDefeated())
+            {
+                FinishRound(GetPlayerWithMoreLife());
+                SetInitialPlayersLife();
+                SetInitialPlayersMaskWidth();
+                InitializePlayersCharacters();
+                if (FightIsOpen())
+                {
+                    StartRound(CurrentRound++);
+                }
+            }
             CheckRoundSeconds();
             GameState.Update();
         }
@@ -57,27 +73,39 @@ public class FightController: GameController
         }
     }
 
-    bool FightOpen()
+    void BindPlayerControllerToPlayerObject()
+    {
+        if (PlayerSelected == RyuGameObject.GetComponent<PlayerController>().Name)
+        {
+            Player1 = RyuGameObject.GetComponent<PlayerController>();
+            Player2 = BlankaGameObject.GetComponent<PlayerController>();
+        }
+        else if (PlayerSelected == BlankaGameObject.GetComponent<PlayerController>().Name)
+        {
+            Player1 = BlankaGameObject.GetComponent<PlayerController>();
+            Player2 = RyuGameObject.GetComponent<PlayerController>();
+        }
+    }
+
+    void SetInitialPlayersLife()
+    {
+        Player1.Life = 1f;
+        Player2.Life = 1f;
+    }
+
+    void SetInitialPlayersMaskWidth()
+    {
+        HealthBarController.instance.SetInitialMaskWidth(Player1.Mask);
+        HealthBarController.instance.SetInitialMaskWidth(Player2.Mask);
+    }
+
+    bool FightIsOpen()
     {
         if (ReturnTrueIfAFighterWinTwoRounds())
-        {
             return false;
-        }
-        else if (CurrentRound < RoundsCount)
-        {
-            if (!string.IsNullOrWhiteSpace(Rounds[CurrentRound]?.Winner))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        else
-        {
+        if (IsLastRound() && LastRoundIsOver())
             return false;
-        }
+        return true;
     }
 
     bool ReturnTrueIfAFighterWinTwoRounds()
@@ -96,18 +124,28 @@ public class FightController: GameController
         }
     }
 
-    void SetPlayerCharacter()
+    bool IsLastRound()
     {
-        if (PlayerSelected == RyuGameObject.GetComponent<PlayerController>().Name)
+        if (CurrentRound < RoundsCount)
+            return false;
+        Debug.Log("Is last round");
+        return true;
+    }
+
+    bool LastRoundIsOver()
+    {
+        if (string.IsNullOrWhiteSpace(Rounds[CurrentRound]?.Winner))
         {
-            Player1 = RyuGameObject.GetComponent<PlayerController>();
-            Player2 = BlankaGameObject.GetComponent<PlayerController>();
+            return false;
         }
-        else if (PlayerSelected == BlankaGameObject.GetComponent<PlayerController>().Name)
+        else
         {
-            Player1 = BlankaGameObject.GetComponent<PlayerController>();
-            Player2 = RyuGameObject.GetComponent<PlayerController>();
+            return true;
         }
+    }
+    
+    void InitializePlayersCharacters()
+    {
         Player1.Mask = MaskPlayer1;
         Player1.IA = false;
         Player1.transform.position = new Vector3(-6f, -2.5f, 0f);
@@ -134,14 +172,8 @@ public class FightController: GameController
         Player2.IA = true;
     }
 
-    public void StartRound(int RoundNumber)
+    void StartRound(int RoundNumber)
     {
-        SetPlayerCharacter();
-        Player1.Life = 1f;
-        HealthBarController.instance.SetInitialMaskWidth(Player1.Mask);
-        Player2.Life = 1f;
-        HealthBarController.instance.SetInitialMaskWidth(Player2.Mask);
-
         SecondsToFinishRound = InitialRoundSeconds;
         Rounds[RoundNumber] = new Round(RoundNumber+1);
     }
@@ -158,12 +190,6 @@ public class FightController: GameController
         {
             Toggle togglePlayer2 = TogglePlayer2.GetComponent<Toggle>();
             togglePlayer2.isOn = true;
-        }
-        CurrentRound++;
-
-        if (FightOpen())
-        {
-            StartRound(CurrentRound);
         }
     }
 
@@ -246,16 +272,11 @@ public class FightController: GameController
         }
     }
 
-    public void CheckPlayerDefeat()
+    bool APlayerDefeated()
     {
-        if (Player1.Life <= 0)
-        {
-            FinishRound(GetPlayerWithMoreLife());
-        }
-        else if (Player2.Life <= 0)
-        {
-            FinishRound(GetPlayerWithMoreLife());
-        }
+        if (Player1.Life <= 0 || Player2.Life <= 0)
+            return true;
+        return false;
     }
 
     public void HandlerInitRoundPanel(bool enableRoundPanel)

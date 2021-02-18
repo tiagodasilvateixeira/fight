@@ -127,7 +127,8 @@ public abstract class PlayerController : MonoBehaviour
     
     public void Block()
     {
-
+        animator.SetBool("block", true);
+        animator.SetBool("idle", false);
     }
     
     public void EspecialAtack()
