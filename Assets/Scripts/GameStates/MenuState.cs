@@ -7,7 +7,6 @@ public class MenuState : GameState
     public MenuState(MenuController gameController): base(gameController)
     {
         Controller = gameController;
-        Controller.GoToSelectFighters = false;
     }
 
     public override void EnterState()
@@ -15,11 +14,7 @@ public class MenuState : GameState
         Debug.Log("At MenuState");
     }
 
-    public override void Update() 
+    public override void Update()
     {
-        if (Controller.GoToSelectFighters)
-        {
-            Controller.SelectFighters();
-        }
     }
 }

@@ -5,14 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuController: GameController
 {
-    #region public attributes
-        public string Music { get; private set; }
-        public bool GoToSelectFighters { get; set; }
-    #endregion
-
-    #region states
-        protected GameState Menu;
-    #endregion
+    protected GameState Menu;
 
     private void Start() 
     {
@@ -30,7 +23,7 @@ public class MenuController: GameController
         Application.Quit();
     }
 
-    public void SelectFighters() 
+    public void LoadSelectFightersScene()
     {
         SceneManager.LoadScene("FighterSelectorScene", LoadSceneMode.Single);
     }
