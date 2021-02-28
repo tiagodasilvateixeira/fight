@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MenuSceneController: MonoSingleton<MenuSceneController>
 {
-    public void LoadSelectFightersScene()
+    public void OpenScene()
     {
-        SelectPlayerSceneController.Instance.OpenScene();
+        SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
     }
     public void ExitGame()
     {

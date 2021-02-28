@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SelectPlayerSceneController: MonoSingleton<SelectPlayerSceneController>
+public class FighterSelectorSceneController: MonoSingleton<FighterSelectorSceneController>
 {
+    public string FighterSelected { get; set; }
+
     public void OpenScene()
     {
         SceneManager.LoadScene("FighterSelectorScene", LoadSceneMode.Single);
