@@ -657,8 +657,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1287186238}
-        m_TargetAssemblyTypeName: MenuSceneController, Assembly-CSharp
+      - m_Target: {fileID: 1287186239}
+        m_TargetAssemblyTypeName: FightSceneController, Assembly-CSharp
         m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
@@ -1162,6 +1162,7 @@ GameObject:
   - component: {fileID: 1287186237}
   - component: {fileID: 1287186236}
   - component: {fileID: 1287186238}
+  - component: {fileID: 1287186239}
   m_Layer: 0
   m_Name: SceneControllers
   m_TagString: Untagged
@@ -1207,6 +1208,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae09e4cb72bab6e4baaf23e30226fb95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1287186239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287186235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58e6aa8d89984642a933787d540bb5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuPanel: {fileID: 0}
+  InitRoundPanel: {fileID: 0}
+  RyuGameObject: {fileID: 0}
+  BlankaGameObject: {fileID: 0}
+  TogglePlayer1: {fileID: 0}
+  TogglePlayer2: {fileID: 0}
+  MaskPlayer1: {fileID: 0}
+  MaskPlayer2: {fileID: 0}
+  CounterText: {fileID: 0}
+  InitialRoundSeconds: 90
+  RoundsCount: 2
+  CurrentRound: 0
 --- !u!1 &1571085244
 GameObject:
   m_ObjectHideFlags: 0

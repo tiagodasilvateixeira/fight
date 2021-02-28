@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class FightController: GameController
+public class FightSceneController: MonoSingleton<FightSceneController>
 {
     public bool GamePaused { get; set; }
     public bool GoToBackToMenu { get; set; }
@@ -27,57 +27,57 @@ public class FightController: GameController
     public int RoundsCount = 2;
     public int CurrentRound = 0;
 
-    protected GameState FightState;
-
     private void Start() 
     {
-        Rounds = new Round[RoundsCount];
+        if (SceneManager.GetActiveScene().name == "FightScene")
+        {
+            Rounds = new Round[RoundsCount];
 
-        InitState();
-        BindPlayerControllerToPlayerObject();
-        SetPlayersToTheNextRound();
-        StartRound();
+            BindPlayerControllerToPlayerObject();
+            SetPlayersToTheNextRound();
+            StartRound();
+        }
     }
 
     private void Update() 
     {
-        if (FightIsOpen())
+        if (SceneManager.GetActiveScene().name == "FightScene")
         {
-            UpdateTimer();
-            RoundTimeIsOver();
-            if (APlayerHasNoLife())
+            if (FightIsOpen())
             {
-                SetRoundWinner(GetPlayerWithMoreLife());
-                SetPlayersToTheNextRound();
-                if (FightIsOpen())
+                UpdateTimer();
+                RoundTimeIsOver();
+                if (APlayerHasNoLife())
                 {
-                    CurrentRound += 1;
-                    StartRound();
+                    SetRoundWinner(GetPlayerWithMoreLife());
+                    SetPlayersToTheNextRound();
+                    if (FightIsOpen())
+                    {
+                        CurrentRound += 1;
+                        StartRound();
+                    }
                 }
             }
-            
-            GameState.Update();
-        }
-        else
-        {
-            FinishFight();
+            else
+            {
+                FinishFight();
+            }
         }
     }
 
-    void InitState()
+    public void OpenScene()
     {
-        FightState = new FightState(this);
-        SetState(FightState);
+        SceneManager.LoadScene("FightScene", LoadSceneMode.Single);
     }
 
     void BindPlayerControllerToPlayerObject()
     {
-        if (PlayerSelected == RyuGameObject.GetComponent<PlayerController>().Name)
+        if (FighterSelectorSceneController.Instance.FighterSelected == RyuGameObject.GetComponent<PlayerController>().Name)
         {
             Player1 = RyuGameObject.GetComponent<PlayerController>();
             Player2 = BlankaGameObject.GetComponent<PlayerController>();
         }
-        else if (PlayerSelected == BlankaGameObject.GetComponent<PlayerController>().Name)
+        else if (FighterSelectorSceneController.Instance.FighterSelected == BlankaGameObject.GetComponent<PlayerController>().Name)
         {
             Player1 = BlankaGameObject.GetComponent<PlayerController>();
             Player2 = RyuGameObject.GetComponent<PlayerController>();
@@ -135,6 +135,7 @@ public class FightController: GameController
             return false;
         if (IsLastRound() && LastRoundIsOver())
             return false;
+        
         return true;
     }
 
@@ -256,7 +257,7 @@ public class FightController: GameController
         FinishTimer -= Time.deltaTime;
         if (FinishTimer < 0.0f)
         {
-            BackToMenu();
+            // BackToMenu();
         }
     }
     

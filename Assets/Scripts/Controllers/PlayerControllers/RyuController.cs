@@ -28,7 +28,7 @@ public class RyuController : PlayerController
             PlayerState.Update();
         }
 
-        if (GameController.PlayerSelected == Name)
+        if (FighterSelectorSceneController.Instance.FighterSelected == Name)
         {
             input = new Vector2(Input.GetAxis("Horizontal"), 0.0f);
             GetComponent<SpriteRenderer>().flipX = false;
