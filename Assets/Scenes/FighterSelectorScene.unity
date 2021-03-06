@@ -527,7 +527,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1287186236}
         m_TargetAssemblyTypeName: FighterSelectorSceneController, Assembly-CSharp
-        m_MethodName: set_FighterSelected
+        m_MethodName: SetSelectedFighter
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -593,7 +593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &755807872
 RectTransform:
   m_ObjectHideFlags: 0
@@ -652,7 +652,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 755807874}
   m_OnClick:
     m_PersistentCalls:
@@ -790,7 +790,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1287186236}
         m_TargetAssemblyTypeName: FighterSelectorSceneController, Assembly-CSharp
-        m_MethodName: set_FighterSelected
+        m_MethodName: SetSelectedFighter
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1229,9 +1229,6 @@ MonoBehaviour:
   MaskPlayer1: {fileID: 0}
   MaskPlayer2: {fileID: 0}
   CounterText: {fileID: 0}
-  InitialRoundSeconds: 90
-  RoundsCount: 2
-  CurrentRound: 0
 --- !u!1 &1571085244
 GameObject:
   m_ObjectHideFlags: 0
