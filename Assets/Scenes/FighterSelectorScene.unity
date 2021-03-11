@@ -527,7 +527,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1287186236}
         m_TargetAssemblyTypeName: FighterSelectorSceneController, Assembly-CSharp
-        m_MethodName: SetSelectedFighter
+        m_MethodName: SelectFighter
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -593,7 +593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &755807872
 RectTransform:
   m_ObjectHideFlags: 0
@@ -790,7 +790,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1287186236}
         m_TargetAssemblyTypeName: FighterSelectorSceneController, Assembly-CSharp
-        m_MethodName: SetSelectedFighter
+        m_MethodName: SelectFighter
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1222,8 +1222,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MenuPanel: {fileID: 0}
   InitRoundPanel: {fileID: 0}
-  RyuGameObject: {fileID: 0}
-  BlankaGameObject: {fileID: 0}
   TogglePlayer1: {fileID: 0}
   TogglePlayer2: {fileID: 0}
   MaskPlayer1: {fileID: 0}

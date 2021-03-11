@@ -17,6 +17,8 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T: MonoSingleton<T>
     }
 
     private void Awake() {
-        _instance = (T)this;
+        DontDestroyOnLoad((T)this);
+        if (_instance == null)
+            _instance = (T)this;
     }
 }

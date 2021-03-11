@@ -7,11 +7,8 @@ using UnityEngine.UI;
 public class FightSceneController: MonoSingleton<FightSceneController>
 {
     public bool GamePaused { get; set; }
-    public bool GoToBackToMenu { get; set; }
     public GameObject MenuPanel;
     public GameObject InitRoundPanel;
-    public GameObject RyuGameObject;
-    public GameObject BlankaGameObject;
     public GameObject TogglePlayer1;
     public GameObject TogglePlayer2;
     public Image MaskPlayer1;
@@ -21,11 +18,16 @@ public class FightSceneController: MonoSingleton<FightSceneController>
     PlayerController Player1;
     PlayerController Player2;
     private float SecondsToFinishRound;
-    public float InitialRoundSeconds = 90.0f;
+    private float InitialRoundSeconds = 90.0f;
     private float SecondsToImproveRound = 5.0f;
     private float FinishTimer = 3.0f;
-    public int RoundsCount = 2;
-    public int CurrentRound = 0;
+    private int RoundsCount = 3;
+    private int CurrentRound = 0;
+
+    public void OpenScene()
+    {
+        SceneManager.LoadScene("FightScene", LoadSceneMode.Single);
+    }
 
     private void Start() 
     {
@@ -33,8 +35,8 @@ public class FightSceneController: MonoSingleton<FightSceneController>
         {
             Rounds = new Round[RoundsCount];
 
-            BindPlayerControllerToPlayerObject();
-            SetPlayersToTheNextRound();
+            BindPlayerObjectToPlayerController();
+            SetPlayersSceneComponentsToTheNextRound();
             StartRound();
         }
     }
@@ -50,7 +52,7 @@ public class FightSceneController: MonoSingleton<FightSceneController>
                 if (APlayerHasNoLife())
                 {
                     SetRoundWinner(GetPlayerWithMoreLife());
-                    SetPlayersToTheNextRound();
+                    SetPlayersSceneComponentsToTheNextRound();
                     if (FightIsOpen())
                     {
                         CurrentRound += 1;
@@ -65,26 +67,15 @@ public class FightSceneController: MonoSingleton<FightSceneController>
         }
     }
 
-    public void OpenScene()
+    void BindPlayerObjectToPlayerController()
     {
-        SceneManager.LoadScene("FightScene", LoadSceneMode.Single);
+        GameObject player1GameObject = GameObject.Find(Card.Player1Fighter);
+        Player1 = player1GameObject.GetComponent<PlayerController>();
+        GameObject player2GameObject = GameObject.Find(Card.Player2Fighter);
+        Player2 = player2GameObject.GetComponent<PlayerController>();
     }
 
-    void BindPlayerControllerToPlayerObject()
-    {
-        if (FighterSelectorSceneController.Instance.FighterSelected == RyuGameObject.GetComponent<PlayerController>().Name)
-        {
-            Player1 = RyuGameObject.GetComponent<PlayerController>();
-            Player2 = BlankaGameObject.GetComponent<PlayerController>();
-        }
-        else if (FighterSelectorSceneController.Instance.FighterSelected == BlankaGameObject.GetComponent<PlayerController>().Name)
-        {
-            Player1 = BlankaGameObject.GetComponent<PlayerController>();
-            Player2 = RyuGameObject.GetComponent<PlayerController>();
-        }
-    }
-
-    void SetPlayersToTheNextRound()
+    void SetPlayersSceneComponentsToTheNextRound()
     {
         InitPlayersLife();
         SetPlayersMasks();

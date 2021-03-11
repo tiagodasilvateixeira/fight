@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class FighterSelectorSceneController: MonoSingleton<FighterSelectorSceneController>
 {
-    public string FighterSelected { get; set; }
     private Button InitFight
     {
         get
@@ -28,12 +27,12 @@ public class FighterSelectorSceneController: MonoSingleton<FighterSelectorSceneC
 
     private void EnableInitFightButtonIfAFighterIsSelected()
     {
-        if (FighterSelected != null)
+        if (Card.Player1Fighter != null)
             InitFight.interactable = true;
     }
     
-    public void SetSelectedFighter(string fighterName)
+    public void SelectFighter(string fighterName)
     {
-        FighterSelected = fighterName;
+        Card.SetPlayer1Fighter(fighterName);
     }
 }
