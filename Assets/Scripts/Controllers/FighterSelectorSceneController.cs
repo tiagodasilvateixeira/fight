@@ -22,7 +22,8 @@ public class FighterSelectorSceneController: MonoSingleton<FighterSelectorSceneC
 
     private void Update()
     {
-        EnableInitFightButtonIfAFighterIsSelected();
+        if (SceneManager.GetActiveScene().name == "FighterSelectorScene")
+            EnableInitFightButtonIfAFighterIsSelected();
     }
 
     private void EnableInitFightButtonIfAFighterIsSelected()
