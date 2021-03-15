@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class PlayersCatalog
+public static class FightersCatalog
 {
     public static string[] Players = {"Blanka", "Ryu"};
 }

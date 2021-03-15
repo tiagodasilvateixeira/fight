@@ -13,7 +13,7 @@
 
     static string GetPlayer2Name()
     {
-        foreach (var name in PlayersCatalog.Players)
+        foreach (var name in FightersCatalog.Players)
         {
             if (name != Card.Player1Fighter)
                 return name;
