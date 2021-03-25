@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Controllers;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -10,50 +11,29 @@ namespace Tests
     [TestFixture]
     public class FighterSelectorTests
     {
-        Button ryuButton;
-        Button blankaButton;
-        Button initFightButton;
-        GameObject gameObject;
-        FighterSelectorSceneController fighterSelectorSceneController;
+        GameObject canvasGameObject;
+        FightSelectorCanvasController fighterSelectorCanvasController;
 
         [SetUp]
         public void Init()
         {
-            gameObject = Object.Instantiate(Resources.Load<GameObject>("Prefabs/FightSelectorCanvas"));
-            fighterSelectorSceneController = gameObject.GetComponent<FighterSelectorSceneController>();
+            canvasGameObject = Object.Instantiate(Resources.Load<GameObject>("Prefabs/FightSelectorCanvas"));
+            fighterSelectorCanvasController = canvasGameObject.GetComponent<FightSelectorCanvasController>();
         }
 
         [Test]
         public void InitFightButtonShouldBeDisabledIfAFighterButtonIsNotSelected()
         {
-            GetButtons();
-
-            Assert.AreEqual(false, initFightButton.interactable);
+            Assert.AreEqual(false, GameObject.Find("ButtonFight").GetComponent<Button>().interactable);
         }
 
-        [Test]
-        public void InitFightButtonShouldBeEnabledIfAFighterIsSelected()
+        [TestCase("Ryu")]
+        [TestCase("Blanka")]
+        public void InitFightButtonShouldBeEnabledIfAFighterIsSelected(string fighter)
         {
-            GetButtons();
+            fighterSelectorCanvasController.SelectFighter(fighter);
 
-            ryuButton.interactable = true;
-            fighterSelectorSceneController.EnableInitFightButtonIfAFighterIsSelected();
-
-            Assert.AreEqual(true, initFightButton.interactable);
-        }
-
-        private void GetButtons()
-        {
-            Button[] buttons =  Object.FindObjectsOfType<Button>();
-            foreach (Button button in buttons)
-            {
-                if (button.name == "ButtonRyu")
-                    ryuButton = button;
-                if (button.name == "ButtonBlanka")
-                    blankaButton = button;
-                if (button.name == "ButtonFight")
-                    initFightButton = button;
-            }
+            Assert.AreEqual(true, GameObject.Find("ButtonFight").GetComponent<Button>().interactable);
         }
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7294438137465503172}
   - component: {fileID: 7294438137465503175}
   - component: {fileID: 7294438137465503174}
+  - component: {fileID: -7142233267503210200}
   m_Layer: 0
   m_Name: FightSelectorCanvas
   m_TagString: Untagged
@@ -99,6 +100,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &-7142233267503210200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7294438137465503176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7ae45abd9215c408504871c22931cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7294438137507913154
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,8 +442,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FighterSelectorSceneController, Assembly-CSharp
+      - m_Target: {fileID: -7142233267503210200}
+        m_TargetAssemblyTypeName: Controllers.FightSelectorCanvasController, GameAssembly
         m_MethodName: SelectFighter
         m_Mode: 5
         m_Arguments:
@@ -440,7 +453,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Blanka
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!1 &7294438138144070627
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,8 +573,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FighterSelectorSceneController, Assembly-CSharp
+      - m_Target: {fileID: -7142233267503210200}
+        m_TargetAssemblyTypeName: Controllers.FightSelectorCanvasController, GameAssembly
         m_MethodName: SelectFighter
         m_Mode: 5
         m_Arguments:
@@ -571,7 +584,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Ryu
           m_BoolArgument: 1
-        m_CallState: 2
+        m_CallState: 1
 --- !u!1 &7294438138157865921
 GameObject:
   m_ObjectHideFlags: 0
