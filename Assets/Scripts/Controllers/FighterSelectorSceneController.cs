@@ -12,7 +12,6 @@ public class FighterSelectorSceneController: MonoSingleton<FighterSelectorSceneC
         {
             return GameObject.Find("ButtonFight").GetComponent<Button>();
         }
-        set{}
     }
 
     public void OpenScene()
@@ -26,7 +25,7 @@ public class FighterSelectorSceneController: MonoSingleton<FighterSelectorSceneC
             EnableInitFightButtonIfAFighterIsSelected();
     }
 
-    private void EnableInitFightButtonIfAFighterIsSelected()
+    public void EnableInitFightButtonIfAFighterIsSelected()
     {
         if (Card.Player1Fighter != null)
             InitFight.interactable = true;
