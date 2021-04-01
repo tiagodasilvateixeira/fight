@@ -47,7 +47,6 @@ public class FightSceneController: MonoSingleton<FightSceneController>
         {
             if (FightIsOpen())
             {
-                UpdateTimer();
                 RoundTimeIsOver();
                 if (APlayerHasNoLife())
                 {
@@ -158,15 +157,6 @@ public class FightSceneController: MonoSingleton<FightSceneController>
         if (string.IsNullOrWhiteSpace(Rounds[CurrentRound]?.Winner))
             return false;
         return true;
-    }
-
-    public void UpdateTimer()
-    {
-        if (SecondsToFinishRound <= InitialRoundSeconds)
-        {
-            SecondsToFinishRound -= Time.deltaTime;
-            CounterText.text = SecondsToFinishRound.ToString("0");
-        }
     }
 
     bool APlayerHasNoLife()

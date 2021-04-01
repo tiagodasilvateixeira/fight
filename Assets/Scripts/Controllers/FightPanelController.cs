@@ -14,6 +14,7 @@ namespace Controllers
         public void InitCounter(int valueToCount)
         {
             Counter = valueToCount;
+            StartCoroutine(DecreaseCounterByOneEverySecond());
         }
 
         public void Start()
@@ -21,22 +22,16 @@ namespace Controllers
             InitCounter(defultCounterValue);
         }
 
-        public void Update()
-        {
-            StartCoroutine(DecreaseCounterByOneEverySecond());
-            StartCoroutine(DisplayCounterValueInPanelText());
-        }
-
         IEnumerator DecreaseCounterByOneEverySecond()
         {
-            Counter = Counter - 1;
-            yield return new WaitForSeconds(1f);
-        }
+            while (Counter > 0)
+            {
+                Counter--;
 
-        IEnumerator DisplayCounterValueInPanelText()
-        {
-            gameObject.GetComponentInChildren<Text>().text = Counter.ToString();
-            yield return new WaitForSeconds(1f);
+                yield return new WaitForSecondsRealtime(1);
+                
+                gameObject.GetComponentInChildren<Text>().text = Counter.ToString();
+            }
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Tests
             fightPanelController.InitCounter(valueToInitCount);
             yield return new WaitForSeconds(1f);
 
-            Assert.Greater(valueToInitCount, int.Parse(counterText.text.ToString()));
+            Assert.AreEqual(1, int.Parse(counterText.text.ToString()));
         }
     }
 }
