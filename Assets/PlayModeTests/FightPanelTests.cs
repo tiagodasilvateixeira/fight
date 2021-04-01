@@ -31,5 +31,19 @@ namespace Tests
 
             Assert.AreEqual(1, int.Parse(counterText.text.ToString()));
         }
+
+        [UnityTest]
+        public IEnumerator PanelMaskHealthShouldBindWithPlayerLife()
+        {
+            Mask healthBarMask = fightPanelGameObject.GetComponentInChildren<Mask>();
+            HealthBarController healthBar = fightPanelGameObject.GetComponentInChildren<HealthBarController>();
+            float healtValue = 0.8f;
+            float expectedMaskSize = healthBarMask.rectTransform.rect.width * healtValue;
+
+            healthBar.SetHealthValue(healtValue);
+            yield return new WaitForFixedUpdate();
+
+            Assert.AreEqual(expectedMaskSize, healthBarMask.rectTransform.rect.width);
+        }
     }
 }

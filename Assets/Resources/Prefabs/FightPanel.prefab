@@ -621,6 +621,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MaskPlayer1
       objectReference: {fileID: 0}
+    - target: {fileID: 1130347293, guid: 7b526b985bd10ec4682871c4c94eda9d, type: 3}
+      propertyPath: m_ShowMaskGraphic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 314749291471301841, guid: 7b526b985bd10ec4682871c4c94eda9d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

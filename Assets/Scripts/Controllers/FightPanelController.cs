@@ -11,18 +11,18 @@ namespace Controllers
         private readonly int defultCounterValue = 90;
         private int Counter;
 
-        public void InitCounter(int valueToCount)
-        {
-            Counter = valueToCount;
-            StartCoroutine(DecreaseCounterByOneEverySecond());
-        }
-
         public void Start()
         {
             InitCounter(defultCounterValue);
         }
 
-        IEnumerator DecreaseCounterByOneEverySecond()
+        public void InitCounter(int valueToCount)
+        {
+            Counter = valueToCount;
+            StartCoroutine(DecraseCounterByOneEverySecond());
+        }
+
+        IEnumerator DecraseCounterByOneEverySecond()
         {
             while (Counter > 0)
             {

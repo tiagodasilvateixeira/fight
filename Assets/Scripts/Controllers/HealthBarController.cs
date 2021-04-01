@@ -3,33 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBarController : MonoBehaviour
+namespace Controllers
 {
-    public static HealthBarController instance { get; private set; }
-    float OriginalMaskWidth = 400f;
-
-    void Awake()
+    public class HealthBarController : MonoBehaviour
     {
-        instance = this;
-    }
+        readonly float OriginalMaskWidth = 400f;
+        Mask Mask
+        {
+            get
+            {
+                return gameObject.GetComponent<Mask>();
+            }
+        }
 
-    void Start()
-    {
-        
-    }
+        private void Start()
+        {
+            SetInitialMaskWidth();
+        }
 
-    void Update() 
-    {
-        
-    }
+        public void SetHealthValue(float value)
+        {
+            Mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, OriginalMaskWidth * value);
+        }
 
-    public void SetHealthValue(float value, Image mask)
-    {
-        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, OriginalMaskWidth * value);
-    }
-
-    public void SetInitialMaskWidth(Image mask)
-    {
-        mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, OriginalMaskWidth);
+        public void SetInitialMaskWidth()
+        {
+            Mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, OriginalMaskWidth);
+        }
     }
 }

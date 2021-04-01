@@ -97,8 +97,8 @@ public class FightSceneController: MonoSingleton<FightSceneController>
     
     void InitPlayersMaskWidth()
     {
-        HealthBarController.instance.SetInitialMaskWidth(Player1.Mask);
-        HealthBarController.instance.SetInitialMaskWidth(Player2.Mask);
+        //HealthBarController.instance.SetInitialMaskWidth(Player1.Mask);
+        //HealthBarController.instance.SetInitialMaskWidth(Player2.Mask);
     }
 
     void SetPlayersInputs()

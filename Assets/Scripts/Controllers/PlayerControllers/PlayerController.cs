@@ -38,11 +38,6 @@ public abstract class PlayerController : MonoBehaviour
         PlayerState.EnterState();
     }
     
-    public void SetHealth(float value)
-    {
-        HealthBarController.instance.SetHealthValue(value, Mask);
-    }
-    
     public void SetGroundedAnimator()
     {
         if (Physics2D.Raycast(transform.position, Vector3.down, GroundDistance, GroundLayer))
@@ -85,7 +80,12 @@ public abstract class PlayerController : MonoBehaviour
             }
         }
     }
-    
+
+    public void SetHealth(float value)
+    {
+        //HealthBarController.instance.SetHealthValue(value, Mask);
+    }
+
     public bool WalkInput()
     {
         if (!Mathf.Approximately(input.x, 0.0f))

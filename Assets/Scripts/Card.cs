@@ -2,7 +2,7 @@
 {
     public static string Player1Fighter { get; private set; }
     public static string Player2Fighter 
-    { 
+    {
         get { return GetPlayer2Name(); }
     }
 
@@ -15,7 +15,7 @@
     {
         foreach (var name in FightersCatalog.Players)
         {
-            if (name != Card.Player1Fighter)
+            if (name != Player1Fighter)
                 return name;
         }
         return "";
