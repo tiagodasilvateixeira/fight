@@ -12,13 +12,13 @@ namespace Tests
     public class FighterSelectorTests
     {
         GameObject canvasGameObject;
-        FightSelectorCanvasController fighterSelectorCanvasController;
+        FighterSelectorCanvasController fighterSelectorCanvasController;
 
         [SetUp]
         public void Init()
         {
             canvasGameObject = Object.Instantiate(Resources.Load<GameObject>("Prefabs/FightSelectorCanvas"));
-            fighterSelectorCanvasController = canvasGameObject.GetComponent<FightSelectorCanvasController>();
+            fighterSelectorCanvasController = canvasGameObject.GetComponent<FighterSelectorCanvasController>();
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace Tests
 
         [TestCase("Ryu")]
         [TestCase("Blanka")]
-        public void InitFightButtonShouldBeEnabledIfAFighterIsSelected(string fighter)
+        public void InitFightButtonShouldBeEnabledIfAFighterButtonIsSelected(string fighter)
         {
             fighterSelectorCanvasController.SelectFighter(fighter);
 

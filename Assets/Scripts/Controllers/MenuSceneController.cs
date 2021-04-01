@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuSceneController: MonoSingleton<MenuSceneController>
+namespace Controllers
 {
-    public void OpenScene()
+    public class MenuSceneController : MonoSingleton<MenuSceneController>
     {
-        SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
-    }
-    public void ExitGame()
-    {
-        Application.Quit();
+        public void OpenScene()
+        {
+            SceneManager.LoadScene("MenuScene", LoadSceneMode.Single);
+        }
+        public void ExitGame()
+        {
+            Application.Quit();
+        }
     }
 }

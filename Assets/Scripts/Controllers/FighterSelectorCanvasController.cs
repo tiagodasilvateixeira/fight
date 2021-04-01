@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Controllers
 {
-    public class FightSelectorCanvasController : MonoSingleton<FightSelectorCanvasController>
+    public class FighterSelectorCanvasController : MonoSingleton<FighterSelectorCanvasController>
     {
         private Button InitFightButton
         {
