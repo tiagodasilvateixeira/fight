@@ -27,10 +27,8 @@ namespace Controllers
             while (Counter > 0)
             {
                 Counter--;
-
-                yield return new WaitForSecondsRealtime(1);
-                
                 gameObject.GetComponentInChildren<Text>().text = Counter.ToString();
+                yield return new WaitForSecondsRealtime(1);
             }
         }
     }

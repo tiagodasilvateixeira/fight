@@ -21,12 +21,12 @@ namespace Controllers
             SetInitialMaskWidth();
         }
 
-        public void SetHealthValue(float value)
+        public void SetMaskWidth(float value)
         {
             Mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, OriginalMaskWidth * value);
         }
 
-        public void SetInitialMaskWidth()
+        void SetInitialMaskWidth()
         {
             Mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, OriginalMaskWidth);
         }

@@ -29,18 +29,18 @@ namespace Tests
             fightPanelController.InitCounter(valueToInitCount);
             yield return new WaitForSeconds(1f);
 
-            Assert.AreEqual(1, int.Parse(counterText.text.ToString()));
+            Assert.IsTrue(int.Parse(counterText.text.ToString()) >= 0 && int.Parse(counterText.text.ToString()) <= 1);
         }
 
         [UnityTest]
-        public IEnumerator PanelMaskHealthShouldBindWithPlayerLife()
+        public IEnumerator PanelMaskHealthShouldBindPlayerLife()
         {
             Mask healthBarMask = fightPanelGameObject.GetComponentInChildren<Mask>();
             HealthBarController healthBar = fightPanelGameObject.GetComponentInChildren<HealthBarController>();
             float healtValue = 0.8f;
             float expectedMaskSize = healthBarMask.rectTransform.rect.width * healtValue;
 
-            healthBar.SetHealthValue(healtValue);
+            healthBar.SetMaskWidth(healtValue);
             yield return new WaitForFixedUpdate();
 
             Assert.AreEqual(expectedMaskSize, healthBarMask.rectTransform.rect.width);
