@@ -310,8 +310,8 @@ MonoBehaviour:
   InitRoundPanel: {fileID: 416704821}
   TogglePlayer1: {fileID: 1432660810905654214}
   TogglePlayer2: {fileID: 1417485646}
-  MaskPlayer1: {fileID: 314749291535684500}
-  MaskPlayer2: {fileID: 1401967325}
+  MaskPlayer1: {fileID: 7080373239180141649}
+  MaskPlayer2: {fileID: 7080373239180141648}
   CounterText: {fileID: 1438640233}
 --- !u!114 &141208080
 MonoBehaviour:
@@ -2018,3 +2018,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fbd0764672100f499eebf83fa7b0dc1, type: 3}
+--- !u!114 &7080373239180141648 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7080373239279718337, guid: 9fbd0764672100f499eebf83fa7b0dc1, type: 3}
+  m_PrefabInstance: {fileID: 7080373239180141647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7080373239180141649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7357966048103386305, guid: 9fbd0764672100f499eebf83fa7b0dc1, type: 3}
+  m_PrefabInstance: {fileID: 7080373239180141647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,3 +1,4 @@
+using Controllers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,7 +23,14 @@ public abstract class PlayerController : MonoBehaviour
     public PlayerState PlayerState;
     public LayerMask GroundLayer;
     public LayerMask EnemyLayer;
-    public Image Mask;
+    Mask HealthMask;
+    HealthBarController HealthMaskController
+    {
+        get
+        {
+            return HealthMask.GetComponentInChildren<HealthBarController>();
+        }
+    }
     public Animator animator;
     public Vector2 input;
     PlayerController Enemy;
@@ -51,6 +59,11 @@ public abstract class PlayerController : MonoBehaviour
             grounded = false;
         }
     }
+
+    public void SetHealtMask(Mask mask)
+    {
+        HealthMask = mask;
+    }
     
     public void CheckHitReceived()
     {
@@ -62,14 +75,14 @@ public abstract class PlayerController : MonoBehaviour
             switch (Enemy.PlayerState.GetType().ToString())
             {
                 case "PunchState":
-                    PlayerState.SetHitState(100f, leftHit == true ? Vector3.right : Vector3.left);
+                    PlayerState.SetHitState(100f, leftHit ? Vector3.right : Vector3.left);
                     demage = 0.08f;
 
                     Life = Life - demage;
                     SetHealth(Life);
                     break;
                 case "KickState":
-                    PlayerState.SetHitState(300f, leftHit == true ? Vector3.right : Vector3.left);
+                    PlayerState.SetHitState(300f, leftHit ? Vector3.right : Vector3.left);
                     demage = 0.1f;
 
                     Life = Life - demage;
@@ -83,7 +96,8 @@ public abstract class PlayerController : MonoBehaviour
 
     public void SetHealth(float value)
     {
-        //HealthBarController.instance.SetHealthValue(value, Mask);
+        HealthMaskController.SetMaskWidth(value);
+        
     }
 
     public bool WalkInput()

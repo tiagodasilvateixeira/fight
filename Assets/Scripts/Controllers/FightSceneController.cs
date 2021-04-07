@@ -11,8 +11,8 @@ public class FightSceneController: MonoSingleton<FightSceneController>
     public GameObject InitRoundPanel;
     public GameObject TogglePlayer1;
     public GameObject TogglePlayer2;
-    public Image MaskPlayer1;
-    public Image MaskPlayer2;
+    public Mask MaskPlayer1;
+    public Mask MaskPlayer2;
     public Text CounterText;
     public Round[] Rounds;
     PlayerController Player1;
@@ -91,14 +91,14 @@ public class FightSceneController: MonoSingleton<FightSceneController>
 
     void SetPlayersMasks()
     {
-        Player1.Mask = MaskPlayer1;
-        Player2.Mask = MaskPlayer2;
+        Player1.SetHealtMask(MaskPlayer1);
+        Player2.SetHealtMask(MaskPlayer2);
     }
     
     void InitPlayersMaskWidth()
     {
-        //HealthBarController.instance.SetInitialMaskWidth(Player1.Mask);
-        //HealthBarController.instance.SetInitialMaskWidth(Player2.Mask);
+        Player1.SetHealth(Player1.Life);
+        Player1.SetHealth(Player1.Life);
     }
 
     void SetPlayersInputs()

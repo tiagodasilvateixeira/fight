@@ -36,7 +36,7 @@ namespace Tests
         public IEnumerator PanelMaskHealthShouldBindPlayerLife()
         {
             Mask healthBarMask = fightPanelGameObject.GetComponentInChildren<Mask>();
-            HealthBarController healthBar = fightPanelGameObject.GetComponentInChildren<HealthBarController>();
+            HealthBarController healthBar = healthBarMask.GetComponentInChildren<HealthBarController>();
             float healtValue = 0.8f;
             float expectedMaskSize = healthBarMask.rectTransform.rect.width * healtValue;
 
