@@ -35,7 +35,7 @@ public class FightSceneController: MonoSingleton<FightSceneController>
     {
         if (SceneManager.GetActiveScene().name == "FightScene")
         {
-            Rounds = new Round[RoundsCount];
+            Card.CreateRounds();
 
             BindPlayerObjectToPlayerController();
             SetPlayersSceneComponentsToTheNextRound();
