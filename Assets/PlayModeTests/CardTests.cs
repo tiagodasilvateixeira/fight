@@ -71,5 +71,19 @@ namespace Tests
 
             Assert.AreEqual(true, Card.FightIsOpen());
         }
+
+        [Test, Order(6)]
+        public void CardShouldReturnFightIsOverIfPlayerWinTwoRounds()
+        {
+            Card.SetCurrentRoundWinner(Player1);
+
+            Assert.AreEqual(false, Card.FightIsOpen());
+        }
+
+        [Test]
+        public void CardPlayer2ShouldNotHasPlayer1Name()
+        {
+            Assert.AreNotEqual(Card.Player1Fighter, Card.Player2Fighter);
+        }
     }
 }

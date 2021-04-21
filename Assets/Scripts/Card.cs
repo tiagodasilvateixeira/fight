@@ -38,6 +38,8 @@
 
         public static bool FightIsOpen()
         {
+            if (APlayerWinTwoRounds())
+                return false;
             if (IsInitiatedFirstRound() || IsUnfinishedSecondRound() || EachPlayerWinOneRound())
                 return true;
             return false;
@@ -60,6 +62,13 @@
         static bool EachPlayerWinOneRound()
         {
             if (CurrentRound != 0 && CurrentRoundIsInitiated() && CurrentRoundHasAWinner() && GetLastRoundWinner() != FightRounds[CurrentRound].Winner)
+                return true;
+            return false;
+        }
+
+        static bool APlayerWinTwoRounds()
+        {
+            if (CurrentRound == 2 && FightRounds[2].Winner != string.Empty)
                 return true;
             return false;
         }
