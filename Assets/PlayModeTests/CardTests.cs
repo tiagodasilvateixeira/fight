@@ -80,6 +80,26 @@ namespace Tests
             Assert.AreEqual(false, Card.FightIsOpen());
         }
 
+        [Test, Order(7)]
+        public void CardShouldReturnPlayerWinnerIfFightIsOver()
+        {
+            string winner = Card.GetFightWinner();
+
+            Assert.AreEqual(false, Card.FightIsOpen());
+            Assert.AreNotEqual(string.Empty, winner);
+        }
+
+        [Test, Order(8)]
+        public void CardRoundsShouldBeEmpetyAfterFinishFight()
+        {
+            Card.FinishFight();
+
+            foreach (var round in Card.FightRounds)
+            {
+                Assert.IsNull(round);
+            }
+        }
+
         [Test]
         public void CardPlayer2ShouldNotHasPlayer1Name()
         {

@@ -1,4 +1,7 @@
-﻿namespace Fight
+﻿using System;
+using System.Text;
+
+namespace Fight
 {
     public static class Card
     {
@@ -101,7 +104,7 @@
         {
             int lastRoundNumber = GetLastRoundNumber();
 
-            return FightRounds[lastRoundNumber].Winner;
+            return FightRounds[lastRoundNumber]?.Winner;
         }
 
         static int GetLastRoundNumber()
@@ -114,6 +117,23 @@
             {
                 return CurrentRound - 1;
             }
+        }
+
+        public static string GetFightWinner()
+        {
+            string lastRoundWinner = GetLastRoundWinner();
+            if (string.IsNullOrWhiteSpace(lastRoundWinner))
+                return string.Empty;
+
+            if (FightRounds[0].Winner == FightRounds[1].Winner || FightRounds[0].Winner == FightRounds[2].Winner)
+                return FightRounds[0].Winner;
+            else
+                return FightRounds[1].Winner;
+        }
+
+        public static void FinishFight()
+        {
+            Array.Clear(FightRounds, 0, FightRounds.Length);
         }
     }
 }
