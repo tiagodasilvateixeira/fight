@@ -20,8 +20,6 @@ namespace Controllers
         PlayerController Player1;
         PlayerController Player2;
         private FightPanelController fightPanelController { get { return GameObject.Find("FightPanel").GetComponent<FightPanelController>(); } }
-        private float SecondsToFinishRound;
-        private readonly float SecondsToImproveRound = 5.0f;
         private readonly int InitialRoundSeconds = 90;
 
         public void OpenScene()
@@ -47,10 +45,12 @@ namespace Controllers
             {
                 if (Card.FightIsOpen())
                 {
-                    RoundTimeIsOver();
                     if (APlayerHasNoLife())
                     {
-                        Card.SetCurrentRoundWinner(GetPlayerWithMoreLife());
+                        string playerWithMoreLife = GetPlayerWithMoreLife();
+
+                        Card.SetCurrentRoundWinner(playerWithMoreLife);
+                        MarkRoundWinner(playerWithMoreLife);
                         SetPlayersSceneComponentsToTheNextRound();
                         if (Card.FightIsOpen())
                         {
@@ -98,7 +98,7 @@ namespace Controllers
         void InitPlayersMaskWidth()
         {
             Player1.SetHealth(Player1.Life);
-            Player1.SetHealth(Player1.Life);
+            Player2.SetHealth(Player2.Life);
         }
 
         void SetPlayersInputs()
@@ -142,33 +142,21 @@ namespace Controllers
             }
         }
 
-        //void MarkRoundWinner()
-        //{
-        //    if (Rounds[CurrentRound].Winner == Player1.name)
-        //    {
-        //        SetPlayerToggleOn(TogglePlayer1.GetComponent<Toggle>());
-        //    }
-        //    else if (Rounds[CurrentRound].Winner == Player2.name)
-        //    {
-        //        SetPlayerToggleOn(TogglePlayer2.GetComponent<Toggle>());
-        //    }
-        //}
+        void MarkRoundWinner(string winner)
+        {
+            if (winner == Player1.name)
+            {
+                SetPlayerToggleOn(TogglePlayer1.GetComponent<Toggle>());
+            }
+            else
+            {
+                SetPlayerToggleOn(TogglePlayer2.GetComponent<Toggle>());
+            }
+        }
 
         void SetPlayerToggleOn(Toggle playerToggle)
         {
             playerToggle.isOn = true;
-        }
-
-        public void RoundTimeIsOver()
-        {
-            if (SecondsToFinishRound <= 0.0f)
-            {
-                string playerWithMoreLife = GetPlayerWithMoreLife();
-                if (playerWithMoreLife == "Draw")
-                {
-                    SecondsToFinishRound = SecondsToImproveRound;
-                }
-            }
         }
 
         public void FinishFight()
@@ -187,18 +175,6 @@ namespace Controllers
 
             Card.FinishFight();
             MenuSceneController.Instance.OpenScene();
-        }
-
-        public bool RoundStarting()
-        {
-            if (SecondsToFinishRound + 3f > InitialRoundSeconds)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
 
         public void HandlerInitRoundPanel(bool enableRoundPanel)

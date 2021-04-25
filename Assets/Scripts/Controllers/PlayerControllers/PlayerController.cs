@@ -99,7 +99,6 @@ namespace Controllers
         public void SetHealth(float value)
         {
             HealthMaskController.SetMaskWidth(value);
-
         }
 
         public bool WalkInput()

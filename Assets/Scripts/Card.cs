@@ -48,6 +48,13 @@ namespace Fight
             return false;
         }
 
+        static bool APlayerWinTwoRounds()
+        {
+            if (CurrentRound == 2 && FightRounds[2].Winner != string.Empty)
+                return true;
+            return false;
+        }
+
         static bool IsInitiatedFirstRound()
         {
             if (CurrentRound == 0 && CurrentRoundIsInitiated())
@@ -69,13 +76,6 @@ namespace Fight
             return false;
         }
 
-        static bool APlayerWinTwoRounds()
-        {
-            if (CurrentRound == 2 && FightRounds[2].Winner != string.Empty)
-                return true;
-            return false;
-        }
-
         static bool CurrentRoundIsInitiated()
         {
             if (FightRounds[CurrentRound] != null)
@@ -88,16 +88,6 @@ namespace Fight
             if (FightRounds[CurrentRound].Winner != null)
                 return true;
             return false;
-        }
-
-        public static void SetCurrentRoundWinner(string winner)
-        {
-            FightRounds[CurrentRound].Winner = winner;
-        }
-
-        public static void AddCurrentRoundNumber()
-        {
-            CurrentRound++;
         }
 
         public static string GetLastRoundWinner()
@@ -119,13 +109,23 @@ namespace Fight
             }
         }
 
+        public static void SetCurrentRoundWinner(string winner)
+        {
+            FightRounds[CurrentRound].Winner = winner;
+        }
+
+        public static void AddCurrentRoundNumber()
+        {
+            CurrentRound++;
+        }
+
         public static string GetFightWinner()
         {
             string lastRoundWinner = GetLastRoundWinner();
             if (string.IsNullOrWhiteSpace(lastRoundWinner))
                 return string.Empty;
 
-            if (FightRounds[0].Winner == FightRounds[1].Winner || FightRounds[0].Winner == FightRounds[2].Winner)
+            if (FightRounds[0]?.Winner == FightRounds[1]?.Winner || FightRounds[0]?.Winner == FightRounds[2]?.Winner)
                 return FightRounds[0].Winner;
             else
                 return FightRounds[1].Winner;
