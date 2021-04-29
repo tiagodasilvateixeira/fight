@@ -363,7 +363,6 @@ MonoBehaviour:
   TogglePlayer2: {fileID: 0}
   MaskPlayer1: {fileID: 0}
   MaskPlayer2: {fileID: 0}
-  CounterText: {fileID: 0}
 --- !u!1 &1881144569
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,5 +532,13 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1287186239}
+    - target: {fileID: 7294438138157865791, guid: 61f5b3f5d6aa5654e990222cd1d7bd9c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 7294438138157865791, guid: 61f5b3f5d6aa5654e990222cd1d7bd9c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Controllers.FightSceneController, GameAssembly
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61f5b3f5d6aa5654e990222cd1d7bd9c, type: 3}

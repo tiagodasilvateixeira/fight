@@ -1,4 +1,5 @@
 ﻿using Controllers;
+using Fight;
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
