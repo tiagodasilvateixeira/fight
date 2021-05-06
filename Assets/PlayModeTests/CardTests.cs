@@ -100,6 +100,12 @@ namespace Tests
             }
         }
 
+        [Test, Order(9)]
+        public void CardCurrentRoundShouldBeZeroAfterFinishFight()
+        {
+            Assert.AreEqual(0, Card.CurrentRound);
+        }
+
         [Test]
         public void CardPlayer2ShouldNotHasPlayer1Name()
         {

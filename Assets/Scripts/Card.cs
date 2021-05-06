@@ -134,6 +134,7 @@ namespace Fight
         public static void FinishFight()
         {
             Array.Clear(FightRounds, 0, FightRounds.Length);
+            CurrentRound = 0;
         }
     }
 }
