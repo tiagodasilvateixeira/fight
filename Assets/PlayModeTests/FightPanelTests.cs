@@ -13,12 +13,17 @@ namespace Tests
     {
         GameObject fightPanelGameObject;
         FightPanelController fightPanelController;
+        Toggle TogglePlayer1;
+        Toggle TogglePlayer2;
 
         [SetUp]
         public void init()
         {
             fightPanelGameObject = Object.Instantiate(Resources.Load<GameObject>("Prefabs/FightPanel"));
             fightPanelController = fightPanelGameObject.GetComponent<FightPanelController>();
+
+            TogglePlayer1 = GameObject.Find("TogglePlayer1").GetComponent<Toggle>();
+            TogglePlayer2 = GameObject.Find("TogglePlayer2").GetComponent<Toggle>();
         }
 
         [UnityTest]
@@ -45,6 +50,15 @@ namespace Tests
             yield return new WaitForFixedUpdate();
 
             Assert.AreEqual(expectedMaskSize, healthBarMask.rectTransform.rect.width);
+        }
+
+        [UnityTest]
+        public IEnumerator PlayerToggleShouldBeMarkedAfterCommand()
+        {
+            fightPanelController.MarkToggle(fightPanelController.TogglePlayer1);
+            yield return new WaitForFixedUpdate();
+
+            Assert.AreEqual(true, TogglePlayer1.isOn);
         }
     }
 }
