@@ -13,8 +13,6 @@ namespace Controllers
         public bool GamePaused { get; set; }
         public GameObject MenuPanel;
         public GameObject InitRoundPanel;
-        public GameObject TogglePlayer1;
-        public GameObject TogglePlayer2;
         public Mask MaskPlayer1;
         public Mask MaskPlayer2;
         PlayerController Player1;
@@ -146,17 +144,12 @@ namespace Controllers
         {
             if (winner == Player1.name)
             {
-                SetPlayerToggleOn(TogglePlayer1.GetComponent<Toggle>());
+                fightPanelController.MarkToggle(fightPanelController.TogglePlayer1);
             }
             else
             {
-                SetPlayerToggleOn(TogglePlayer2.GetComponent<Toggle>());
+                fightPanelController.MarkToggle(fightPanelController.TogglePlayer2);
             }
-        }
-
-        void SetPlayerToggleOn(Toggle playerToggle)
-        {
-            playerToggle.isOn = true;
         }
 
         public void FinishFight()
