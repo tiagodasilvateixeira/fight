@@ -14,7 +14,6 @@ namespace Tests
         GameObject fightPanelGameObject;
         FightPanelController fightPanelController;
         Toggle TogglePlayer1;
-        Toggle TogglePlayer2;
 
         [SetUp]
         public void init()
@@ -23,7 +22,6 @@ namespace Tests
             fightPanelController = fightPanelGameObject.GetComponent<FightPanelController>();
 
             TogglePlayer1 = GameObject.Find("TogglePlayer1").GetComponent<Toggle>();
-            TogglePlayer2 = GameObject.Find("TogglePlayer2").GetComponent<Toggle>();
         }
 
         [UnityTest]

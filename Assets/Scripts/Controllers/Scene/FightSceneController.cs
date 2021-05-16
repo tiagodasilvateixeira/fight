@@ -13,8 +13,6 @@ namespace Controllers
         public bool GamePaused { get; set; }
         public GameObject MenuPanel;
         public GameObject InitRoundPanel;
-        public Mask MaskPlayer1;
-        public Mask MaskPlayer2;
         PlayerController Player1;
         PlayerController Player2;
         private FightPanelController fightPanelController { get { return GameObject.Find("FightPanel").GetComponent<FightPanelController>(); } }
@@ -89,8 +87,8 @@ namespace Controllers
 
         void SetPlayersMasks()
         {
-            Player1.SetHealtMask(MaskPlayer1);
-            Player2.SetHealtMask(MaskPlayer2);
+            Player1.SetHealtMask(GameObject.Find("MaskPlayer1").GetComponent<Mask>());
+            Player2.SetHealtMask(GameObject.Find("MaskPlayer2").GetComponent<Mask>());
         }
 
         void InitPlayersMaskWidth()
