@@ -10,7 +10,6 @@ namespace Controllers
         public string Name { get; set; }
         public float Life { get; set; }
         public int Energy { get; set; }
-        public int EspecialPower { get; set; }
         public byte Orientation { get; set; }
         public bool IA { get; set; }
         public bool grounded;
@@ -26,13 +25,6 @@ namespace Controllers
         public LayerMask GroundLayer;
         public LayerMask EnemyLayer;
         Mask HealthMask;
-        HealthBarController HealthMaskController
-        {
-            get
-            {
-                return HealthMask.GetComponentInChildren<HealthBarController>();
-            }
-        }
         public Animator animator;
         public Vector2 input;
         PlayerController Enemy;
@@ -98,7 +90,6 @@ namespace Controllers
 
         public void SetHealth(float value)
         {
-            HealthMaskController.SetMaskWidth(value);
         }
 
         public bool WalkInput()
