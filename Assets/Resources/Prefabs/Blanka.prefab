@@ -161,18 +161,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 969882063580594144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 264cd68402e44fe47ad25985a6059527, type: 3}
+  m_Script: {fileID: 11500000, guid: d4a6f022d167c0147a9336ffac193bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
-  JumpForce: 500
-  GroundDistance: 2.2
-  CharacterName: Blanka
+  characterName: Blanka
+  characterLife: 100
+  characterEnergy: 0
+  characterGrounded: 1
+  characterGroundDistance: 2.2
+  characterSpeed: 5
+  characterJumpForce: 500
+  EnemyDistance: 2
+  rigidbody2D: {fileID: 969882063580594173}
+  EnemyGameObject: {fileID: 0}
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 1
-  Mask: {fileID: 0}
-  rigidbody2D: {fileID: 969882063580594173}
+    m_Bits: 0
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  winner: 0
   animator: {fileID: 969882063580594147}
   input: {x: 0, y: 0}
-  grounded: 0

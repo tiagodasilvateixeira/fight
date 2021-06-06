@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 6068037782364974399}
   - component: {fileID: 1385364565977637783}
   - component: {fileID: 6068037782364974398}
-  - component: {fileID: 6068037782364974369}
+  - component: {fileID: -7298437504776325243}
+  - component: {fileID: 116472402}
   m_Layer: 8
   m_Name: Ryu
   m_TagString: Untagged
@@ -152,7 +153,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6068037782364974369
+--- !u!114 &-7298437504776325243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,14 +162,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 6068037782364974395}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6748c6a5b2cfbf34abb4b99ee32a25e9, type: 3}
+  m_Script: {fileID: 11500000, guid: d4a6f022d167c0147a9336ffac193bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 7
-  JumpForce: 500
+  characterName: Ryu
+  characterLife: 100
+  characterEnergy: 0
+  characterGrounded: 1
   GroundDistance: 2.2
-  CharacterName: Ryu
+  Speed: 5
+  JumpForce: 500
+  Orientation: 0
+  EnemyGameObject: {fileID: 0}
   GroundLayer:
     serializedVersion: 2
     m_Bits: 1
-  Mask: {fileID: 0}
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &116472402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6068037782364974395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efe41fb2c565daa4dadee7a62b2c8d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

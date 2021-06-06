@@ -1,26 +1,29 @@
 using Controllers;
 using UnityEngine;
 
-public class WalkState : PlayerState 
+namespace States
 {
-    public WalkState(PlayerController playerController): base(playerController)
+    public class WalkState : PlayerState
     {
-        PlayerController = playerController;
-    }
+        public WalkState(Character playerController) : base(playerController)
+        {
+            PlayerController = playerController;
+        }
 
-    public override void EnterState()
-    {
-        Debug.Log($"{PlayerController.Name} in WalkState");
-    }
+        public override void EnterState()
+        {
+            Debug.Log($"{PlayerController.Name} in WalkState");
+        }
 
-    public override void Update() 
-    {
-        CheckIdleState();
-        CheckJumpStateCommand();
-        CheckPunchStateCommand();
-        CheckKickStateCommand();
-        CheckBlockStateCommand();
+        public override void Update()
+        {
+            CheckIdleState();
+            CheckJumpStateCommand();
+            CheckPunchStateCommand();
+            CheckKickStateCommand();
+            CheckBlockStateCommand();
 
-        PlayerController.Walk();
+            PlayerController.Walk();
+        }
     }
 }

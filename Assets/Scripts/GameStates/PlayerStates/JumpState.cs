@@ -1,25 +1,28 @@
 using Controllers;
 using UnityEngine;
 
-public class JumpState : PlayerState 
+namespace States
 {
-    public JumpState(PlayerController playerController): base(playerController)
+    public class JumpState : PlayerState
     {
-        PlayerController = playerController;
-    }
-
-    public override void EnterState()
-    {
-        Debug.Log($"{PlayerController.Name} in JumpState");
-        PlayerController.Jump();
-    }
-
-    public override void Update() 
-    {
-        if (PlayerController.grounded)
+        public JumpState(Character playerController) : base(playerController)
         {
-            CheckIdleState();
+            PlayerController = playerController;
         }
-        CheckWalkStateCommand();
+
+        public override void EnterState()
+        {
+            Debug.Log($"{PlayerController.Name} in JumpState");
+            PlayerController.Jump();
+        }
+
+        public override void Update()
+        {
+            if (PlayerController.Grounded)
+            {
+                CheckIdleState();
+            }
+            CheckWalkStateCommand();
+        }
     }
 }

@@ -1,22 +1,25 @@
 using Controllers;
 using UnityEngine;
 
-public class KickState : PlayerState 
+namespace States
 {
-    public KickState(PlayerController playerController): base(playerController)
+    public class KickState : PlayerState
     {
-        PlayerController = playerController;
-    }
+        public KickState(Character playerController) : base(playerController)
+        {
+            PlayerController = playerController;
+        }
 
-    public override void EnterState()
-    {
-        Debug.Log($"{PlayerController.Name} in KickState");
-        PlayerController.Kick();
-    }
+        public override void EnterState()
+        {
+            Debug.Log($"{PlayerController.Name} in KickState");
+            PlayerController.Kick();
+        }
 
-    public override void Update() 
-    {
-        CheckIdleState();
-        CheckWalkStateCommand();       
+        public override void Update()
+        {
+            CheckIdleState();
+            CheckWalkStateCommand();
+        }
     }
 }

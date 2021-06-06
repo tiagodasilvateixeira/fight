@@ -1,22 +1,25 @@
 using Controllers;
 using UnityEngine;
 
-public class PunchState : PlayerState 
+namespace States
 {
-    public PunchState(PlayerController playerController): base(playerController)
+    public class PunchState : PlayerState
     {
-        PlayerController = playerController;
-    }
+        public PunchState(Character playerController) : base(playerController)
+        {
+            PlayerController = playerController;
+        }
 
-    public override void EnterState()
-    {
-        Debug.Log($"{PlayerController.Name} in PunchState");
-        PlayerController.Punch();
-    }
+        public override void EnterState()
+        {
+            Debug.Log($"{PlayerController.Name} in PunchState");
+            PlayerController.Punch();
+        }
 
-    public override void Update() 
-    {
-        CheckIdleState();
-        CheckWalkStateCommand();       
+        public override void Update()
+        {
+            CheckIdleState();
+            CheckWalkStateCommand();
+        }
     }
 }
