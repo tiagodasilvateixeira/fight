@@ -31,8 +31,8 @@ namespace Controllers
         [SerializeField]
         private LayerMask EnemyLayer;
         private CharacterInput CharacterInput;
-        private PlayerState PlayerState { get; set; }
         public bool IA { get; private set; }
+        private PlayerState PlayerState { get; set; }
 
         public string Name
         {
@@ -171,7 +171,7 @@ namespace Controllers
 
         public void EspecialAtack()
         {
-
+            throw new System.NotImplementedException();
         }
 
         public void Hit(float force, Vector3 direction)

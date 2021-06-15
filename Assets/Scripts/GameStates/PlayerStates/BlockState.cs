@@ -17,10 +17,10 @@ namespace States
         public override void Update()
         {
             CheckIdleState();
-            CheckWalkStateCommand();
-            CheckJumpStateCommand();
-            CheckPunchStateCommand();
-            CheckKickStateCommand();
+            CheckWalkCommand();
+            CheckJumpCommand();
+            CheckPunchCommand();
+            CheckKickCommand();
 
             PlayerController.Block();
         }

@@ -14,10 +14,10 @@ namespace States
         public BlockState Block { get; set; }
 
         public Character PlayerController { get; set; }
-        public PlayerState(Character controller)
+        protected PlayerState(Character controller)
         {
         }
-        public PlayerState()
+        protected PlayerState()
         {
         }
         public abstract void EnterState();
@@ -25,71 +25,51 @@ namespace States
 
         public void CheckIdleState()
         {
-            if (!PlayerController.WalkInput() && (PlayerController.IA == false))
+            if (!PlayerController.WalkInput())
             {
                 Idle = new IdleState(PlayerController);
                 PlayerController.SetState(Idle);
             }
-            else if (PlayerController.IA == true)
-            {
-
-            }
         }
-        public void CheckWalkStateCommand()
+        public void CheckWalkCommand()
         {
-            if (PlayerController.WalkInput() && (PlayerController.IA == false))
+            if (PlayerController.WalkInput())
             {
                 Walk = new WalkState(PlayerController);
                 PlayerController.SetState(Walk);
             }
         }
-        public void CheckJumpStateCommand()
+        public void CheckJumpCommand()
         {
-            if (Input.GetButtonDown("Jump") && PlayerController.Grounded && (PlayerController.IA == false))
+            if (Input.GetButtonDown("Jump") && PlayerController.Grounded)
             {
                 Jump = new JumpState(PlayerController);
                 PlayerController.SetState(Jump);
             }
-            else if (PlayerController.IA == true)
-            {
-
-            }
         }
-        public void CheckPunchStateCommand()
+        public void CheckPunchCommand()
         {
-            if (Input.GetKeyDown(KeyCode.J) && (PlayerController.IA == false))
+            if (Input.GetKeyDown(KeyCode.J))
             {
                 Punch = new PunchState(PlayerController);
                 PlayerController.SetState(Punch);
             }
-            else if (PlayerController.IA == true)
-            {
-
-            }
         }
-        public void CheckKickStateCommand()
+        public void CheckKickCommand()
         {
-            if (Input.GetKeyDown(KeyCode.K) && (PlayerController.IA == false))
+            if (Input.GetKeyDown(KeyCode.K))
             {
                 Kick = new KickState(PlayerController);
                 PlayerController.SetState(Kick);
             }
-            else if (PlayerController.IA == true)
-            {
-
-            }
         }
 
-        public void CheckBlockStateCommand()
+        public void CheckBlockCommand()
         {
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) && (PlayerController.IA == false))
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
                 Block = new BlockState(PlayerController);
                 PlayerController.SetState(Block);
-            }
-            else if (PlayerController.IA == true)
-            {
-
             }
         }
 

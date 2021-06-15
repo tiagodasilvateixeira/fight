@@ -6,5 +6,7 @@ namespace Controllers
     {
         public bool Enabled { get; set; }
         public Vector2 input { get; set; }
+
+        public abstract Vector2 GetHorizontalInput();
     }
 }

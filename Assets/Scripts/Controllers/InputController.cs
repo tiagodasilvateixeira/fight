@@ -15,8 +15,13 @@ namespace Controllers
         {
             if (Enabled)
             {
-                input = new Vector2(Input.GetAxis("Horizontal"), 0.0f);
+                input = GetHorizontalInput();
             }
+        }
+
+        public override Vector2 GetHorizontalInput()
+        {
+            return new Vector2(Input.GetAxis("Horizontal"), 0.0f);
         }
     }
 }

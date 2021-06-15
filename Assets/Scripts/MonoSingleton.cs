@@ -2,22 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MonoSingleton<T> : MonoBehaviour where T: MonoSingleton<T>
+namespace Game
 {
-    private static T _instance;
-    public static T Instance
+    public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
     {
-        get
+        private static T _instance;
+        public static T Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    Debug.LogError($"{typeof(T).ToString()} is null");
+
+                return _instance;
+            }
+        }
+
+        private void Awake()
         {
             if (_instance == null)
-                Debug.LogError($"{typeof(T).ToString()} is null");
-            
-            return _instance;
+                _instance = (T)this;
         }
-    }
-
-    private void Awake() {
-        if (_instance == null)
-            _instance = (T)this;
     }
 }

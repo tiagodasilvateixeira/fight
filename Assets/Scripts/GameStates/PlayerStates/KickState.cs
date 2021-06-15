@@ -19,7 +19,7 @@ namespace States
         public override void Update()
         {
             CheckIdleState();
-            CheckWalkStateCommand();
+            CheckWalkCommand();
         }
     }
 }

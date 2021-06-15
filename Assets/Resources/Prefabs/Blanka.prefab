@@ -168,18 +168,14 @@ MonoBehaviour:
   characterLife: 100
   characterEnergy: 0
   characterGrounded: 1
-  characterGroundDistance: 2.2
-  characterSpeed: 5
-  characterJumpForce: 500
-  EnemyDistance: 2
-  rigidbody2D: {fileID: 969882063580594173}
+  GroundDistance: 2.4
+  Speed: 5
+  JumpForce: 500
+  Orientation: 0
   EnemyGameObject: {fileID: 0}
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  winner: 0
-  animator: {fileID: 969882063580594147}
-  input: {x: 0, y: 0}

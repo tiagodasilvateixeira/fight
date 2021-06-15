@@ -22,7 +22,7 @@ namespace States
             {
                 CheckIdleState();
             }
-            CheckWalkStateCommand();
+            CheckWalkCommand();
         }
     }
 }
