@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace States
 {
-    public class HitState : PlayerState
+    public class HitState : CharacterState
     {
         float Value;
         Vector3 Direction;
@@ -19,7 +19,7 @@ namespace States
         {
             Debug.Log($"{PlayerController.Name} in HitState");
             PlayerController.Hit(Value, Direction);
-            SetIdleState();
+            CharacterStateSetter.SetIdleState();
         }
         public override void Update()
         {

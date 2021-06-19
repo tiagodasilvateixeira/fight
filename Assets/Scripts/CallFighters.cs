@@ -8,14 +8,21 @@ namespace Game
     public class CallFighters : MonoBehaviour
     {
         [SerializeField]
-        private GameObject FighetrPlayerOne;
+        private GameObject FighterPlayerOne;
         [SerializeField]
-        private GameObject FighetrPlayerTwo;
+        private GameObject FighterPlayerTwo;
 
         void Start()
         {
-            Instantiate(FighetrPlayerOne);
-            Instantiate(FighetrPlayerTwo);
+            GameObject fighterPlayerOne = Instantiate(FighterPlayerOne);
+            GameObject fighterPlayerTwo = Instantiate(FighterPlayerTwo);
+
+            Character characterPlayerOne = fighterPlayerOne.GetComponent<Character>();
+            Character characterPlayerTwo = fighterPlayerTwo.GetComponent<Character>();
+
+            InputController input = GetComponent<InputController>();
+            characterPlayerOne.SetCharacterInput(input);
+            characterPlayerTwo.SetCharacterInput(input);
         }
     }
 }

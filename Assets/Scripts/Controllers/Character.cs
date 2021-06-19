@@ -32,7 +32,7 @@ namespace Controllers
         private LayerMask EnemyLayer;
         private CharacterInput CharacterInput;
         public bool IA { get; private set; }
-        private PlayerState PlayerState { get; set; }
+        private CharacterState CharacterState { get; set; }
 
         public string Name
         {
@@ -80,29 +80,28 @@ namespace Controllers
                 return GetComponent<Animator>();
             }
         }
-        
-
-        private void Awake()
-        {
-            CharacterInput = GetComponent<CharacterInput>();
-        }
 
         private void Start()
         {
-            PlayerState = new IdleState(this);
-            SetState(PlayerState);
+            CharacterState = new IdleState(this);
+            SetState(CharacterState);
         }
 
         private void Update()
         {
             SetGroundedAnimator();
-            PlayerState.Update();
+            CharacterState.Update();
         }
 
-        public void SetState(PlayerState playerState)
+        public void SetCharacterInput(CharacterInput input)
         {
-            PlayerState = playerState;
-            PlayerState.EnterState();
+            CharacterInput = input;
+        }
+
+        public void SetState(CharacterState playerState)
+        {
+            CharacterState = playerState;
+            CharacterState.EnterState();
         }
 
         public void SetGroundedAnimator()

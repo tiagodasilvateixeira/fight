@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace States
 {
-    public class PunchState : PlayerState
+    public class PunchState : CharacterState
     {
         public PunchState(Character playerController) : base(playerController)
         {
@@ -18,8 +18,8 @@ namespace States
 
         public override void Update()
         {
-            CheckIdleState();
-            CheckWalkCommand();
+            CharacterStateSetter.CheckIdleState();
+            CharacterStateSetter.CheckWalkCommand();
         }
     }
 }

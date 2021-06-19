@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace States
 {
-    public class WalkState : PlayerState
+    public class WalkState : CharacterState
     {
         public WalkState(Character playerController) : base(playerController)
         {
@@ -17,11 +17,11 @@ namespace States
 
         public override void Update()
         {
-            CheckIdleState();
-            CheckJumpCommand();
-            CheckPunchCommand();
-            CheckKickCommand();
-            CheckBlockCommand();
+            CharacterStateSetter.CheckIdleState();
+            CharacterStateSetter.CheckJumpCommand();
+            CharacterStateSetter.CheckPunchCommand();
+            CharacterStateSetter.CheckKickCommand();
+            CharacterStateSetter.CheckBlockCommand();
 
             PlayerController.Walk();
         }

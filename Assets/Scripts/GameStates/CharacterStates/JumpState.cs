@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace States
 {
-    public class JumpState : PlayerState
+    public class JumpState : CharacterState
     {
         public JumpState(Character playerController) : base(playerController)
         {
@@ -20,9 +20,9 @@ namespace States
         {
             if (PlayerController.Grounded)
             {
-                CheckIdleState();
+                CharacterStateSetter.CheckIdleState();
             }
-            CheckWalkCommand();
+            CharacterStateSetter.CheckWalkCommand();
         }
     }
 }

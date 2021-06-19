@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1385364565977637783}
   - component: {fileID: 6068037782364974398}
   - component: {fileID: -7298437504776325243}
-  - component: {fileID: 116472402}
   m_Layer: 8
   m_Name: Ryu
   m_TagString: Untagged
@@ -180,15 +179,3 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
---- !u!114 &116472402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6068037782364974395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efe41fb2c565daa4dadee7a62b2c8d01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
