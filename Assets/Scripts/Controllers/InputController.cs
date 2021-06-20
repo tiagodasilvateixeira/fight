@@ -23,5 +23,25 @@ namespace Controllers
         {
             return new Vector2(Input.GetAxis("Horizontal"), 0.0f);
         }
+
+        public override bool GetJumpCommand()
+        {
+            return Input.GetButtonDown("Jump");
+        }
+
+        public override bool GetPunchCommand()
+        {
+            return Input.GetKeyDown(KeyCode.J);
+        }
+
+        public override bool GetKickCommand()
+        {
+            return Input.GetKeyDown(KeyCode.K);
+        }
+
+        public override bool GetBlockCommand()
+        {
+            return Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
+        }
     }
 }

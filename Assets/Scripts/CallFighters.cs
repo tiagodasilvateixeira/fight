@@ -17,12 +17,8 @@ namespace Game
             GameObject fighterPlayerOne = Instantiate(FighterPlayerOne);
             GameObject fighterPlayerTwo = Instantiate(FighterPlayerTwo);
 
-            Character characterPlayerOne = fighterPlayerOne.GetComponent<Character>();
-            Character characterPlayerTwo = fighterPlayerTwo.GetComponent<Character>();
-
-            InputController input = GetComponent<InputController>();
-            characterPlayerOne.SetCharacterInput(input);
-            characterPlayerTwo.SetCharacterInput(input);
+            fighterPlayerOne.AddComponent<InputController>();
+            fighterPlayerTwo.AddComponent<PlayerTwoController>();
         }
     }
 }

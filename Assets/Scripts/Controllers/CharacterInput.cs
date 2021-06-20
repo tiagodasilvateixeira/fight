@@ -8,5 +8,9 @@ namespace Controllers
         public Vector2 input { get; set; }
 
         public abstract Vector2 GetHorizontalInput();
+        public abstract bool GetJumpCommand();
+        public abstract bool GetPunchCommand();
+        public abstract bool GetKickCommand();
+        public abstract bool GetBlockCommand();
     }
 }

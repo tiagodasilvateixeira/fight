@@ -39,7 +39,7 @@ namespace States
         }
         public void CheckJumpCommand()
         {
-            if (Input.GetButtonDown("Jump") && PlayerController.Grounded)
+            if (PlayerController.CharacterInput.GetJumpCommand() && PlayerController.Grounded)
             {
                 Jump = new JumpState(PlayerController);
                 PlayerController.SetState(Jump);
@@ -47,7 +47,7 @@ namespace States
         }
         public void CheckPunchCommand()
         {
-            if (Input.GetKeyDown(KeyCode.J))
+            if (PlayerController.CharacterInput.GetPunchCommand())
             {
                 Punch = new PunchState(PlayerController);
                 PlayerController.SetState(Punch);
@@ -55,7 +55,7 @@ namespace States
         }
         public void CheckKickCommand()
         {
-            if (Input.GetKeyDown(KeyCode.K))
+            if (PlayerController.CharacterInput.GetKickCommand())
             {
                 Kick = new KickState(PlayerController);
                 PlayerController.SetState(Kick);
@@ -64,7 +64,7 @@ namespace States
 
         public void CheckBlockCommand()
         {
-            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+            if (PlayerController.CharacterInput.GetBlockCommand())
             {
                 Block = new BlockState(PlayerController);
                 PlayerController.SetState(Block);

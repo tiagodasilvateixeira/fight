@@ -30,7 +30,7 @@ namespace Controllers
         private LayerMask GroundLayer;
         [SerializeField]
         private LayerMask EnemyLayer;
-        private CharacterInput CharacterInput;
+        public CharacterInput CharacterInput;
         public bool IA { get; private set; }
         private CharacterState CharacterState { get; set; }
 
@@ -83,6 +83,8 @@ namespace Controllers
 
         private void Start()
         {
+            SetCharacterInput();
+
             CharacterState = new IdleState(this);
             SetState(CharacterState);
         }
@@ -93,9 +95,9 @@ namespace Controllers
             CharacterState.Update();
         }
 
-        public void SetCharacterInput(CharacterInput input)
+        public void SetCharacterInput()
         {
-            CharacterInput = input;
+            CharacterInput = GetComponent<CharacterInput>();
         }
 
         public void SetState(CharacterState playerState)
