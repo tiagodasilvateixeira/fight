@@ -41,7 +41,7 @@ namespace Controllers
 
         public override bool GetBlockCommand()
         {
-            return Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
+            return Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
         }
     }
 }

@@ -140,6 +140,7 @@ namespace Controllers
         public void Idle()
         {
             CharacterAnimator.SetBool("idle", true);
+            CharacterAnimator.SetBool("block", false);
         }
 
         public void Walk()
