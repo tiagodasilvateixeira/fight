@@ -121,30 +121,22 @@ namespace Controllers
             }
         }
 
-        public void CheckHitReceived()
+        void CheckHitReceived()
         {
             RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector3.left, 2f, EnemyLayer);
             RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector3.right, 2f, EnemyLayer);
-            int demage = 0;
             if (leftHit || rightHit)
             {
-                switch (EnemyGameObject.GetComponent<Character>().CharacterState.GetType().ToString())
-                {
-                    case "States.PunchState":
-                        CharacterState.CharacterStateSetter.SetHitState(100f, leftHit ? Vector3.right : Vector3.left);
-                        demage = 8;
+                HitEnemyIfForceIsGreaterThan0(EnemyGameObject.GetComponent<Character>().CharacterState.Demage, leftHit);
+            }
+        }
 
-                        SetHealth(Life - demage);
-                        break;
-                    case "States.KickState":
-                        CharacterState.CharacterStateSetter.SetHitState(300f, leftHit ? Vector3.right : Vector3.left);
-                        demage = 10;
-
-                        SetHealth(Life - demage);
-                        break;
-                    default:
-                        break;
-                }
+        void HitEnemyIfForceIsGreaterThan0 (int force, RaycastHit2D hit2D)
+        {
+            if (force > 0)
+            {
+                SetHealth(Life - EnemyGameObject.GetComponent<Character>().CharacterState.Demage);
+                CharacterState.CharacterStateSetter.SetHitState(100f, hit2D ? Vector3.right : Vector3.left);
             }
         }
 

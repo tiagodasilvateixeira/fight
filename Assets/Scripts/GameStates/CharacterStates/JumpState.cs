@@ -12,6 +12,8 @@ namespace States
 
         public override void EnterState()
         {
+            Demage = 0;
+
             Debug.Log($"{PlayerController.Name} in JumpState");
             PlayerController.Jump();
         }

@@ -12,6 +12,8 @@ namespace States
 
         public override void EnterState()
         {
+            Demage = 7;
+
             Debug.Log($"{PlayerController.Name} in PunchState");
             PlayerController.Punch();
         }

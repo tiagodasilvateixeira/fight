@@ -17,6 +17,8 @@ namespace States
 
         public override void EnterState()
         {
+            Demage = 0;
+
             Debug.Log($"{PlayerController.Name} in HitState");
             PlayerController.Hit(Value, Direction);
             CharacterStateSetter.SetIdleState();

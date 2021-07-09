@@ -7,6 +7,7 @@ namespace States
     {
         public Character PlayerController { get; set; }
         public CharacterStateSetter CharacterStateSetter { get; set; }
+        public int Demage { get; set; }
 
         protected CharacterState(Character controller)
         {

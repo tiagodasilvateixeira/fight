@@ -12,6 +12,8 @@ namespace States
 
         public override void EnterState()
         {
+            Demage = 10;
+
             Debug.Log($"{PlayerController.Name} in KickState");
             PlayerController.Kick();
         }
