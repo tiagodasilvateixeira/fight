@@ -17,8 +17,27 @@ namespace Game
             GameObject fighterPlayerOne = Instantiate(FighterPlayerOne);
             GameObject fighterPlayerTwo = Instantiate(FighterPlayerTwo);
 
-            fighterPlayerOne.AddComponent<InputController>();
-            fighterPlayerTwo.AddComponent<PlayerTwoController>();
+            SetFightersControllers(fighterPlayerOne, fighterPlayerTwo);
+            SetFightersLayer(fighterPlayerOne, fighterPlayerTwo);
+            SetFightersEnemy(fighterPlayerOne, fighterPlayerTwo);
+        }
+
+        void SetFightersControllers(GameObject playerOne, GameObject playerTwo)
+        {
+            playerOne.AddComponent<InputController>();
+            playerTwo.AddComponent<PlayerTwoController>();
+        }
+
+        void SetFightersLayer(GameObject playerOne, GameObject playerTwo)
+        {
+            playerOne.layer = 8;
+            playerTwo.layer = 9;
+        }
+
+        void SetFightersEnemy(GameObject playerOne, GameObject playerTwo)
+        {
+            playerOne.GetComponent<Character>().SetEnemy(playerTwo);
+            playerTwo.GetComponent<Character>().SetEnemy(playerOne);
         }
     }
 }

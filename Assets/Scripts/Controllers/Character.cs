@@ -17,20 +17,20 @@ namespace Controllers
         [SerializeField]
         private bool characterGrounded = true;
         [SerializeField]
-        private float GroundDistance = 2.2f;
+        private float groundDistance = 2.2f;
         [SerializeField]
-        private int Speed = 5;
+        private int speed = 5;
         [SerializeField]
-        private float JumpForce = 500f;
+        private float jumpForce = 500f;
         [SerializeField]
-        private byte Orientation;
+        private byte orientation;
         [SerializeField]
         private GameObject EnemyGameObject;
         [SerializeField]
         private LayerMask GroundLayer;
         [SerializeField]
-        private LayerMask EnemyLayer;
-        public CharacterInput CharacterInput;
+        private int EnemyLayer;
+        public CharacterInput CharacterInput { get; set; }
         public bool IA { get; private set; }
         private CharacterState CharacterState { get; set; }
 
@@ -92,6 +92,7 @@ namespace Controllers
         private void Update()
         {
             SetGroundedAnimator();
+            CheckHitReceived();
             CharacterState.Update();
         }
 
@@ -108,7 +109,7 @@ namespace Controllers
 
         public void SetGroundedAnimator()
         {
-            if (Physics2D.Raycast(transform.position, Vector3.down, GroundDistance, GroundLayer))
+            if (Physics2D.Raycast(transform.position, Vector3.down, groundDistance, GroundLayer))
             {
                 CharacterAnimator.SetBool("grounded", true);
                 Grounded = true;
@@ -118,6 +119,40 @@ namespace Controllers
                 CharacterAnimator.SetBool("grounded", false);
                 Grounded = false;
             }
+        }
+
+        public void CheckHitReceived()
+        {
+            RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector3.left, 3f, EnemyLayer);
+            RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector3.right, 3f, EnemyLayer);
+            Debug.DrawLine(transform.position, new Vector3(transform.position.x + 3f, transform.position.y, transform.position.z), Color.green);
+            int demage = 0;
+            if (leftHit || rightHit)
+            {
+                switch (EnemyGameObject.GetComponent<Character>().CharacterState.GetType().ToString())
+                {
+                    case "PunchState":
+                        CharacterState.CharacterStateSetter.SetHitState(100f, leftHit ? Vector3.right : Vector3.left);
+                        demage = 8;
+
+                        SetHealth(Life - demage);
+                        break;
+                    case "KickState":
+                        CharacterState.CharacterStateSetter.SetHitState(300f, leftHit ? Vector3.right : Vector3.left);
+                        demage = 10;
+
+                        SetHealth(Life - demage);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        public void SetEnemy(GameObject enemyGameObject)
+        {
+            EnemyGameObject = enemyGameObject;
+            EnemyLayer = enemyGameObject.layer;
         }
 
         public void SetHealth(int value)
@@ -146,13 +181,13 @@ namespace Controllers
         public void Walk()
         {
             CharacterAnimator.SetBool("idle", false);
-            transform.position = CharacterRigidbody2D.position + (CharacterInput.input * Speed * Time.deltaTime);
+            transform.position = CharacterRigidbody2D.position + (CharacterInput.input * speed * Time.deltaTime);
         }
 
         public void Jump()
         {
             CharacterAnimator.SetTrigger("jump");
-            CharacterRigidbody2D.AddForce(Vector3.up * JumpForce);
+            CharacterRigidbody2D.AddForce(Vector3.up * jumpForce);
         }
 
         public void Punch()

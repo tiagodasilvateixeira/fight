@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1385364565977637783}
   - component: {fileID: 6068037782364974398}
   - component: {fileID: -7298437504776325243}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Ryu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,10 +168,10 @@ MonoBehaviour:
   characterLife: 100
   characterEnergy: 0
   characterGrounded: 1
-  GroundDistance: 2.2
-  Speed: 5
-  JumpForce: 500
-  Orientation: 0
+  groundDistance: 2.2
+  speed: 5
+  jumpForce: 500
+  orientation: 0
   EnemyGameObject: {fileID: 0}
   GroundLayer:
     serializedVersion: 2
