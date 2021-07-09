@@ -29,7 +29,7 @@ namespace Controllers
         [SerializeField]
         private LayerMask GroundLayer;
         [SerializeField]
-        private int EnemyLayer;
+        private LayerMask EnemyLayer;
         public CharacterInput CharacterInput { get; set; }
         public bool IA { get; private set; }
         private CharacterState CharacterState { get; set; }
@@ -123,21 +123,20 @@ namespace Controllers
 
         public void CheckHitReceived()
         {
-            RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector3.left, 3f, EnemyLayer);
-            RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector3.right, 3f, EnemyLayer);
-            Debug.DrawLine(transform.position, new Vector3(transform.position.x + 3f, transform.position.y, transform.position.z), Color.green);
+            RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector3.left, 2f, EnemyLayer);
+            RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector3.right, 2f, EnemyLayer);
             int demage = 0;
             if (leftHit || rightHit)
             {
                 switch (EnemyGameObject.GetComponent<Character>().CharacterState.GetType().ToString())
                 {
-                    case "PunchState":
+                    case "States.PunchState":
                         CharacterState.CharacterStateSetter.SetHitState(100f, leftHit ? Vector3.right : Vector3.left);
                         demage = 8;
 
                         SetHealth(Life - demage);
                         break;
-                    case "KickState":
+                    case "States.KickState":
                         CharacterState.CharacterStateSetter.SetHitState(300f, leftHit ? Vector3.right : Vector3.left);
                         demage = 10;
 
@@ -149,10 +148,10 @@ namespace Controllers
             }
         }
 
-        public void SetEnemy(GameObject enemyGameObject)
+        public void SetEnemy(GameObject enemyGameObject, string layerMask)
         {
             EnemyGameObject = enemyGameObject;
-            EnemyLayer = enemyGameObject.layer;
+            EnemyLayer = LayerMask.GetMask(layerMask);
         }
 
         public void SetHealth(int value)

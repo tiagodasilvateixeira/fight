@@ -176,4 +176,6 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 1
-  EnemyLayer: 0
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 256

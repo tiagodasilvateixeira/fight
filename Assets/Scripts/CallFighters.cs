@@ -36,8 +36,8 @@ namespace Game
 
         void SetFightersEnemy(GameObject playerOne, GameObject playerTwo)
         {
-            playerOne.GetComponent<Character>().SetEnemy(playerTwo);
-            playerTwo.GetComponent<Character>().SetEnemy(playerOne);
+            playerOne.GetComponent<Character>().SetEnemy(playerTwo, "Fighter2");
+            playerTwo.GetComponent<Character>().SetEnemy(playerOne, "Fighter1");
         }
     }
 }
