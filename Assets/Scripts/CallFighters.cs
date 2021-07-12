@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+using System;
 
 namespace Game
 {
@@ -11,7 +13,9 @@ namespace Game
         private GameObject FighterPlayerOne;
         [SerializeField]
         private GameObject FighterPlayerTwo;
-
+        [SerializeField]
+        private GameObject CameraTargetGroup;
+            
         void Start()
         {
             GameObject fighterPlayerOne = Instantiate(FighterPlayerOne);
@@ -20,6 +24,7 @@ namespace Game
             SetFightersControllers(fighterPlayerOne, fighterPlayerTwo);
             SetFightersLayer(fighterPlayerOne, fighterPlayerTwo);
             SetFightersEnemy(fighterPlayerOne, fighterPlayerTwo);
+            AddFightersToTargetGroup(fighterPlayerOne, fighterPlayerTwo);
         }
 
         void SetFightersControllers(GameObject playerOne, GameObject playerTwo)
@@ -38,6 +43,24 @@ namespace Game
         {
             playerOne.GetComponent<Character>().SetEnemy(playerTwo, "Fighter2");
             playerTwo.GetComponent<Character>().SetEnemy(playerOne, "Fighter1");
+        }
+
+        void AddFightersToTargetGroup(GameObject fighterPlayerOne, GameObject fighterPlayerTwo)
+        {
+            CinemachineTargetGroup.Target[] targets = { CreateTargetForTargetGroup(fighterPlayerOne), CreateTargetForTargetGroup(fighterPlayerTwo) };
+            CameraTargetGroup.GetComponent<CinemachineTargetGroup>().m_Targets = targets;
+        }
+
+        CinemachineTargetGroup.Target CreateTargetForTargetGroup(GameObject fighter)
+        {
+            CinemachineTargetGroup.Target target = new CinemachineTargetGroup.Target
+            {
+                target = fighter.transform,
+                radius = 1,
+                weight = 1
+            };
+
+            return target;
         }
     }
 }
