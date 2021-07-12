@@ -7,29 +7,49 @@ namespace Controllers
 {
     public class PlayerTwoController : CharacterInput
     {
-        public override bool GetBlockCommand()
+        private Vector3 enemyDirectionInDistance;
+
+        private void Awake()
         {
-            throw new System.NotImplementedException();
+            Enabled = true;
+        }
+
+        private void Update()
+        {
+            if (Enabled)
+            {
+                enemyDirectionInDistance = PlayerController.GetEnemyDirectionInDistance(2f);
+                input = GetHorizontalInput();
+            }
         }
 
         public override Vector2 GetHorizontalInput()
         {
-            throw new System.NotImplementedException();
+            if (enemyDirectionInDistance == Vector3.zero)
+                return new Vector2(-1.0f, 0.0f);
+            return new Vector2();
         }
 
         public override bool GetJumpCommand()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
 
         public override bool GetKickCommand()
         {
-            throw new System.NotImplementedException();
+            return false;
         }
 
         public override bool GetPunchCommand()
         {
-            throw new System.NotImplementedException();
+            if (enemyDirectionInDistance != Vector3.zero)
+                return true;
+            return false;
+        }
+
+        public override bool GetBlockCommand()
+        {
+            return false;
         }
     }
 }

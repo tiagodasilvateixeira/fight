@@ -4,6 +4,7 @@ namespace Controllers
 {
     public abstract class CharacterInput: MonoBehaviour
     {
+        public Character PlayerController { get; set; }
         public bool Enabled { get; set; }
         public Vector2 input { get; set; }
 

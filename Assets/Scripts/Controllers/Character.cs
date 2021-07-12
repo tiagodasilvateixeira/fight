@@ -99,6 +99,7 @@ namespace Controllers
         public void SetCharacterInput()
         {
             CharacterInput = GetComponent<CharacterInput>();
+            CharacterInput.PlayerController = this;
         }
 
         public void SetState(CharacterState playerState)
@@ -123,20 +124,27 @@ namespace Controllers
 
         void CheckHitReceived()
         {
-            RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector3.left, 2f, EnemyLayer);
-            RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector3.right, 2f, EnemyLayer);
-            if (leftHit || rightHit)
-            {
-                HitEnemyIfForceIsGreaterThan0(EnemyGameObject.GetComponent<Character>().CharacterState.Demage, leftHit);
-            }
+            Vector3 enemyDirectionInDistance = GetEnemyDirectionInDistance(2f);
+            HitMeIfEnemyDemageIsGreaterThan0(EnemyGameObject.GetComponent<Character>().CharacterState.Demage, enemyDirectionInDistance);
         }
 
-        void HitEnemyIfForceIsGreaterThan0 (int force, RaycastHit2D hit2D)
+        public Vector3 GetEnemyDirectionInDistance(float distance)
+        {
+            RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector3.left, distance, EnemyLayer);
+            RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector3.right, distance, EnemyLayer);
+            if (leftHit)
+                return Vector3.left;
+            else if (rightHit)
+                return Vector3.right;
+            return new Vector3();
+        }
+
+        void HitMeIfEnemyDemageIsGreaterThan0 (int force, Vector3 enemyDirection)
         {
             if (force > 0)
             {
                 SetHealth(Life - EnemyGameObject.GetComponent<Character>().CharacterState.Demage);
-                CharacterState.CharacterStateSetter.SetHitState(100f, hit2D ? Vector3.right : Vector3.left);
+                CharacterState.CharacterStateSetter.SetHitState(100f, enemyDirection == Vector3.left ? Vector3.right : Vector3.left);
             }
         }
 
