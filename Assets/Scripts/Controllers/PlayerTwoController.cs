@@ -8,6 +8,9 @@ namespace Controllers
     public class PlayerTwoController : CharacterInput
     {
         private Vector3 enemyDirectionInDistance;
+        bool goingToEnemy = true;
+        bool punched = false;
+        bool kicked = false;
 
         private void Awake()
         {
@@ -25,8 +28,10 @@ namespace Controllers
 
         public override Vector2 GetHorizontalInput()
         {
-            if (enemyDirectionInDistance == Vector3.zero)
+            if (goingToEnemy && enemyDirectionInDistance == Vector3.zero)
                 return new Vector2(-1.0f, 0.0f);
+            
+            goingToEnemy = false;
             return new Vector2();
         }
 
@@ -37,13 +42,17 @@ namespace Controllers
 
         public override bool GetKickCommand()
         {
+            if (punched && enemyDirectionInDistance != Vector3.zero)
+                return true;
+            punched = false;
             return false;
         }
 
         public override bool GetPunchCommand()
         {
-            if (enemyDirectionInDistance != Vector3.zero)
+            if (!punched && enemyDirectionInDistance != Vector3.zero)
                 return true;
+            punched = true;
             return false;
         }
 
