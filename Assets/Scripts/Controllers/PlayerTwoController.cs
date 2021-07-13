@@ -7,10 +7,11 @@ namespace Controllers
 {
     public class PlayerTwoController : CharacterInput
     {
-        private Vector3 enemyDirectionInDistance;
+        Vector3 enemyInHitDistance;
         bool goingToEnemy = true;
-        bool punched = false;
-        bool kicked = false;
+        float timeSinceLastAtack;
+        bool canPunch = false;
+        bool canKick = false;
 
         private void Awake()
         {
@@ -21,17 +22,36 @@ namespace Controllers
         {
             if (Enabled)
             {
-                enemyDirectionInDistance = PlayerController.GetEnemyDirectionInDistance(2f);
-                input = GetHorizontalInput();
+                enemyInHitDistance = PlayerController.GetEnemyDirectionInDistance(2f);
+                IncraseTimeSinceLastAtack();
+                StartCoroutine(WaitForHorizontalInput());
             }
+        }
+
+        void IncraseTimeSinceLastAtack()
+        {
+            if (!canPunch)
+            {
+                timeSinceLastAtack += Time.deltaTime;
+            }
+            if (timeSinceLastAtack > 2f)
+            {
+                canPunch = true;
+                goingToEnemy = true;
+            }
+        }
+
+        IEnumerator WaitForHorizontalInput()
+        {
+            yield return new WaitForSeconds(1f);
+            input = GetHorizontalInput();
         }
 
         public override Vector2 GetHorizontalInput()
         {
-            if (goingToEnemy && enemyDirectionInDistance == Vector3.zero)
+            if (goingToEnemy && enemyInHitDistance == Vector3.zero)
                 return new Vector2(-1.0f, 0.0f);
             
-            goingToEnemy = false;
             return new Vector2();
         }
 
@@ -42,17 +62,23 @@ namespace Controllers
 
         public override bool GetKickCommand()
         {
-            if (punched && enemyDirectionInDistance != Vector3.zero)
+            if (canKick && enemyInHitDistance != Vector3.zero)
+            {
+                timeSinceLastAtack = 0.0f;
                 return true;
-            punched = false;
+            }
             return false;
         }
 
         public override bool GetPunchCommand()
         {
-            if (!punched && enemyDirectionInDistance != Vector3.zero)
+            if (canPunch && enemyInHitDistance != Vector3.zero)
+            {
+                timeSinceLastAtack = 0.0f;
+                canPunch = false;
+                goingToEnemy = false;
                 return true;
-            punched = true;
+            }
             return false;
         }
 
