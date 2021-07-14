@@ -92,6 +92,7 @@ namespace Controllers
         private void Update()
         {
             SetGroundedAnimator();
+            SetOrientation();
             CheckHitReceived();
             CharacterState.Update();
         }
@@ -120,6 +121,15 @@ namespace Controllers
                 CharacterAnimator.SetBool("grounded", false);
                 Grounded = false;
             }
+        }
+
+        void SetOrientation()
+        {
+            Vector3 enemyDirection = GetEnemyDirectionInDistance(27);
+            if (enemyDirection == Vector3.left)
+                GetComponent<SpriteRenderer>().flipX = true;
+            else
+                GetComponent<SpriteRenderer>().flipX = false;
         }
 
         void CheckHitReceived()
