@@ -25,14 +25,15 @@ namespace Controllers
         [SerializeField]
         private byte orientation;
         [SerializeField]
-        private GameObject EnemyGameObject;
+        private GameObject enemyGameObject;
         [SerializeField]
-        private LayerMask GroundLayer;
+        private LayerMask groundLayer;
         [SerializeField]
-        private LayerMask EnemyLayer;
+        private LayerMask enemyLayer;
+        private Vector3 enemyDirection;
+        private CharacterState CharacterState { get; set; }
         public CharacterInput CharacterInput { get; set; }
         public bool IA { get; private set; }
-        private CharacterState CharacterState { get; set; }
 
         public string Name
         {
@@ -84,6 +85,7 @@ namespace Controllers
         private void Start()
         {
             SetCharacterInput();
+            SetEnemyDirection();
 
             CharacterState = new IdleState(this);
             SetState(CharacterState);
@@ -103,6 +105,11 @@ namespace Controllers
             CharacterInput.PlayerController = this;
         }
 
+        private void SetEnemyDirection()
+        {
+            enemyDirection = GetEnemyDirectionInDistance(27);
+        }
+
         public void SetState(CharacterState playerState)
         {
             CharacterState = playerState;
@@ -111,7 +118,7 @@ namespace Controllers
 
         public void SetGroundedAnimator()
         {
-            if (Physics2D.Raycast(transform.position, Vector3.down, groundDistance, GroundLayer))
+            if (Physics2D.Raycast(transform.position, Vector3.down, groundDistance, groundLayer))
             {
                 CharacterAnimator.SetBool("grounded", true);
                 Grounded = true;
@@ -125,7 +132,6 @@ namespace Controllers
 
         void SetOrientation()
         {
-            Vector3 enemyDirection = GetEnemyDirectionInDistance(27);
             if (enemyDirection == Vector3.left)
                 GetComponent<SpriteRenderer>().flipX = true;
             else
@@ -135,13 +141,13 @@ namespace Controllers
         void CheckHitReceived()
         {
             Vector3 enemyDirectionInDistance = GetEnemyDirectionInDistance(2f);
-            HitMeIfEnemyDemageIsGreaterThan0(EnemyGameObject.GetComponent<Character>().CharacterState.Demage, enemyDirectionInDistance);
+            HitMeIfEnemyDemageIsGreaterThan0(enemyGameObject.GetComponent<Character>().CharacterState.Demage, enemyDirectionInDistance);
         }
 
         public Vector3 GetEnemyDirectionInDistance(float distance)
         {
-            RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector3.left, distance, EnemyLayer);
-            RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector3.right, distance, EnemyLayer);
+            RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector3.left, distance, enemyLayer);
+            RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector3.right, distance, enemyLayer);
             if (leftHit)
                 return Vector3.left;
             else if (rightHit)
@@ -149,19 +155,19 @@ namespace Controllers
             return new Vector3();
         }
 
-        void HitMeIfEnemyDemageIsGreaterThan0 (int force, Vector3 enemyDirection)
+        void HitMeIfEnemyDemageIsGreaterThan0(int force, Vector3 enemyDirection)
         {
             if (force > 0)
             {
-                SetHealth(Life - EnemyGameObject.GetComponent<Character>().CharacterState.Demage);
+                SetHealth(Life - enemyGameObject.GetComponent<Character>().CharacterState.Demage);
                 CharacterState.CharacterStateSetter.SetHitState(100f, enemyDirection == Vector3.left ? Vector3.right : Vector3.left);
             }
         }
 
         public void SetEnemy(GameObject enemyGameObject, string layerMask)
         {
-            EnemyGameObject = enemyGameObject;
-            EnemyLayer = LayerMask.GetMask(layerMask);
+            this.enemyGameObject = enemyGameObject;
+            enemyLayer = LayerMask.GetMask(layerMask);
         }
 
         public void SetHealth(int value)

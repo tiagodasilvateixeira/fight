@@ -172,10 +172,10 @@ MonoBehaviour:
   speed: 5
   jumpForce: 500
   orientation: 0
-  EnemyGameObject: {fileID: 0}
-  GroundLayer:
+  enemyGameObject: {fileID: 0}
+  groundLayer:
     serializedVersion: 2
     m_Bits: 1
-  EnemyLayer:
+  enemyLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
