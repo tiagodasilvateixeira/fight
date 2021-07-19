@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &362373081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7080373239279718343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff0ed1762f02174f88a78daf0732c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7080373239930440744
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +102,7 @@ GameObject:
   - component: {fileID: 7080373240055930243}
   - component: {fileID: 7080373240055930241}
   - component: {fileID: 7080373240055930242}
-  - component: {fileID: 1546959309}
+  - component: {fileID: 507789619}
   m_Layer: 0
   m_Name: FightPanel
   m_TagString: Untagged
@@ -162,7 +174,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1546959309
+--- !u!114 &507789619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -171,7 +183,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7080373240055930244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac418f3fcb85e144796f13eeeafc6bbc, type: 3}
+  m_Script: {fileID: 11500000, guid: 8cc71098884b83845a347db0d992c726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1430311461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7357966048103386311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff0ed1762f02174f88a78daf0732c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7080373238806191412
@@ -501,11 +525,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: LifePlayer2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4252852334860752090, guid: 7b526b985bd10ec4682871c4c94eda9d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7b526b985bd10ec4682871c4c94eda9d, type: 3}
 --- !u!224 &7357966047193815053 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 314749291471301841, guid: 7b526b985bd10ec4682871c4c94eda9d, type: 3}
+  m_PrefabInstance: {fileID: 7080373240399181020}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7080373239279718343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1130347291, guid: 7b526b985bd10ec4682871c4c94eda9d, type: 3}
   m_PrefabInstance: {fileID: 7080373240399181020}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7080373240673603168
@@ -713,11 +743,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: LifePlayer1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4252852334860752090, guid: 7b526b985bd10ec4682871c4c94eda9d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7b526b985bd10ec4682871c4c94eda9d, type: 3}
 --- !u!224 &7080373239519255309 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 314749291471301841, guid: 7b526b985bd10ec4682871c4c94eda9d, type: 3}
+  m_PrefabInstance: {fileID: 7357966047016253404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7357966048103386311 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1130347291, guid: 7b526b985bd10ec4682871c4c94eda9d, type: 3}
   m_PrefabInstance: {fileID: 7357966047016253404}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8188490356118271882

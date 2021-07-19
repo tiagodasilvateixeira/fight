@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using System;
+using UnityEngine.UI;
 
 namespace Game
 {
@@ -15,13 +16,18 @@ namespace Game
         private GameObject FighterPlayerTwo;
         [SerializeField]
         private GameObject CameraTargetGroup;
-            
+        [SerializeField]
+        private Mask playerOneMask;
+        [SerializeField]
+        private Mask playerTwoMask;
+
         void Start()
         {
             GameObject fighterPlayerOne = Instantiate(FighterPlayerOne);
             GameObject fighterPlayerTwo = Instantiate(FighterPlayerTwo);
 
             SetFightersControllers(fighterPlayerOne, fighterPlayerTwo);
+            SetFightersMasks(fighterPlayerOne, fighterPlayerTwo);
             SetFightersLayer(fighterPlayerOne, fighterPlayerTwo);
             SetFightersEnemy(fighterPlayerOne, fighterPlayerTwo);
             AddFightersToTargetGroup(fighterPlayerOne, fighterPlayerTwo);
@@ -31,6 +37,12 @@ namespace Game
         {
             playerOne.AddComponent<InputController>();
             playerTwo.AddComponent<PlayerTwoController>();
+        }
+
+        void SetFightersMasks(GameObject playerOne, GameObject playerTwo)
+        {
+            playerOne.GetComponent<Character>().HealthMask = playerOneMask;
+            playerTwo.GetComponent<Character>().HealthMask = playerTwoMask;
         }
 
         void SetFightersLayer(GameObject playerOne, GameObject playerTwo)

@@ -33,6 +33,7 @@ namespace Controllers
         private Vector3 enemyDirection;
         private CharacterState CharacterState { get; set; }
         public CharacterInput CharacterInput { get; set; }
+        public Mask HealthMask { get; set; }
         public bool IA { get; private set; }
 
         public string Name
@@ -79,6 +80,13 @@ namespace Controllers
             get
             {
                 return GetComponent<Animator>();
+            }
+        }
+        private HealthBarController HealthMaskController
+        {
+            get
+            {
+                return HealthMask.GetComponentInChildren<HealthBarController>();
             }
         }
 
@@ -173,6 +181,7 @@ namespace Controllers
         public void SetHealth(int value)
         {
             characterLife = value;
+            HealthMaskController.SetMaskWidth((float)characterLife);
         }
 
         public bool WalkInput()
