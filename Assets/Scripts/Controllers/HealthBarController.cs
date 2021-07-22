@@ -23,7 +23,7 @@ namespace Controllers
 
         public void SetMaskWidth(float value)
         {
-            Mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, OriginalMaskWidth * value);
+            Mask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, OriginalMaskWidth * (value / 100));
         }
 
         void SetInitialMaskWidth()
