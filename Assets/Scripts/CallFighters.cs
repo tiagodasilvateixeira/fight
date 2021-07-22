@@ -20,44 +20,46 @@ namespace Game
         private Mask playerOneMask;
         [SerializeField]
         private Mask playerTwoMask;
+        private GameObject fighterPlayerOne;
+        private GameObject fighterPlayerTwo;
 
         void Start()
         {
-            GameObject fighterPlayerOne = Instantiate(FighterPlayerOne);
-            GameObject fighterPlayerTwo = Instantiate(FighterPlayerTwo);
+            fighterPlayerOne = Instantiate(FighterPlayerOne);
+            fighterPlayerTwo = Instantiate(FighterPlayerTwo);
 
-            SetFightersControllers(fighterPlayerOne, fighterPlayerTwo);
-            SetFightersMasks(fighterPlayerOne, fighterPlayerTwo);
-            SetFightersLayer(fighterPlayerOne, fighterPlayerTwo);
-            SetFightersEnemy(fighterPlayerOne, fighterPlayerTwo);
-            AddFightersToTargetGroup(fighterPlayerOne, fighterPlayerTwo);
+            SetFightersControllers();
+            SetFightersMasks();
+            SetFightersLayer();
+            SetFightersEnemy();
+            AddFightersToTargetGroup();
         }
 
-        void SetFightersControllers(GameObject playerOne, GameObject playerTwo)
+        void SetFightersControllers()
         {
-            playerOne.AddComponent<InputController>();
-            playerTwo.AddComponent<PlayerTwoController>();
+            fighterPlayerOne.AddComponent<InputController>();
+            fighterPlayerTwo.AddComponent<PlayerTwoController>();
         }
 
-        void SetFightersMasks(GameObject playerOne, GameObject playerTwo)
+        void SetFightersMasks()
         {
-            playerOne.GetComponent<Character>().HealthMask = playerOneMask;
-            playerTwo.GetComponent<Character>().HealthMask = playerTwoMask;
+            fighterPlayerOne.GetComponent<Character>().HealthMask = playerOneMask;
+            fighterPlayerTwo.GetComponent<Character>().HealthMask = playerTwoMask;
         }
 
-        void SetFightersLayer(GameObject playerOne, GameObject playerTwo)
+        void SetFightersLayer()
         {
-            playerOne.layer = 8;
-            playerTwo.layer = 9;
+            fighterPlayerOne.layer = 8;
+            fighterPlayerTwo.layer = 9;
         }
 
-        void SetFightersEnemy(GameObject playerOne, GameObject playerTwo)
+        void SetFightersEnemy()
         {
-            playerOne.GetComponent<Character>().SetEnemy(playerTwo, "Fighter2");
-            playerTwo.GetComponent<Character>().SetEnemy(playerOne, "Fighter1");
+            fighterPlayerOne.GetComponent<Character>().SetEnemy(fighterPlayerTwo, "Fighter2");
+            fighterPlayerTwo.GetComponent<Character>().SetEnemy(fighterPlayerOne, "Fighter1");
         }
 
-        void AddFightersToTargetGroup(GameObject fighterPlayerOne, GameObject fighterPlayerTwo)
+        void AddFightersToTargetGroup()
         {
             CinemachineTargetGroup.Target[] targets = { CreateTargetForTargetGroup(fighterPlayerOne), CreateTargetForTargetGroup(fighterPlayerTwo) };
             CameraTargetGroup.GetComponent<CinemachineTargetGroup>().m_Targets = targets;
