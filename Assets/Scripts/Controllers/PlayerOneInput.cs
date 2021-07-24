@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    public class InputController : CharacterInput
+    public class PlayerOneInput : CharacterInput
     {
         private void Awake()
         {

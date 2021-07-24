@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Controllers
 {
-    public class FightPanelController : MonoBehaviour
+    public class FightPanel : MonoBehaviour
     {
         private readonly int defultCounterValue = 90;
         private int Counter;

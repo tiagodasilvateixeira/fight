@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    public class PlayerTwoController : CharacterInput
+    public class PlayerTwoInput : CharacterInput
     {
         Vector3 enemyInHitDistance;
         bool goingToEnemy = true;

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Controllers
 {
-    public class HealthBarController : MonoBehaviour
+    public class HealthBar : MonoBehaviour
     {
         readonly float OriginalMaskWidth = 400f;
         Mask Mask

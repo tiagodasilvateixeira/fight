@@ -44,8 +44,8 @@ namespace Game
 
         void SetFightersControllers()
         {
-            fighterPlayerOne.AddComponent<InputController>();
-            fighterPlayerTwo.AddComponent<PlayerTwoController>();
+            fighterPlayerOne.AddComponent<PlayerOneInput>();
+            fighterPlayerTwo.AddComponent<PlayerTwoInput>();
         }
 
         void SetFightersMasks()

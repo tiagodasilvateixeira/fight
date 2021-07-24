@@ -82,11 +82,11 @@ namespace Controllers
                 return GetComponent<Animator>();
             }
         }
-        private HealthBarController HealthMaskController
+        private HealthBar HealthMaskController
         {
             get
             {
-                return HealthMask.GetComponentInChildren<HealthBarController>();
+                return HealthMask.GetComponentInChildren<HealthBar>();
             }
         }
 

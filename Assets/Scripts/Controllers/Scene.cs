@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 
 namespace Controllers
 {
-    public class SceneController : MonoSingleton<SceneController>
+    public class Scene : MonoSingleton<Scene>
     {
         [SerializeField]
         private string scene;
         [SerializeField]
         private string nextScene;
 
-        public string Scene
+        public string ActualScene
         {
             get
             {
