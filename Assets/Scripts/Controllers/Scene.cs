@@ -12,6 +12,8 @@ namespace Controllers
         private string scene;
         [SerializeField]
         private string nextScene;
+        public GameObject FighterPlayerOne;
+        public GameObject FighterPlayerTwo;
 
         public string ActualScene
         {

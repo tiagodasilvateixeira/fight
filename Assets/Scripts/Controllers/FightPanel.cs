@@ -41,9 +41,24 @@ namespace Controllers
             TogglePlayer2 = GameObject.Find("TogglePlayer2").GetComponent<Toggle>();
         }
 
-        public void MarkToggle(Toggle toggle)
+        private void MarkToggle(Toggle toggle)
         {
             toggle.isOn = true;
+        }
+
+        public bool CounterEqual0()
+        {
+            if (Counter == 0)
+                return true;
+            return false;
+        }
+
+        public void FlagPlayerToggle(int playerNumber)
+        {
+            if (playerNumber == 1)
+                MarkToggle(TogglePlayer1);
+            else if (playerNumber == 2)
+                MarkToggle(TogglePlayer2);
         }
     }
 }

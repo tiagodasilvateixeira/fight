@@ -11,10 +11,6 @@ namespace Game
     public class CallFighters : MonoBehaviour
     {
         [SerializeField]
-        private GameObject FighterPlayerOne;
-        [SerializeField]
-        private GameObject FighterPlayerTwo;
-        [SerializeField]
         private GameObject CameraTargetGroup;
         [SerializeField]
         private Mask playerOneMask;
@@ -25,8 +21,8 @@ namespace Game
 
         void Start()
         {
-            fighterPlayerOne = Instantiate(FighterPlayerOne);
-            fighterPlayerTwo = Instantiate(FighterPlayerTwo);
+            fighterPlayerOne = Instantiate(Scene.Instance.FighterPlayerOne);
+            fighterPlayerTwo = Instantiate(Scene.Instance.FighterPlayerTwo);
 
             SetFightersPosition();
             SetFightersControllers();
