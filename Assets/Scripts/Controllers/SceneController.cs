@@ -9,11 +9,11 @@ namespace Controllers
     public class SceneController : MonoSingleton<SceneController>
     {
         [SerializeField]
-        private Scene scene;
+        private string scene;
         [SerializeField]
-        private Scene nextScene;
+        private string nextScene;
 
-        public Scene Scene
+        public string Scene
         {
             get
             {
@@ -24,7 +24,7 @@ namespace Controllers
                 scene = value;
             }
         }
-        public Scene NextScene
+        public string NextScene
         {
             get
             {
@@ -38,7 +38,7 @@ namespace Controllers
 
         public void LoadNextScene(LoadSceneMode mode)
         {
-            SceneManager.LoadScene(Scene.name, mode);
+            SceneManager.LoadScene(NextScene, mode);
         }
     }
 }

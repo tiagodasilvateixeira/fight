@@ -28,11 +28,18 @@ namespace Game
             fighterPlayerOne = Instantiate(FighterPlayerOne);
             fighterPlayerTwo = Instantiate(FighterPlayerTwo);
 
+            SetFightersPosition();
             SetFightersControllers();
             SetFightersMasks();
             SetFightersLayer();
             SetFightersEnemy();
             AddFightersToTargetGroup();
+        }
+
+        void SetFightersPosition()
+        {
+            fighterPlayerOne.GetComponent<Transform>().position = new Vector3(-6, -2.5f, 0);
+            fighterPlayerTwo.GetComponent<Transform>().position = new Vector3(6, -2.5f, 0);
         }
 
         void SetFightersControllers()
