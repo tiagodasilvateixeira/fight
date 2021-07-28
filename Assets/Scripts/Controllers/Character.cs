@@ -149,7 +149,8 @@ namespace Controllers
         void CheckHitReceived()
         {
             Vector3 enemyDirectionInDistance = GetEnemyDirectionInDistance(2f);
-            HitMeIfEnemyDemageIsGreaterThan0(enemyGameObject.GetComponent<Character>().CharacterState.Demage, enemyDirectionInDistance);
+            if (enemyDirectionInDistance != new Vector3())
+                HitMeIfEnemyDemageIsGreaterThan0(enemyGameObject.GetComponent<Character>().CharacterState.Demage, enemyDirectionInDistance);
         }
 
         public Vector3 GetEnemyDirectionInDistance(float distance)
