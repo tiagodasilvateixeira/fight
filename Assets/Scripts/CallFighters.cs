@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Game
 {
-    public class CallFighters : MonoBehaviour
+    public class CallFighters : MonoSingleton<CallFighters>
     {
         [SerializeField]
         private GameObject CameraTargetGroup;
@@ -16,13 +16,29 @@ namespace Game
         private Mask playerOneMask;
         [SerializeField]
         private Mask playerTwoMask;
+        [SerializeField]
         private GameObject fighterPlayerOne;
+        [SerializeField]
         private GameObject fighterPlayerTwo;
+        public Character CharacterPlayerOne
+        {
+            get
+            {
+                return fighterPlayerOne.GetComponent<Character>();
+            }
+        }
+        public Character CharacterPlayerTwo
+        {
+            get
+            {
+                return fighterPlayerTwo.GetComponent<Character>();
+            }
+        }
 
         void Start()
         {
-            fighterPlayerOne = Instantiate(Scene.Instance.FighterPlayerOne);
-            fighterPlayerTwo = Instantiate(Scene.Instance.FighterPlayerTwo);
+            fighterPlayerOne = Instantiate(fighterPlayerOne);
+            fighterPlayerTwo = Instantiate(fighterPlayerTwo);
 
             SetFightersPosition();
             SetFightersControllers();

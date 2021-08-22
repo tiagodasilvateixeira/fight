@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Game;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,23 +12,28 @@ namespace Controllers
         private int NumberOfRounds;
         [SerializeField]
         private GameObject FightPanel;
-        private Character CharacterPlayerOne;
-        private Character CharacterPlayerTwo;
         private FightPanel Panel;
-        private bool RoundInitiated;
+        private bool RoundInitiated = false;
         private int NumberOfRoundsClosed;
+        public Character CharacterPlayerOne
+        {
+            get
+            {
+                return CallFighters.Instance.CharacterPlayerOne;
+            }
+        }
+        public Character CharacterPlayerTwo
+        {
+            get
+            {
+                return CallFighters.Instance.CharacterPlayerTwo;
+            }
+        }
 
         void Start()
         {
-            SetCharacters();
             SetFightPanel();
             InitializeRound();
-        }
-
-        private void SetCharacters()
-        {
-            CharacterPlayerOne = Scene.Instance.FighterPlayerOne.GetComponent<Character>();
-            CharacterPlayerTwo = Scene.Instance.FighterPlayerTwo.GetComponent<Character>();
         }
 
         private void SetFightPanel()

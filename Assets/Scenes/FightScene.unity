@@ -1073,6 +1073,14 @@ PrefabInstance:
       propertyPath: FighterPlayerTwo
       value: 
       objectReference: {fileID: 969882063580594144, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
+    - target: {fileID: 230889389374471220, guid: 33346bab874b9a34193d8135f6f47bd0, type: 3}
+      propertyPath: fighterPlayerOne
+      value: 
+      objectReference: {fileID: 6068037782364974395, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
+    - target: {fileID: 230889389374471220, guid: 33346bab874b9a34193d8135f6f47bd0, type: 3}
+      propertyPath: fighterPlayerTwo
+      value: 
+      objectReference: {fileID: 969882063580594144, guid: a9a73962863f26143ad2a3bffedd52ef, type: 3}
     - target: {fileID: 230889389374471222, guid: 33346bab874b9a34193d8135f6f47bd0, type: 3}
       propertyPath: m_Name
       value: CallFighters

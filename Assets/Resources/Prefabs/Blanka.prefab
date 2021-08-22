@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 969882063580594172}
   - component: {fileID: 969882063580594147}
   - component: {fileID: 732260637}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blanka
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,10 +172,10 @@ MonoBehaviour:
   speed: 5
   jumpForce: 500
   orientation: 0
-  enemyGameObject: {fileID: 0}
+  enemyGameObject: {fileID: 6068037782364974395, guid: 66161a8887d1d8c49b29f6eaf1f151f5, type: 3}
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
