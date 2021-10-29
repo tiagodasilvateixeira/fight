@@ -19,12 +19,14 @@ namespace States
 
         public override void Update()
         {
-            CharacterStateSetter.CheckWalkCommand();
-            CharacterStateSetter.CheckJumpCommand();
-            CharacterStateSetter.CheckPunchCommand();
-            CharacterStateSetter.CheckKickCommand();
-            CharacterStateSetter.CheckBlockCommand();
-
+            if (PlayerController.CharacterInput.Enabled)
+            {
+                CharacterStateSetter.CheckWalkCommand();
+                CharacterStateSetter.CheckJumpCommand();
+                CharacterStateSetter.CheckPunchCommand();
+                CharacterStateSetter.CheckKickCommand();
+                CharacterStateSetter.CheckBlockCommand();
+            }
             PlayerController.Idle();
         }
     }
