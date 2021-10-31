@@ -169,6 +169,7 @@ namespace Controllers
             if (force > 0)
             {
                 SetHealth(Life - enemyGameObject.GetComponent<Character>().CharacterState.Demage);
+                CharacterRigidbody2D.AddForce((enemyDirection == Vector3.left ? Vector3.right : Vector3.left) * 150f);
                 CharacterState.CharacterStateSetter.SetHitState(100f, enemyDirection == Vector3.left ? Vector3.right : Vector3.left);
             }
         }
