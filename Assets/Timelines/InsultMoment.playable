@@ -275,7 +275,7 @@ MonoBehaviour:
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
-    m_BlendOutDuration: -1
+    m_BlendOutDuration: 0.5
     m_MixInCurve:
       serializedVersion: 2
       m_Curve:
@@ -317,16 +317,16 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: VC TargetGroup
   - m_Version: 1
-    m_Start: 2.5
+    m_Start: 2
     m_ClipIn: 0
     m_Asset: {fileID: -2349258638356601134}
-    m_Duration: 2
+    m_Duration: 3.0166666666666666
     m_TimeScale: 1
     m_ParentTrack: {fileID: -886945470419418163}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: -1
-    m_BlendOutDuration: -1
+    m_BlendInDuration: 0.5
+    m_BlendOutDuration: 0.33333333333333304
     m_MixInCurve:
       serializedVersion: 2
       m_Curve: []
@@ -350,15 +350,15 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: VC Ryu Close
   - m_Version: 1
-    m_Start: 5.5
+    m_Start: 6.016666666666667
     m_ClipIn: 0
     m_Asset: {fileID: 5099311215051878653}
-    m_Duration: 2
+    m_Duration: 3.000000000000001
     m_TimeScale: 1
     m_ParentTrack: {fileID: -886945470419418163}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: -1
+    m_BlendInDuration: 0.2999999999999998
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
@@ -383,16 +383,16 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: VC Blanka Close
   - m_Version: 1
-    m_Start: 4.5
+    m_Start: 4.683333333333334
     m_ClipIn: 0
     m_Asset: {fileID: 3575336734055343554}
-    m_Duration: 1
+    m_Duration: 1.6333333333333329
     m_TimeScale: 1
     m_ParentTrack: {fileID: -886945470419418163}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: -1
-    m_BlendOutDuration: -1
+    m_BlendInDuration: 0.33333333333333304
+    m_BlendOutDuration: 0.2999999999999998
     m_MixInCurve:
       serializedVersion: 2
       m_Curve: []
@@ -416,7 +416,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: VC TargetGroup
   - m_Version: 1
-    m_Start: 7.5
+    m_Start: 9.016666666666667
     m_ClipIn: 0
     m_Asset: {fileID: -2597912077650635368}
     m_Duration: 0.4833333333333334
@@ -689,10 +689,10 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 6
+    m_Start: 6.816666666666666
     m_ClipIn: 0
     m_Asset: {fileID: 2287271873602744757}
-    m_Duration: 1.5
+    m_Duration: 2.200000000000001
     m_TimeScale: 1
     m_ParentTrack: {fileID: 2564120026946218016}
     m_EaseInDuration: 0
@@ -911,7 +911,7 @@ MonoBehaviour:
     m_Start: 3
     m_ClipIn: 0
     m_Asset: {fileID: 1946673432614339444}
-    m_Duration: 1.4999999999999996
+    m_Duration: 1.6833333333333336
     m_TimeScale: 1
     m_ParentTrack: {fileID: 4964760910572081699}
     m_EaseInDuration: 0
