@@ -15,6 +15,7 @@ namespace Controllers
         private FightPanel Panel;
         private bool RoundInitiated = false;
         private int NumberOfRoundsClosed;
+        private string[] RoundWinner = new string[2];
         public Character CharacterPlayerOne
         {
             get
@@ -66,7 +67,7 @@ namespace Controllers
                 CloseRoundIfPanelTimerEqual0();
                 CloseRoundIfAPlayerLifeEqual0();
             }
-            else if (NumberOfRoundsClosed < NumberOfRounds)
+            else if ((NumberOfRoundsClosed < NumberOfRounds) && (RoundWinner?.GetValue(0) != RoundWinner?.GetValue(1)))
                 InitializeRound();
             else
                 CloseFight();
@@ -94,9 +95,16 @@ namespace Controllers
         {
             int maxLife = Math.Max(CharacterPlayerOne.Life, CharacterPlayerTwo.Life);
             if (maxLife == CharacterPlayerOne.Life)
+            {
                 Panel.FlagPlayerToggle(1);
+                RoundWinner.SetValue(CharacterPlayerOne.Name, NumberOfRoundsClosed);
+            }
             else
+            {
                 Panel.FlagPlayerToggle(2);
+                RoundWinner.SetValue(CharacterPlayerTwo.Name, NumberOfRoundsClosed);
+            }
+                
         }
 
         void SetRoundClosed()
@@ -108,12 +116,19 @@ namespace Controllers
         private void CloseFight()
         {
             DisableCharactersInput();
+            LoadPreFightScene();
         }
 
         private void DisableCharactersInput()
         {
             CharacterPlayerOne.CharacterInput.Enabled = false;
             CharacterPlayerTwo.CharacterInput.Enabled = false;
+        }
+
+        private void LoadPreFightScene()
+        {
+            Scene.Instance.NextScene = "InsultScene";
+            Scene.Instance.LoadNextScene(UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
     }
 
