@@ -48,7 +48,7 @@ namespace Game
             AddFightersToTargetGroup();
         }
 
-        void SetFightersPosition()
+        public void SetFightersPosition()
         {
             fighterPlayerOne.GetComponent<Transform>().position = new Vector3(-6, -2.5f, 0);
             fighterPlayerTwo.GetComponent<Transform>().position = new Vector3(6, -2.5f, 0);

@@ -26,6 +26,7 @@ namespace Controllers
             if (int.Parse(CounterText.text) > 85)
             {
                 EnableRoundFightImage();
+                DisableCharactersInput();
                 ChangeCharactersInputStatus(false, false);
             }
             else
@@ -51,6 +52,12 @@ namespace Controllers
         {
             CallFighters.Instance.CharacterPlayerOne.CharacterInput.Enabled = characterOneEnable;
             CallFighters.Instance.CharacterPlayerTwo.CharacterInput.Enabled = characterTwoEnable;
+        }
+
+        void DisableCharactersInput()
+        {
+            CallFighters.Instance.CharacterPlayerOne.CharacterInput.input = new Vector2(0, 0);
+            CallFighters.Instance.CharacterPlayerTwo.CharacterInput.input = new Vector2(0, 0);
         }
     }
 }

@@ -98,6 +98,7 @@ namespace Controllers
         {
             FlagCharacterWinner();
             SetRoundClosed();
+            CallFighters.Instance.SetFightersPosition();
         }
 
         private void FlagCharacterWinner()
