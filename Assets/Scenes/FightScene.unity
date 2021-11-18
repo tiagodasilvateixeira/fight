@@ -371,6 +371,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -833,6 +834,7 @@ PolygonCollider2D:
       - {x: -14.6, y: -5.2}
       - {x: 14.6, y: -5.2}
       - {x: 14.6, y: 5.2}
+  m_UseDelaunayMesh: 0
 --- !u!1 &1202980001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,7 +1158,6 @@ MonoBehaviour:
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
-  m_HideOffsetInInspector: 0
 --- !u!114 &2124677137
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1330,6 +1331,10 @@ PrefabInstance:
       propertyPath: FightPanel
       value: 
       objectReference: {fileID: 1539351863}
+    - target: {fileID: 8708431813082836664, guid: 7a580b77e2e8951458dfc0de2eb5fc5a, type: 3}
+      propertyPath: RoundPanel
+      value: 
+      objectReference: {fileID: 581288753}
     - target: {fileID: 8708431813082836665, guid: 7a580b77e2e8951458dfc0de2eb5fc5a, type: 3}
       propertyPath: m_Name
       value: Rounds

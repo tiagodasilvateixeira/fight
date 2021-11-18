@@ -12,10 +12,12 @@ namespace Controllers
         private int NumberOfRounds;
         [SerializeField]
         private GameObject FightPanel;
-        private FightPanel Panel;
+        [SerializeField]
+        private GameObject RoundPanel;
+        private FightPanel FightPanelInstance;
         private bool RoundInitiated = false;
         private int NumberOfRoundsClosed;
-        private string[] RoundWinner = new string[2];
+        private string[] RoundWinner = new string[3];
         public Character CharacterPlayerOne
         {
             get
@@ -33,13 +35,13 @@ namespace Controllers
 
         void Start()
         {
-            SetFightPanel();
+            SetPanels();
             InitializeRound();
         }
 
-        private void SetFightPanel()
+        private void SetPanels()
         {
-            Panel = FightPanel.GetComponent<FightPanel>();
+            FightPanelInstance = FightPanel.GetComponent<FightPanel>();
         }
 
         private void InitializeRound()
@@ -57,10 +59,10 @@ namespace Controllers
 
         private void InitializeFightPanelTimer()
         {
-            Panel.InitCounter(90);
+            FightPanelInstance.InitCounter(90);
         }
 
-        void Update()
+        private void Update()
         {
             if (RoundInitiated)
             {
@@ -70,12 +72,19 @@ namespace Controllers
             else if ((NumberOfRoundsClosed < NumberOfRounds) && (RoundWinner?.GetValue(0) != RoundWinner?.GetValue(1)))
                 InitializeRound();
             else
+            {
+                if (NumberOfRoundsClosed < NumberOfRounds)
+                {
+                    CloseRound();
+                }
                 CloseFight();
+            }
+                
         }
 
         private void CloseRoundIfPanelTimerEqual0()
         {
-            if (Panel.CounterEqual0())
+            if (FightPanelInstance.CounterEqual0())
                 CloseRound();
         }
 
@@ -96,12 +105,12 @@ namespace Controllers
             int maxLife = Math.Max(CharacterPlayerOne.Life, CharacterPlayerTwo.Life);
             if (maxLife == CharacterPlayerOne.Life)
             {
-                Panel.FlagPlayerToggle(1);
+                FightPanelInstance.FlagPlayerToggle(1);
                 RoundWinner.SetValue(CharacterPlayerOne.Name, NumberOfRoundsClosed);
             }
             else
             {
-                Panel.FlagPlayerToggle(2);
+                FightPanelInstance.FlagPlayerToggle(2);
                 RoundWinner.SetValue(CharacterPlayerTwo.Name, NumberOfRoundsClosed);
             }
                 
@@ -115,14 +124,52 @@ namespace Controllers
 
         private void CloseFight()
         {
-            DisableCharactersInput();
-            LoadPreFightScene();
+            StartCoroutine(SetFinishedFightAnimationCharacters());
         }
 
+        IEnumerator SetFinishedFightAnimationCharacters()
+        {
+            DisablePanels();
+            DisableCharactersInput();
+            SetCharactersAnimations();
+
+            yield return new WaitForSeconds(4);
+
+            LoadPreFightScene();
+        }
+        
         private void DisableCharactersInput()
         {
             CharacterPlayerOne.CharacterInput.Enabled = false;
             CharacterPlayerTwo.CharacterInput.Enabled = false;
+        }
+
+        private void DisablePanels()
+        {
+            FightPanel.SetActive(false);
+            RoundPanel.SetActive(false);
+        }
+
+        private void SetCharactersAnimations()
+        {
+            if (GetWinnerName() == CharacterPlayerOne.Name)
+            {
+                CharacterPlayerOne.Win();
+                CharacterPlayerTwo.KO();
+            }
+            else
+            {
+                CharacterPlayerTwo.Win();
+                CharacterPlayerOne.KO();
+            }
+        }
+
+        private string GetWinnerName()
+        {
+            if (RoundWinner?.GetValue(0) == RoundWinner?.GetValue(1))
+                return RoundWinner.GetValue(0).ToString();
+            else
+                return RoundWinner.GetValue(2).ToString();
         }
 
         private void LoadPreFightScene()
@@ -131,5 +178,4 @@ namespace Controllers
             Scene.Instance.LoadNextScene(UnityEngine.SceneManagement.LoadSceneMode.Single);
         }
     }
-
 }
