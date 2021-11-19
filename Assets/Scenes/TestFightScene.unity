@@ -218,6 +218,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FightPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 7080373240055930244, guid: 9fbd0764672100f499eebf83fa7b0dc1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fbd0764672100f499eebf83fa7b0dc1, type: 3}
 --- !u!224 &97275487 stripped
@@ -528,7 +532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &581288754
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1338,6 +1342,10 @@ PrefabInstance:
     - target: {fileID: 8708431813082836665, guid: 7a580b77e2e8951458dfc0de2eb5fc5a, type: 3}
       propertyPath: m_Name
       value: Rounds
+      objectReference: {fileID: 0}
+    - target: {fileID: 8708431813082836665, guid: 7a580b77e2e8951458dfc0de2eb5fc5a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8708431813082836667, guid: 7a580b77e2e8951458dfc0de2eb5fc5a, type: 3}
       propertyPath: m_RootOrder
