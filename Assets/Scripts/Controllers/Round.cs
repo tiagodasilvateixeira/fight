@@ -143,6 +143,8 @@ namespace Controllers
         {
             CharacterPlayerOne.CharacterInput.Enabled = false;
             CharacterPlayerTwo.CharacterInput.Enabled = false;
+            CallFighters.Instance.CharacterPlayerOne.CharacterInput.input = new Vector2(0, 0);
+            CallFighters.Instance.CharacterPlayerTwo.CharacterInput.input = new Vector2(0, 0);
         }
 
         private void DisablePanels()
