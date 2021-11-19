@@ -14,6 +14,7 @@ namespace States
         public KickState Kick { get; set; }
         public HitState Hit { get; set; }
         public BlockState Block { get; set; }
+        public EspecialAtackState EspecialAtack { get; set; }
 
         public Character PlayerController { get; set; }
         public CharacterStateSetter(Character controller)
@@ -68,6 +69,15 @@ namespace States
             {
                 Block = new BlockState(PlayerController);
                 PlayerController.SetState(Block);
+            }
+        }
+
+        public void CheckEspecialAtackCommand()
+        {
+            if (PlayerController.CharacterInput.GetEspecialAtackCommand())
+            {
+                EspecialAtack = new EspecialAtackState(PlayerController);
+                PlayerController.SetState(EspecialAtack);
             }
         }
 

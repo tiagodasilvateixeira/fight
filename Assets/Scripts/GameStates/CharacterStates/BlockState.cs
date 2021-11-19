@@ -23,6 +23,7 @@ namespace States
                 CharacterStateSetter.CheckJumpCommand();
                 CharacterStateSetter.CheckPunchCommand();
                 CharacterStateSetter.CheckKickCommand();
+                CharacterStateSetter.CheckEspecialAtackCommand();
             }
 
             PlayerController.Block();

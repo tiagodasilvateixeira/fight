@@ -234,7 +234,7 @@ namespace Controllers
 
         public void EspecialAtack()
         {
-            throw new System.NotImplementedException();
+            CharacterAnimator.SetTrigger("especial");
         }
 
         public void Hit(float force, Vector3 direction)
@@ -246,13 +246,11 @@ namespace Controllers
         public void KO()
         {
             CharacterAnimator.SetTrigger("ko");
-            CharacterInput.Enabled = false;
         }
 
         public void Win()
         {
             CharacterAnimator.SetTrigger("win");
-            CharacterInput.Enabled = false;
         }
     }
 }

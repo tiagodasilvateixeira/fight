@@ -13,5 +13,6 @@ namespace Controllers
         public abstract bool GetPunchCommand();
         public abstract bool GetKickCommand();
         public abstract bool GetBlockCommand();
+        public abstract bool GetEspecialAtackCommand();
     }
 }

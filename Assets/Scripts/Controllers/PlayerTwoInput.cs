@@ -86,5 +86,10 @@ namespace Controllers
         {
             return false;
         }
+
+        public override bool GetEspecialAtackCommand()
+        {
+            return false;
+        }
     }
 }

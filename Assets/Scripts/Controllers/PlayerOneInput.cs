@@ -43,5 +43,10 @@ namespace Controllers
         {
             return Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
         }
+
+        public override bool GetEspecialAtackCommand()
+        {
+            return Input.GetKeyDown(KeyCode.I);
+        }
     }
 }
