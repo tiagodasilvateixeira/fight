@@ -11,6 +11,8 @@ namespace Game
     public class CallFighters : MonoSingleton<CallFighters>
     {
         [SerializeField]
+        private bool DisablePlayerTwoInput;
+        [SerializeField]
         private GameObject CameraTargetGroup;
         [SerializeField]
         private Mask playerOneMask;
@@ -58,6 +60,10 @@ namespace Game
         {
             fighterPlayerOne.AddComponent<PlayerOneInput>();
             fighterPlayerTwo.AddComponent<PlayerTwoInput>();
+            if (DisablePlayerTwoInput == true)
+            {
+                fighterPlayerTwo.GetComponent<PlayerTwoInput>().enabled = false;
+            }
         }
 
         void SetFightersMasks()

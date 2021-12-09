@@ -8,6 +8,8 @@ namespace States
         public Character PlayerController { get; set; }
         public CharacterStateSetter CharacterStateSetter { get; set; }
         public int Demage { get; set; }
+        public float Delay = 0f;
+        public float NextStateTime = 0f;
 
         protected CharacterState(Character controller)
         {

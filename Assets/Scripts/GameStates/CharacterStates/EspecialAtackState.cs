@@ -15,14 +15,19 @@ namespace States
 
         public override void EnterState()
         {
+            Demage = 30;
+
             Debug.Log($"{PlayerController.Name} in EspecialAtackState");
             PlayerController.EspecialAtack();
         }
 
         public override void Update()
         {
-            CharacterStateSetter.CheckIdleState();
-            CharacterStateSetter.CheckWalkCommand();
+            if (PlayerController.especialAtackTriggered == false)
+            {
+                CharacterStateSetter.CheckIdleState();
+                CharacterStateSetter.CheckWalkCommand();
+            }
         }
     }
 }

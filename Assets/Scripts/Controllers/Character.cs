@@ -27,6 +27,11 @@ namespace Controllers
         [SerializeField]
         private GameObject enemyGameObject;
         [SerializeField]
+        private GameObject especialAtackItem;
+        public bool especialAtackTriggered;
+        [SerializeField]
+        private GameObject especialAtackItemSpawnLocation;
+        [SerializeField]
         private LayerMask groundLayer;
         [SerializeField]
         private LayerMask enemyLayer;
@@ -103,7 +108,6 @@ namespace Controllers
         {
             SetGroundedAnimator();
             SetOrientation();
-            CheckHitReceived();
             CharacterState.Update();
         }
 
@@ -115,7 +119,7 @@ namespace Controllers
 
         private void SetEnemyDirection()
         {
-            enemyDirection = GetEnemyDirectionInDistance(27);
+            enemyDirection = GetEnemyDirection(27);
         }
 
         public void SetState(CharacterState playerState)
@@ -146,30 +150,32 @@ namespace Controllers
                 GetComponent<SpriteRenderer>().flipX = false;
         }
 
-        void CheckHitReceived()
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            Vector3 enemyDirectionInDistance = GetEnemyDirectionInDistance(2f);
-            if (enemyDirectionInDistance != new Vector3())
-                HitMeIfEnemyDemageIsGreaterThan0(enemyGameObject.GetComponent<Character>().CharacterState.Demage, enemyDirectionInDistance);
+            int force = enemyGameObject.GetComponent<Character>().CharacterState.Demage;
+            if (collision.gameObject.layer == enemyGameObject.layer)
+            {
+                Vector3 enemyDirectionInDistance = GetEnemyDirection(2f);
+                HitMeIfEnemyDemageIsGreaterThan0(force, enemyDirectionInDistance);
+            }
         }
 
-        public Vector3 GetEnemyDirectionInDistance(float distance)
+        public Vector3 GetEnemyDirection(float distance)
         {
-            RaycastHit2D leftHit = Physics2D.Raycast(transform.position, Vector3.left, distance, enemyLayer);
-            RaycastHit2D rightHit = Physics2D.Raycast(transform.position, Vector3.right, distance, enemyLayer);
-            if (leftHit)
+            RaycastHit2D left = Physics2D.Raycast(transform.position, Vector3.left, distance, enemyLayer);
+            RaycastHit2D right = Physics2D.Raycast(transform.position, Vector3.right, distance, enemyLayer);
+            if (left)
                 return Vector3.left;
-            else if (rightHit)
+            else if (right)
                 return Vector3.right;
             return new Vector3();
         }
 
-        void HitMeIfEnemyDemageIsGreaterThan0(int force, Vector3 enemyDirection)
+        public void HitMeIfEnemyDemageIsGreaterThan0(int force, Vector3 enemyDirection)
         {
             if (force > 0)
             {
                 SetHealth(Life - enemyGameObject.GetComponent<Character>().CharacterState.Demage);
-                CharacterRigidbody2D.AddForce((enemyDirection == Vector3.left ? Vector3.right : Vector3.left) * 150f);
                 CharacterState.CharacterStateSetter.SetHitState(100f, enemyDirection == Vector3.left ? Vector3.right : Vector3.left);
             }
         }
@@ -234,7 +240,13 @@ namespace Controllers
 
         public void EspecialAtack()
         {
+            especialAtackTriggered = true;
             CharacterAnimator.SetTrigger("especial");
+        }
+
+        public void EnableEspecialAtackItem()
+        {
+            Instantiate(especialAtackItem, especialAtackItemSpawnLocation.transform);
         }
 
         public void Hit(float force, Vector3 direction)

@@ -22,7 +22,7 @@ namespace Controllers
         {
             if (Enabled)
             {
-                enemyInHitDistance = PlayerController.GetEnemyDirectionInDistance(2f);
+                enemyInHitDistance = PlayerController.GetEnemyDirection(2f);
                 IncraseTimeSinceLastAtack();
                 StartCoroutine(WaitForHorizontalInput());
             }

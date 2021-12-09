@@ -13,6 +13,8 @@ namespace States
         public override void EnterState()
         {
             Demage = 10;
+            Delay = 0.3f;
+            NextStateTime = Time.time + Delay;
 
             Debug.Log($"{PlayerController.Name} in KickState");
             PlayerController.Kick();
@@ -20,8 +22,11 @@ namespace States
 
         public override void Update()
         {
-            CharacterStateSetter.CheckIdleState();
-            CharacterStateSetter.CheckWalkCommand();
+            if (Time.time >= NextStateTime)
+            {
+                CharacterStateSetter.CheckIdleState();
+                CharacterStateSetter.CheckWalkCommand();
+            }
         }
     }
 }
