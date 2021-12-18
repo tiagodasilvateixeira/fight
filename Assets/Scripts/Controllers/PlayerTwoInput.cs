@@ -10,8 +10,10 @@ namespace Controllers
         Vector3 enemyInHitDistance;
         bool goingToEnemy = true;
         float timeSinceLastAtack;
+        float timeSinceLastEspecialAtack;
         bool canPunch = false;
         bool canKick = false;
+        bool especialAtackEnabled = false;
 
         private void Awake()
         {
@@ -34,9 +36,20 @@ namespace Controllers
             {
                 timeSinceLastAtack += Time.deltaTime;
             }
+            if (!especialAtackEnabled)
+            {
+                timeSinceLastEspecialAtack += Time.deltaTime;
+            }
             if (timeSinceLastAtack > 2f)
             {
-                canPunch = true;
+                if (timeSinceLastEspecialAtack > 5)
+                {
+                    especialAtackEnabled = true;
+                }
+                else
+                {
+                    EnableAtack();
+                }
                 goingToEnemy = true;
             }
         }
@@ -55,6 +68,18 @@ namespace Controllers
             return new Vector2();
         }
 
+        void EnableAtack()
+        {
+            if (Time.deltaTime/2 == 0)
+            {
+                canPunch = true;
+            }
+            else
+            {
+                canKick = true;
+            }
+        }
+
         public override bool GetJumpCommand()
         {
             return false;
@@ -65,6 +90,8 @@ namespace Controllers
             if (canKick && enemyInHitDistance != Vector3.zero)
             {
                 timeSinceLastAtack = 0.0f;
+                canKick = false;
+                goingToEnemy = false;
                 return true;
             }
             return false;
@@ -89,6 +116,14 @@ namespace Controllers
 
         public override bool GetEspecialAtackCommand()
         {
+            if (especialAtackEnabled && enemyInHitDistance != Vector3.zero)
+            {
+                timeSinceLastAtack = 0.0f;
+                timeSinceLastEspecialAtack = 0.0f;
+                especialAtackEnabled = false;
+                goingToEnemy = false;
+                return true;
+            }
             return false;
         }
     }

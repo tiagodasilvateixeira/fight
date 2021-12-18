@@ -14,7 +14,7 @@ namespace Controllers
 
         void Move()
         {
-            GetComponent<Rigidbody2D>().MovePosition(GetComponent<Rigidbody2D>().position + (new Vector2(1, 0) * 10 * Time.deltaTime));
+            GetComponent<Rigidbody2D>().MovePosition(GetComponent<Rigidbody2D>().position + (new Vector2(1, 0) * 20 * Time.deltaTime));
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

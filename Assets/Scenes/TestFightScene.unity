@@ -1207,7 +1207,7 @@ PrefabInstance:
       objectReference: {fileID: 1202980001}
     - target: {fileID: 230889389374471220, guid: 33346bab874b9a34193d8135f6f47bd0, type: 3}
       propertyPath: DisablePlayerTwoInput
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 230889389374471222, guid: 33346bab874b9a34193d8135f6f47bd0, type: 3}
       propertyPath: m_Name

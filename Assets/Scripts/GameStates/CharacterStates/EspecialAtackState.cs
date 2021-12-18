@@ -18,6 +18,7 @@ namespace States
             Demage = 30;
 
             Debug.Log($"{PlayerController.Name} in EspecialAtackState");
+            PlayerController.especialAtackTriggered = true;
             PlayerController.EspecialAtack();
         }
 

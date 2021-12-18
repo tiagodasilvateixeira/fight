@@ -240,7 +240,6 @@ namespace Controllers
 
         public void EspecialAtack()
         {
-            especialAtackTriggered = true;
             CharacterAnimator.SetTrigger("especial");
         }
 
