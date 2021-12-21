@@ -25,6 +25,10 @@ namespace Controllers
         [SerializeField]
         private byte orientation;
         [SerializeField]
+        private AudioSource punchAudio;
+        [SerializeField]
+        private AudioSource especialAudio;
+        [SerializeField]
         private GameObject enemyGameObject;
         [SerializeField]
         private GameObject especialAtackItem;
@@ -241,6 +245,7 @@ namespace Controllers
         public void EspecialAtack()
         {
             CharacterAnimator.SetTrigger("especial");
+            especialAudio.Play();
         }
 
         public void EnableEspecialAtackItem()
@@ -251,6 +256,7 @@ namespace Controllers
         public void Hit(float force, Vector3 direction)
         {
             CharacterAnimator.SetTrigger("hit");
+            punchAudio.Play();
             CharacterRigidbody2D.AddForce(direction * force);
         }
 
